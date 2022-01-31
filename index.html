@@ -187,6 +187,218 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/31/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/31/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">数列极限的几种计算方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-31 17:30:29" itemprop="dateCreated datePublished" datetime="2022-01-31T17:30:29+08:00">2022-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-01 04:11:08" itemprop="dateModified" datetime="2022-02-01T04:11:08+08:00">2022-02-01</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<p>简单的介绍一下以下几种数列极限的计算方法：</p>
+<ul>
+<li>1.Toeplitz定理</li>
+<li>2.Stolz定理</li>
+<li>3.Wallis公式</li>
+<li>4.Stirling公式</li>
+</ul>
+<p>第一次知道Toeplitz定理，是在常庚哲,史济怀的《数学分析教程（第三版）》的1.3节习题里问题的第2小题(如下)。</p>
+<p><strong>Toeplitz定理：</strong></p>
+<p>$$\displaystyle 设n,k\in N^{*}时，t_{nk}\geq0,且\sum_{k=1}^n t_{nk}=1,\lim_{n\rightarrow \infty}t_{nk}=0,如果\lim_{n\rightarrow \infty}a_n=a,令x_n=\sum_{k=1}^n t_{ak}a_k$$</p>
+<p>试证</p>
+<p>$$\displaystyle \lim_{n\rightarrow \infty}x_n=a$$</p>
+<p><strong>证明</strong></p>
+<p>$$\displaystyle 不妨先令a=0,由于\lim_{n\rightarrow \infty}a_n=a,那么对于\forall \epsilon, \exist N\in N^{*},当n&gt;N时,有\left| a_n\right|&lt;\frac{\epsilon}{2}$$</p>
+<p>此时</p>
+<p>$$\displaystyle\left|x_n\right|\leq\sum_{k=1}^nt_{nk}\left|a_k\right|=\sum_{k=1}^N t_{nk}\left|a_k\right|+\sum_{k=N+1}^n t_{nk}\left|a_k\right|$$</p>
+<p>$$\displaystyle \leq\sum_{k=1}^Nt_{nk}\left|a_k\right|+\frac{\epsilon}{2}\sum_{k=1}^Nt_{nk}=\sum_{k=1}^N t_{nk}\left|a_k\right|+\frac{\epsilon}{2}$$</p>
+<p>当$$n\rightarrow \infty$$</p>
+<p>上式中的第一项是有限个无穷小的和,因此存在N1&gt;N,当n&gt;N1有</p>
+<p>$$\displaystyle \left| x_n\right|&lt;\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$$</p>
+<p>此时有$$\displaystyle \lim_{n\rightarrow\infty}x_n=0$$</p>
+<p>$$当a\neq 0 时,有b_n=a_n-a\rightarrow 0 (n\rightarrow \infty),若令x_n^{‘}=\sum_{k=1}^n t_{nk}b_k,则x_n^{‘}\rightarrow 0(n\rightarrow \infty)$$</p>
+<p>有</p>
+<p>$$\displaystyle x_n=\sum_{k=1}^n t_{nk}a_k=\sum_{k=1}^n t_{nk}b_k+a\sum_{k=1}^n t_{nk}=x_n^{‘}+a$$</p>
+<p>取极限后有</p>
+<p>$$\displaystyle \lim_{n\rightarrow \infty}x_n=a$$</p>
+<p><strong>Stolz定理：</strong></p>
+<p>设{bn}是严格递增且趋近于正无穷的数列,如果</p>
+<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{a_n-a_{n-1}}{b_n-b_{n-1}}=A$$</p>
+<p>那么</p>
+<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{a_n}{b_n}=A$$</p>
+<p><strong>证明:</strong></p>
+<p>这个定理可以通过Toeplitz定理去推导,如下:</p>
+<p>不妨记</p>
+<p>$$a_0=b_0=0,t_{nk}=\frac{b_k-b_{k-1}}{b_n}$$</p>
+<p>则</p>
+<p>$$\displaystyle \sum_{k=1}^n t_{nk}=1 ,\lim_{n\rightarrow \infty}t_{nk}=0$$</p>
+<p>令</p>
+<p>$$\displaystyle u_n=\frac{a_n-a_{n-1}}{b_n-b_{n-1}},v_n=\sum_{k=1}^n t_{nk}u_n$$</p>
+<p>因此由Toeplitz定理即得Stolz定理.</p>
+<p><strong>3.Wallis公式</strong></p>
+<p>形式：</p>
+<p>$$\displaystyle \frac{\pi}{2}=\lim_{n\rightarrow\infty}[\frac{(2n)!!}{(2n-1)!!}]^2\cdot\frac{1}{2n+1}$$</p>
+<p>证明：考虑</p>
+<p>$$\displaystyle \int_{0}^\frac{\pi}{2}\sin ^n{x}\mathrm{d}x=-\int_{0}^{\frac{\pi}{2}}\sin^{n-1}x\mathrm d(\cos x)$$</p>
+<p>$$\displaystyle =-\cos x\cdot \sin^{n-1}x|<em>0^{\frac{\pi}{2}}+\int</em>{0}^{\frac{\pi}{2}}\cos x(n-1)\sin^{n-2}x\cdot \cos x\mathrm dx$$</p>
+<p>$$\displaystyle =0+\int_0^{\frac{\pi}{2}}(n-1)\cos ^2x\cdot \sin^{n-2}x\mathrm{d}x$$</p>
+<p>$$\displaystyle =\int_{0}^{\frac{\pi}{2}}(n-1)\sin^{n-2}x\mathrm dx-(n-1)\int_0^{\frac{\pi}{2}}\sin^n x\mathrm dx$$</p>
+<p>根据规律，有</p>
+<p>$$\displaystyle A_n=\int_{0}^\frac{\pi}{2}sin^n x\mathrm{d}x \Rightarrow nA_n=(n-1)\cdot A_{n-2}$$</p>
+<p>即</p>
+<p>$$\displaystyle A_n=\frac{n-1}{n}\cdot A_{n-2}$$</p>
+<p>将2n代入</p>
+<p>$$\displaystyle A_{2n}=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdots\frac{1}{2}A_0$$</p>
+<p>不难知道</p>
+<p>$$\displaystyle A_0=\frac{\pi}{2}$$</p>
+<p>即</p>
+<p>$$\displaystyle A_{2n}=\frac{(2n-1)!!}{(2n)!!}\cdot\frac{\pi}{2}$$</p>
+<p>同样</p>
+<p>$$\displaystyle A_{2n+1}=\frac{2n}{2n+1}\cdot\frac{2n-2}{2n-1}\cdots\frac{2}{3}A_1=\frac{(2n)!!}{(2n+1)!!}$$</p>
+<p>又</p>
+<p>$$\displaystyle \int_0^{\frac{\pi}{2}}\sin ^{2n+1}x\mathrm dx &lt;\int_0^{\frac{\pi}{2}}\sin ^{2n}x\mathrm dx&lt;\int_0^{\frac{\pi}{2}}\sin ^{2n-1}x\mathrm dx$$</p>
+<p>可得</p>
+<p>$$\displaystyle \frac{(2n)!!}{(2n+1)!!}&lt;\frac{(2n-1)!!}{(2n)!!}\cdot\frac{\pi}{2}&lt;\frac{(2n-2)!!}{(2n-1)!!}$$</p>
+<p>右式与左式作差得</p>
+<p>$$\displaystyle \frac{(2n-2)!!}{(2n-1)!!}-\frac{(2n)!!}{(2n+1)!!}=\frac{(2n-2)!!(2n+1-2n)}{(2n+1)!!}$$</p>
+<p>$$\displaystyle =\frac{(2n-2)!!}{(2n+1)!!}=\frac{(2n-2)!!}{(2n-1)!!}\cdot\frac{1}{2n+1}&lt;\frac{1}{2n+1}\rightarrow0$$</p>
+<p>于是</p>
+<p>$$\displaystyle \frac{[(2n)!!]^2}{(2n+1)!!\cdot(2n-1)!!}&lt;\frac{\pi}{2}&lt;\frac{(2n)!!-(2n-2)!!}{[(2n-1)!!]^2}$$</p>
+<p>化简得</p>
+<p>$$\displaystyle \frac{[(2n)!!]}{(2n+1)!!\cdot(2n-1)!!}&lt;\frac{\pi}{2}&lt;\frac{(2n)(2n-2)!!]^2}{[(2n-1)!!]^2}$$</p>
+<p>再将右式与左式作差</p>
+<p>$$\displaystyle 2n\cdot\frac{[(2n-2)!!]^2}{[(2n-1)!!]^2}-\frac{[(2n)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{(2n(2n+1)-(2n)^2)[(2n-2)!!]^2}{(2n+1)[(2n-1)!!]^2}$$</p>
+<p>$$\displaystyle=\frac{(2n)[(2n-2)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{[(2n)!!]^2}{(2n)(2n+1)(2n-1)!!}&lt;\frac{1}{2n}\cdot\frac{\pi}{2}\rightarrow 0$$</p>
+<p>即推出了</p>
+<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{[(2n)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{\pi}{2}$$</p>
+<p>化简得</p>
+<p>$$\displaystyle\lim_{n\rightarrow \infty} \frac{(2n)[(2n-2)!!]^2}{[(2n-1)!!]^2}=\frac{\pi}{2}$$</p>
+<p><strong>4.Stirling公式</strong></p>
+<p>回忆前面学过的数列极限,里面有一道题是</p>
+<p>$$\displaystyle \lim_{n\rightarrow\infty}\sqrt[n]{\frac{n!}{n^n}}=\frac{1}{\mathrm{e}}$$</p>
+<p>其实对于这个数列加以研究</p>
+<p>$$\displaystyle a_n=\frac{n!}{n^n}\mathrm{e}^n$$</p>
+<p>其中</p>
+<p>$$\displaystyle a_{n+1}=\frac{(n+1)!}{(n+1)^{n+1}}\mathrm{e}^{n+1}$$</p>
+<p>作比从而有</p>
+<p>$$\displaystyle \frac{a_{n+1}}{a_n}=\frac{(n+1)!}{(n+1)^{n+1}}\mathrm e \frac{n^n}{n!}=\frac{\mathrm e}{(1+\frac{1}{n})^n}$$</p>
+<p>又分母是单调递增的，当n趋近于无穷时，有</p>
+<p>$$\displaystyle (1+\frac{1}{n})^n&lt;\mathrm e$$</p>
+<p>变形得</p>
+<p>$$\displaystyle n\ln\frac{n+1}{n}&lt;1 \Rightarrow \ln\frac{n+1}{n}&lt;\frac{1}{n}$$</p>
+<p>下面到了证明时间:</p>
+<p><strong>定义:</strong></p>
+<p>$$\displaystyle a_n=\frac{n!\mathrm e^n}{n^{n+\frac{1}{2}}}$$</p>
+<p>其中</p>
+<p>$$\displaystyle a_{n+1}=\frac{(n+1)!\mathrm e^{n+1}}{(n+1)^{n+\frac{3}{2}}}&lt;1$$</p>
+<p>(见下面证明)</p>
+<p>下证{an}单调递减</p>
+<p><strong>证明：</strong></p>
+<p>下面只需要比较$$\ln\frac{n+1}{n}和\frac{1}{n+\frac{1}{2}}的大小$$</p>
+<p>回忆</p>
+<p>$$\displaystyle \frac{1}{n+1}&lt;\ln\frac{n+1}{n}&lt;\frac{1}{n}$$</p>
+<p>借助积分去比较大小</p>
+<p>$$\displaystyle \int_n^{n+1}\frac{1}{x}\mathrm dx=\ln\frac{n+1}{n}$$</p>
+<p>又知这是一个凹函数,因此有</p>
+<p>$$\displaystyle \int_{n}^{n+1}\frac{1}{x}\mathrm dx\geq\frac{1}{n+\frac{1}{2}}$$</p>
+<p>故</p>
+<p>$$\displaystyle \ln\frac{n+1}{n}&gt;\frac{1}{n+\frac{1}{2}}$$</p>
+<p>推出</p>
+<p>$$\displaystyle (1+\frac{1}{n})^{n+\frac{1}{2}}&gt;\mathrm e$$</p>
+<p>结论：</p>
+<p>$$\displaystyle \lim_{n\rightarrow\infty}{\frac{n!\mathrm e^n}{n^{n+\frac{1}{2}}}}=a$$</p>
+<p>化简得</p>
+<p>$$\displaystyle n!\sim \mathrm e^{-n}\cdot n^{n+\frac{1}{2}}\cdot a (n\rightarrow \infty)$$</p>
+<p>由3中的Wallis公式</p>
+<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{[(2n)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{\pi}{2}$$</p>
+<p>其中</p>
+<p>$$(2n)!!=2n\cdot(2n-2)\cdots 2=2^n\cdot n!$$</p>
+<p>$$\displaystyle (2n-1)!!=(2n-1)(2n-3)\cdots 1=\frac{(2n)(2n-1)\cdots 1}{(2n)!!}=\frac{(2n)!}{2^n\cdot n!}$$</p>
+<p>即</p>
+<p>$$\displaystyle \frac{\pi}{2}=\lim_{n\rightarrow\infty}\frac{(2^n\cdot n!)^4}{[(2n)!]^2}\cdot\frac{1}{2n+1}$$</p>
+<p>$$\displaystyle =\lim_{n\rightarrow\infty}\frac{2^{4n}\cdot a^4 \cdot \mathrm e^{-4n}\cdot n^{4n+2}}{a^2 \cdot\mathrm e^{-4n}\cdot 2^{4n+1}\cdot n^{4n+1}\cdot(2n+1)}=\frac{a^2}{4}$$</p>
+<p>$$\displaystyle \Rightarrow a^2=2\pi \Rightarrow a=\sqrt{2\pi}$$</p>
+<p>故</p>
+<p>$$\displaystyle n! \sim a\cdot \mathrm e^{-n}\cdot n^{n+\frac{1}{2}}$$</p>
+<p>将2n代替n，得</p>
+<p>$$\displaystyle  (2n)! \sim a\cdot \mathrm e^{-2n}\cdot 2^{2n+\frac{1}{2}}\cdot n^{2n+\frac{1}{2}}$$</p>
+<p>即</p>
+<p>$$\displaystyle  n! \sim \sqrt{2\pi}\cdot \mathrm e^{-n}\cdot n^{n+\frac{1}{2}}=\sqrt{2\pi n}\cdot \mathrm e^{-n}\cdot n^n$$</p>
+<p>得证</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/29/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8801%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,7 +430,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-30 17:46:41" itemprop="dateModified" datetime="2022-01-30T17:46:41+08:00">2022-01-30</time>
+                <time title="修改时间：2022-01-31 02:38:12" itemprop="dateModified" datetime="2022-01-31T02:38:12+08:00">2022-01-31</time>
               </span>
 
           <br>
@@ -250,7 +462,7 @@
 
 
 
-<p>十种排序算法：冒泡排序、选择排序、插入排序、快速排序、希尔排序、归并排序、堆排序、基数排序、计数排序、桶排序。</p>
+<p>排序算法：冒泡排序、选择排序、插入排序、快速排序、希尔排序、归并排序、堆排序、基数排序、计数排序。</p>
 <p>前置补充：</p>
 <p>下面排序中所使用的交换方法代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">  arr[i]=arr[i]^arr[j];</span><br><span class="line">  arr[j]=arr[i]^arr[j];</span><br><span class="line">  arr[i]=arr[i]^arr[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -260,7 +472,7 @@
 <p><strong>Master公式</strong></p>
 <p>$$T(N)=a*T(\frac{N}{b})+O(N^d)$$</p>
 <p>分以下三种情况：</p>
-<p>$$<br>T(n)=<br>    \begin{cases}<br>        O(N^d) &amp; if \log_b a&lt;d\<br>        O(N^{\log_b a}) &amp; if \log_b a&gt;d\<br>        O(N^d*\log N) &amp; if \log_b a=d<br>    \end{cases}<br>$$<br>T(n)$$</p>
+<p>$$<br>T(n)=<br>    \begin{cases}<br>        O(N^d) &amp; if \log_b a&lt;d \<br>        O(N^{\log_b a}) &amp; if \log_b a&gt;d\<br>        O(N^d*\log N) &amp; if \log_b a=d<br>    \end{cases}<br>$$</p>
 <p>证明过程见（<strong>算法导论第三版 作者 Thomas H.Cormen / Charles E.Leiserson / Ronald L.Rivest / Clifford Stein  P56~60</strong>） </p>
 <hr>
 <p><strong>1.选择排序</strong></p>
@@ -336,7 +548,7 @@
 
 <p><strong>iv).复杂度分析</strong></p>
 <p>大体上同冒泡排序</p>
-<p>**4.**归并排序</p>
+<p><strong>4.归并排序</strong></p>
 <p><strong>i).算法原理</strong></p>
 <p>1）将一个无序的序列从中间分成两部分，使得这两部分序列分别有序，将两个序列有序地合并进一个序列里，最后将这个序列复制回原序列。</p>
 <p><strong>ii).算法过程</strong></p>
@@ -1057,7 +1269,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1101,12 +1313,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">24k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">21 分钟</span>
 </div>
 
 <div class="powered-by">
