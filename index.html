@@ -327,7 +327,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-04 22:55:10" itemprop="dateModified" datetime="2022-02-04T22:55:10+08:00">2022-02-04</time>
+                <time title="修改时间：2022-02-05 00:52:04" itemprop="dateModified" datetime="2022-02-05T00:52:04+08:00">2022-02-05</time>
               </span>
 
           <br>
@@ -454,9 +454,11 @@
 <p>1.对于第一个物品考虑来说自然有<br>$$f[1]=2,f[2]=4,f[3]=6,f[4]=8,f[5]=10$$<br>显然是正确的</p>
 <p>2.假设考虑前i-1个物品之后，所有的f[j]都是正确的。</p>
 <p>3.来证明：在前i个物品中,所有的f[j]也都是正确的,<br>不妨固定某一个j,如果最优解包含了k个v[i],则一定会在循环内有</p>
-<p>$$f[j-k<em>v[i]]=max(f[j-k</em>v[i]],f[j-k*v[i]-v[i]]+w[i])$$</p>
-<p>且一定会枚举到<br>$$f[j-k*v[i]]$$</p>
-<p>其中<br>$$f[j-k*v[i]]$$</p>
+<p>$$\displaystyle f[j-k<em>v[i]]=\max(f[j-k</em>v[i]],f[j-k*v[i]-v[i]]+w[i])$$</p>
+<p>且一定会枚举到</p>
+<p>$$f[j-k*v[i]]$$</p>
+<p>其中</p>
+<p>$$f[j-k*v[i]]$$</p>
 <p>为前i-1个物品的值</p>
 <p>$$f[j-k*v[i]-v[i]]$$</p>
 <p>为前i个物品的值</p>
