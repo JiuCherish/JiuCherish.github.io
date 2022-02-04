@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-03 03:17:48" itemprop="dateModified" datetime="2022-02-03T03:17:48+08:00">2022-02-03</time>
+                <time title="修改时间：2022-02-04 22:04:09" itemprop="dateModified" datetime="2022-02-04T22:04:09+08:00">2022-02-04</time>
               </span>
 
           <br>
@@ -234,7 +234,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>341</span>
+              <span>372</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -266,8 +266,12 @@
 <p><a target="_blank" rel="noopener" href="https://jiucherish.com/2022/01/31/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/">数列极限的几种计算方法</a></p>
 <p>算法笔记：</p>
 <p><a target="_blank" rel="noopener" href="https://jiucherish.com/2022/01/29/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8801%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/">算法笔记（01）：排序中的算法</a></p>
+<p><a target="_blank" rel="noopener" href="https://jiucherish.com/2022/02/01/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8802%EF%BC%89%EF%BC%9A%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/">算法笔记（02）：背包九讲</a></p>
 <hr>
-<h4 id="2022目标"><a href="#2022目标" class="headerlink" title="2022目标"></a>2022目标</h4><p>Leetcode ranking 2000  争取今年能AK6把 (0/6) 且 排名进一次前300（0/1） 后面大概率会出周赛讲解。</p>
+<h4 id="2022目标"><a href="#2022目标" class="headerlink" title="2022目标"></a>2022目标</h4><p>Leetcode ranking score 2000  </p>
+<p>contest争取今年能AK6把 (0/6) </p>
+<p>contest排名进一次前500（0/1） </p>
+<p>后面大概率会出周赛讲解。</p>
 <p>Codeforces rank 蓝名门槛至中间 (不敢奢求，希望英语算法手速有所提升，但怕给OI爷锤死)</p>
 <p>以及EDG夺冠的Flag（希望毕业前能完成）：</p>
 <p>Stein 《复分析》第四版</p>
@@ -305,7 +309,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/01/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8802%EF%BC%89%EF%BC%9A%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/" class="post-title-link" itemprop="url">算法笔记（02）：背包九讲</a>
+            <a href="/2022/02/01/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8802%EF%BC%89%EF%BC%9A%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/" class="post-title-link" itemprop="url">算法笔记（02）：背包九讲（更新中）</a>
         </h2>
 
         <div class="post-meta">
@@ -318,6 +322,13 @@
 
               <time title="创建时间：2022-02-01 12:22:22" itemprop="dateCreated datePublished" datetime="2022-02-01T12:22:22+08:00">2022-02-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-04 22:01:59" itemprop="dateModified" datetime="2022-02-04T22:01:59+08:00">2022-02-04</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -325,14 +336,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -344,7 +355,119 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<p><strong>背包九讲类型：</strong></p>
+<ul>
+<li>1.01背包问题</li>
+<li>2.完全背包问题</li>
+<li>3.多重背包问题</li>
+<li>4.混合背包问题</li>
+<li>5.二位费用的背包问题</li>
+<li>6.分组背包问题</li>
+<li>7.有依赖的背包问题</li>
+<li>8.背包问题求方案数</li>
+<li>9.求背包问题的具体方案</li>
+</ul>
+<p>上面的内容均来自<br><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/">acwing题源</a></p>
+<p>首先简单的介绍几种背包的区别</p>
+<p><strong>1.01背包</strong></p>
+<p>最基本的背包问题,每个物品只有选或不选两种状态。</p>
+<p><strong>2.完全背包问题</strong></p>
+<p>基本的背包问题模型,其每个物品可以放无数多次。</p>
+<p><strong>3.多重背包问题</strong></p>
+<p>01背包上的一个拓展,每个物品只能取0,1,…,s次。</p>
+<p><strong>4.混合背包问题</strong></p>
+<p><strong>1.01背包问题</strong></p>
+<p><strong>问题描述</strong></p>
+<p>有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。</p>
+<p>第 i 件物品的体积是 vi，价值是 wi。</p>
+<p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
+<p>输出最大价值。</p>
+<p>输入格式<br>第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。</p>
+<p>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。</p>
+<p>输出格式</p>
+<p>输出一个整数，表示最大价值。</p>
+<p>数据范围</p>
+<p>0&lt;N,V≤1000</p>
+<p>0&lt;vi,wi≤1000</p>
+<p>输入样例</p>
+<p>4 5</p>
+<p>1 2</p>
+<p>2 4</p>
+<p>3 4</p>
+<p>4 5</p>
+<p>输出样例：</p>
+<p>8</p>
+<hr>
+<p><strong>分析</strong></p>
+<p>对于本题我们不妨记</p>
+<p>$$f[i][j]$$</p>
+<p>表示只看前i个物品，总体积是j的情况下，总价值最大是多少？</p>
+<p>首先根据题目分析可以知道,每件物品只有不选或者选两种情况,记为0和1:<br>$$①f[i][j]=f[i-1][j]$$</p>
+<p>$$②f[i][j]=f[i-1][j-v[i]]+w[i]$$</p>
+<p>其中第一个式子为不选第i个物品,第二个式子为选第i个物品。</p>
+<p>对每一种情况都进行一次记录其最大值,即</p>
+<p>$$f[i][j]=max{(①,②)}$$</p>
+<p>根据以上分析可知<br>$$result=max(f[n],[0 \sim V])$$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N][N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">        f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">        <span class="keyword">if</span>(j&gt;=v[i])</span><br><span class="line">            f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) res=<span class="built_in">max</span>(res,f[n][i]);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然这个题不必把每一层的值都记下来,因此本题使用一维数组来对上面的方法进行优化。</p>
+<p>虽说我们并没有将每一层的值都记录下来，但是我们再每一次循环的时候都会将每一行的值进行更新替换。</p>
+<p>对此，如果我们还想使用上一行的值的话，只能通过从后往前进行更新了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>2.完全背包问题</strong></p>
+<p><strong>问题描述</strong></p>
+<p>有 N 种物品和一个容量是 V 的背包，每种物品都有无限件可用。</p>
+<p>第 i 种物品的体积是 vi，价值是 wi。</p>
+<p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p>
+<p>输入格式</p>
+<p>第一行两个整数，N，V，用空格隔开，分别表示物品种数和背包容积。</p>
+<p>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 种物品的体积和价值。</p>
+<p>输出格式</p>
+<p>输出一个整数，表示最大价值。</p>
+<p>数据范围</p>
+<p>0&lt;N,V≤1000</p>
+<p>0&lt;vi,wi≤1000</p>
+<p>输入样例</p>
+<p>4 5</p>
+<p>1 2</p>
+<p>2 4</p>
+<p>3 4</p>
+<p>4 5</p>
+<p>输出样例：</p>
+<p>10</p>
+<hr>
+<p><strong>分析</strong></p>
+<p>同01背包,我们不妨记$f[i]$表示为总体积是$i$的情况下,最大价值是多少。</p>
+<p>其结果为<br>$$result =max(f[0 … m])$$</p>
+<p>实际上在01背包中的第二个代码中，我们仅需把第二个循环中的内层循环顺序做修改即可，即</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=v[i];j&lt;=m;j++)</span><br></pre></td></tr></table></figure>
+
+
+<p>关于循环反过来正确的证明如下:</p>
+<p>1.对于第一个物品考虑来说自然有<br>$$f[1]=2,f[2]=4,f[3]=6,f[4]=8,f[5]=10$$<br>显然是正确的</p>
+<p>2.假设考虑前i-1个物品之后，所有的f[j]都是正确的。</p>
+<p>3.来证明：在前i个物品中,所有的f[j]也都是正确的,<br>不妨固定某一个j,如果最优解包含了k个v[i],则一定会在循环内有</p>
+<p>$$f[j-k<em>v[i]]=max(f[j-k</em>v[i]],f[j-k*v[i]-v[i]]+w[i])$$</p>
+<p>且一定会枚举到<br>$$f[j-k*v[i]]$$</p>
+<p>其中<br>$$f[j-k*v[i]]$$</p>
+<p>为前i-1个物品的值</p>
+<p>$$f[j-k*v[i]-v[i]]$$</p>
+<p>为前i个物品的值</p>
+<p>无论如何,最后都会传递到<br>$$max(f[v[i]],f[0]+w[i])$$</p>
+<p>由2可知<br>$$f[j]都是正确的\Rightarrow f[v[i]]也一定都是正确$$</p>
+<p>又<br>$$f[0]=0$$</p>
+<p>那么<br>$$w[i]一定正确\Rightarrow \max(f[v[i],f[0]+w[i]])一定正确\Rightarrow f[j-k*v[i]] 一定正确 \Rightarrow f[j]一定正确$$</p>
+<p>以上,得证</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v,w;</span><br><span class="line">        cin&gt;&gt;v&gt;&gt;w;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=v;j&lt;=m;j++)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-v]+w);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
       
     </div>
 
@@ -1468,7 +1591,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1505,12 +1628,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">24k</span>
+    <span title="站点总字数">27k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">22 分钟</span>
+    <span title="站点阅读时长">24 分钟</span>
 </div>
 
 <div class="powered-by">
