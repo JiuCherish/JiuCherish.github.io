@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-05 16:25:05" itemprop="dateModified" datetime="2022-02-05T16:25:05+08:00">2022-02-05</time>
+                <time title="修改时间：2022-02-06 01:43:16" itemprop="dateModified" datetime="2022-02-06T01:43:16+08:00">2022-02-06</time>
               </span>
 
           <br>
@@ -231,7 +231,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>394</span>
+              <span>416</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -264,6 +264,8 @@
 <p>算法笔记：</p>
 <p><a target="_blank" rel="noopener" href="https://jiucherish.com/2022/01/29/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8801%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/">算法笔记（01）：排序中的算法</a></p>
 <p><a target="_blank" rel="noopener" href="https://jiucherish.com/2022/02/01/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8802%EF%BC%89%EF%BC%9A%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/">算法笔记（02）：背包九讲</a></p>
+<p>Leetcode周赛讲解：</p>
+<p><a target="_blank" rel="noopener" href="https://jiucherish.com/2022/02/06/%E7%AC%AC71%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/">第71场双周赛解答</a></p>
 <hr>
 <h4 id="2022目标"><a href="#2022目标" class="headerlink" title="2022目标"></a>2022目标</h4><p>Leetcode ranking score 2000  </p>
 <p>contest争取今年能AK6把 (0/6) </p>
@@ -319,7 +321,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-06 00:33:17 / 修改时间：01:01:04" itemprop="dateCreated datePublished" datetime="2022-02-06T00:33:17+08:00">2022-02-06</time>
+              <time title="创建时间：2022-02-06 00:33:17 / 修改时间：01:47:10" itemprop="dateCreated datePublished" datetime="2022-02-06T00:33:17+08:00">2022-02-06</time>
             </span>
 
           <br>
@@ -352,128 +354,14 @@
 <p><strong>第71场双周赛</strong></p>
 <p>链接↓</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/contest/biweekly-contest-71">第71场双周赛</a></p>
-<p><strong>5984.拆分数位后四位数字的最小和</strong></p>
-<p>给你一个四位 <strong>正</strong> 整数 <code>num</code> 。请你使用 <code>num</code> 中的 <strong>数位</strong> ，将 <code>num</code> 拆成两个新的整数 <code>new1</code> 和 <code>new2</code> 。<code>new1</code> 和 <code>new2</code> 中可以有 <strong>前导 0</strong> ，且 <code>num</code> 中 <strong>所有</strong> 数位都必须使用。</p>
-<ul>
-<li>比方说，给你 <code>num = 2932</code> ，你拥有的数位包括：两个 <code>2</code> ，一个 <code>9</code> 和一个 <code>3</code> 。一些可能的 <code>[new1, new2]</code> 数对为 <code>[22, 93]</code>，<code>[23, 92]</code>，<code>[223, 9]</code> 和 <code>[2, 329]</code> 。</li>
-</ul>
-<p>请你返回可以得到的 <code>new1</code> 和 <code>new2</code> 的 <strong>最小</strong> 和。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：num = 2932</span><br><span class="line">输出：52</span><br><span class="line">解释：可行的 [new1, new2] 数对为 [29, 23] ，[223, 9] 等等。</span><br><span class="line">最小和为数对 [29, 23] 的和：29 + 23 = 52 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：num = 4009</span><br><span class="line">输出：13</span><br><span class="line">解释：可行的 [new1, new2] 数对为 [0, 49] ，[490, 0] 等等。</span><br><span class="line">最小和为数对 [4, 9] 的和：4 + 9 = 13 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1000 &lt;= num &lt;= 9999</code></li>
-</ul>
-<hr>
-<p><strong>分析：</strong></p>
-<p>对于本题我们易知 <code>new1</code> 和 <code>new2</code> 必然是个（前导为0，例：01，02…，09）/十位数，因此我们直接对 <code>num</code> 进行拆解出个、十、百、千即可</p>
-<p>设立一个容器，储存四个独立的数字，进行一次排序，即</p>
-<p>$$a\leq b\leq c\leq d$$</p>
-<p>自然结果就是</p>
-<p>$$\displaystyle ans=10*(a+b)+c+d$$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumSum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> a=num/<span class="number">1000</span>;</span><br><span class="line">    <span class="keyword">int</span> b=num/<span class="number">100</span>%<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> c=num/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> d=num%<span class="number">10</span>;</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    res.<span class="built_in">push_back</span>(a);</span><br><span class="line">        res.<span class="built_in">push_back</span>(b);</span><br><span class="line">        res.<span class="built_in">push_back</span>(c);</span><br><span class="line">        res.<span class="built_in">push_back</span>(d);</span><br><span class="line">    <span class="built_in">sort</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">    ans=res[<span class="number">0</span>]*<span class="number">10</span>+res[<span class="number">1</span>]*<span class="number">10</span>+res[<span class="number">2</span>]+res[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><p><strong>5985. 根据给定数字划分数组</strong></p>
-<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 和一个整数 <code>pivot</code> 。请你将 <code>nums</code> 重新排列，使得以下条件均成立：</p>
-<p>：</p>
-<ul>
-<li>所有小于 <code>pivot</code> 的元素都出现在所有大于 <code>pivot</code> 的元素 <strong>之前</strong> 。</li>
-<li>所有等于 <code>pivot</code> 的元素都出现在小于和大于 <code>pivot</code> 的元素 <strong>中间</strong> 。</li>
-<li>小于 <code>pivot</code> 的元素之间和大于 <code>pivot</code> 的元素之间的 <strong>相对顺序</strong> 不发生改变。</li>
-<li>更正式的，考虑每一对 <code>pi</code>，<code>pj</code> ，<code>pi</code> 是初始时位置 <code>i</code> 元素的新位置，<code>pj</code> 是初始时位置 <code>j</code> 元素的新位置。对于小于 <code>pivot</code> 的元素，如果 <code>i &lt; j</code> 且 <code>nums[i] &lt; pivot</code> 和 <code>nums[j] &lt; pivot</code> 都成立，那么 <code>pi &lt; pj</code> 也成立。类似的，对于大于 <code>pivot</code> 的元素，如果 <code>i &lt; j</code> 且 <code>nums[i] &gt; pivot</code> 和 <code>nums[j] &gt; pivot</code> 都成立，那么 <code>pi &lt; pj</code> 。</li>
-</ul>
-<p>请你返回重新排列 <code>nums</code> 数组后的结果数组。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [9,12,5,10,14,3,10], pivot = 10</span><br><span class="line">输出：[9,5,3,10,10,12,14]</span><br><span class="line">解释：</span><br><span class="line">元素 9 ，5 和 3 小于 pivot ，所以它们在数组的最左边。</span><br><span class="line">元素 12 和 14 大于 pivot ，所以它们在数组的最右边。</span><br><span class="line">小于 pivot 的元素的相对位置和大于 pivot 的元素的相对位置分别为 [9, 5, 3] 和 [12, 14] ，它们在结果数组中的相对顺序需要保留。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [-3,4,3,2], pivot = 2</span><br><span class="line">输出：[-3,2,4,3]</span><br><span class="line">解释：</span><br><span class="line">元素 -3 小于 pivot ，所以在数组的最左边。</span><br><span class="line">元素 4 和 3 大于 pivot ，所以它们在数组的最右边。</span><br><span class="line">小于 pivot 的元素的相对位置和大于 pivot 的元素的相对位置分别为 [-3] 和 [4, 3] ，它们在结果数组中的相对顺序需要保留。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>-106 &lt;= nums[i] &lt;= 106</code></li>
-<li><code>pivot</code> 等于 <code>nums</code> 中的一个元素。</li>
-</ul>
-<hr>
-<p><strong>分析:</strong></p>
-<p>本题与第277场周赛的第二题<a target="_blank" rel="noopener" href="https://leetcode-cn.com/contest/weekly-contest-277/problems/rearrange-array-elements-by-sign/">2149. 按符号重排数组</a> 思路十分相似</p>
-<p>实际上该题的意思即<strong>“荷兰国旗问题”</strong></p>
-<p>见<a target="_blank" rel="noopener" href="https://jiucherish.com/2022/01/29/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8801%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95">算法笔记（01）：排序中的算法</a> 中的6.快速排序的引出题目</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">pivotArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> pivot)</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; less,more,equal;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i]&lt;pivot)&#123;</span><br><span class="line">            less.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums[i]==pivot)&#123;</span><br><span class="line">            equal.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            more.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;less.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(less[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;equal.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(equal[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;more.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(more[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这题更是__题，建议更换难度。</p>
-<hr>
-<p><strong>5986. 设置时间的最少代价</strong></p>
-<p>常见的微波炉可以设置加热时间，且加热时间满足以下条件：</p>
-<ul>
-<li>至少为 <code>1</code> 秒钟。</li>
-<li>至多为 <code>99</code> 分 <code>99</code> 秒。</li>
-</ul>
-<p>你可以 <strong>最多</strong> 输入 <strong>4 个数字</strong> 来设置加热时间。如果你输入的位数不足 4 位，微波炉会自动加 <strong>前缀</strong> <strong>0</strong> 来补足 4 位。微波炉会将设置好的四位数中，<strong>前</strong> 两位当作分钟数，<strong>后</strong> 两位当作秒数。它们所表示的总时间就是加热时间。比方说：</p>
-<ul>
-<li>你输入 <code>9</code> <code>5</code> <code>4</code> （三个数字），被自动补足为 <code>0954</code> ，并表示 <code>9</code> 分 <code>54</code> 秒。</li>
-<li>你输入 <code>0</code> <code>0</code> <code>0</code> <code>8</code> （四个数字），表示 <code>0</code> 分 <code>8</code> 秒。</li>
-<li>你输入 <code>8</code> <code>0</code> <code>9</code> <code>0</code> ，表示 <code>80</code> 分 <code>90</code> 秒。</li>
-<li>你输入 <code>8</code> <code>1</code> <code>3</code> <code>0</code> ，表示 <code>81</code> 分 <code>30</code> 秒。</li>
-</ul>
-<p>给你整数 <code>startAt</code> ，<code>moveCost</code> ，<code>pushCost</code> 和 <code>targetSeconds</code> 。<strong>一开始</strong>，你的手指在数字 <code>startAt</code> 处。将手指移到 <strong>任何其他数字</strong> ，需要花费 <code>moveCost</code> 的单位代价。<strong>每</strong> 输入你手指所在位置的数字一次，需要花费 <code>pushCost</code> 的单位代价。</p>
-<p>要设置 <code>targetSeconds</code> 秒的加热时间，可能会有多种设置方法。你想要知道这些方法中，总代价最小为多少。</p>
-<p>请你能返回设置 <code>targetSeconds</code> 秒钟加热时间需要花费的最少代价。</p>
-<p>请记住，虽然微波炉的秒数最多可以设置到 <code>99</code> 秒，但一分钟等于 <code>60</code> 秒。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/12/30/1.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入：startAt = 1, moveCost = 2, pushCost = 1, targetSeconds = 600</span><br><span class="line">输出：6</span><br><span class="line">解释：以下为设置加热时间的所有方法。</span><br><span class="line">- 1 0 0 0 ，表示 10 分 0 秒。</span><br><span class="line">  手指一开始就在数字 1 处，输入 1 （代价为 1），移到 0 处（代价为 2），输入 0（代价为 1），输入 0（代价为 1），输入 0（代价为 1）。</span><br><span class="line">  总代价为：1 + 2 + 1 + 1 + 1 = 6 。这是所有方案中的最小代价。</span><br><span class="line">- 0 9 6 0，表示 9 分 60 秒。它也表示 600 秒。</span><br><span class="line">  手指移到 0 处（代价为 2），输入 0 （代价为 1），移到 9 处（代价为 2），输入 9（代价为 1），移到 6 处（代价为 2），输入 6（代价为 1），移到 0 处（代价为 2），输入 0（代价为 1）。</span><br><span class="line">  总代价为：2 + 1 + 2 + 1 + 2 + 1 + 2 + 1 = 12 。</span><br><span class="line">- 9 6 0，微波炉自动补全为 0960 ，表示 9 分 60 秒。</span><br><span class="line">  手指移到 9 处（代价为 2），输入 9 （代价为 1），移到 6 处（代价为 2），输入 6（代价为 1），移到 0 处（代价为 2），输入 0（代价为 1）。</span><br><span class="line">  总代价为：2 + 1 + 2 + 1 + 2 + 1 = 9 。</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/12/30/2.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：startAt = 0, moveCost = 1, pushCost = 2, targetSeconds = 76</span><br><span class="line">输出：6</span><br><span class="line">解释：最优方案为输入两个数字 7 6，表示 76 秒。</span><br><span class="line">手指移到 7 处（代价为 1），输入 7 （代价为 2），移到 6 处（代价为 1），输入 6（代价为 2）。总代价为：1 + 2 + 1 + 2 = 6</span><br><span class="line">其他可行方案为 0076 ，076 ，0116 和 116 ，但是它们的代价都比 6 大。</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= startAt &lt;= 9</code></li>
-<li><code>1 &lt;= moveCost, pushCost &lt;= 105</code></li>
-<li><code>1 &lt;= targetSeconds &lt;= 6039</code></li>
-</ul>
-<hr>
-<p><strong>5987. 删除元素后和的最小差值</strong></p>
-<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> ，它包含 <code>3 * n</code> 个元素。</p>
-<p>你可以从 <code>nums</code> 中删除 <strong>恰好</strong> <code>n</code> 个元素，剩下的 <code>2 * n</code> 个元素将会被分成两个 <strong>相同大小</strong> 的部分。</p>
-<ul>
-<li>前面 <code>n</code> 个元素属于第一部分，它们的和记为 <code>sumfirst</code> 。</li>
-<li>后面 <code>n</code> 个元素属于第二部分，它们的和记为 <code>sumsecond</code> 。</li>
-</ul>
-<p>两部分和的 <strong>差值</strong> 记为 <code>sumfirst - sumsecond</code> 。</p>
-<ul>
-<li>比方说，<code>sumfirst = 3</code> 且 <code>sumsecond = 2</code> ，它们的差值为 <code>1</code> 。</li>
-<li>再比方，<code>sumfirst = 2</code> 且 <code>sumsecond = 3</code> ，它们的差值为 <code>-1</code> 。</li>
-</ul>
-<p>请你返回删除 <code>n</code> 个元素之后，剩下两部分和的 <strong>差值的最小值</strong> 是多少。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,1,2]</span><br><span class="line">输出：-1</span><br><span class="line">解释：nums 有 3 个元素，所以 n = 1 。</span><br><span class="line">所以我们需要从 nums 中删除 1 个元素，并将剩下的元素分成两部分。</span><br><span class="line">- 如果我们删除 nums[0] = 3 ，数组变为 [1,2] 。两部分和的差值为 1 - 2 = -1 。</span><br><span class="line">- 如果我们删除 nums[1] = 1 ，数组变为 [3,2] 。两部分和的差值为 3 - 2 = 1 。</span><br><span class="line">- 如果我们删除 nums[2] = 2 ，数组变为 [3,1] 。两部分和的差值为 3 - 1 = 2 。</span><br><span class="line">两部分和的最小差值为 min(-1,1,2) = -1 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [7,9,5,8,1,3]</span><br><span class="line">输出：1</span><br><span class="line">解释：n = 2 。所以我们需要删除 2 个元素，并将剩下元素分为 2 部分。</span><br><span class="line">如果我们删除元素 nums[2] = 5 和 nums[3] = 8 ，剩下元素为 [7,9,1,3] 。和的差值为 (7+9) - (1+3) = 12 。</span><br><span class="line">为了得到最小差值，我们应该删除 nums[1] = 9 和 nums[4] = 1 ，剩下的元素为 [7,5,8,3] 。和的差值为 (7+5) - (8+3) = 1 。</span><br><span class="line">观察可知，最优答案为 1 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>nums.length == 3 * n</code></li>
-<li><code>1 &lt;= n &lt;= 105</code></li>
-<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/06/%E7%AC%AC71%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
