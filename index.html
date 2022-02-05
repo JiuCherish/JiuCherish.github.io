@@ -325,7 +325,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-05 00:52:04" itemprop="dateModified" datetime="2022-02-05T00:52:04+08:00">2022-02-05</time>
+                <time title="修改时间：2022-02-05 16:34:23" itemprop="dateModified" datetime="2022-02-05T16:34:23+08:00">2022-02-05</time>
               </span>
 
           <br>
@@ -379,96 +379,14 @@
 <p><strong>3.多重背包问题</strong></p>
 <p>01背包上的一个拓展,每个物品只能取0,1,…,s次。</p>
 <p><strong>4.混合背包问题</strong></p>
-<p><strong>1.01背包问题</strong></p>
-<p><strong>问题描述</strong></p>
-<p>有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。</p>
-<p>第 i 件物品的体积是 vi，价值是 wi。</p>
-<p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
-<p>输出最大价值。</p>
-<p>输入格式<br>第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。</p>
-<p>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。</p>
-<p>输出格式</p>
-<p>输出一个整数，表示最大价值。</p>
-<p>数据范围</p>
-<p>0&lt;N,V≤1000</p>
-<p>0&lt;vi,wi≤1000</p>
-<p>输入样例</p>
-<p>4 5</p>
-<p>1 2</p>
-<p>2 4</p>
-<p>3 4</p>
-<p>4 5</p>
-<p>输出样例：</p>
-<p>8</p>
-<hr>
-<p><strong>分析</strong></p>
-<p>对于本题我们不妨记</p>
-<p>$$f[i][j]$$</p>
-<p>表示只看前i个物品，总体积是j的情况下，总价值最大是多少？</p>
-<p>首先根据题目分析可以知道,每件物品只有不选或者选两种情况,记为0和1:<br>$$①f[i][j]=f[i-1][j]$$</p>
-<p>$$②f[i][j]=f[i-1][j-v[i]]+w[i]$$</p>
-<p>其中第一个式子为不选第i个物品,第二个式子为选第i个物品。</p>
-<p>对每一种情况都进行一次记录其最大值,即</p>
-<p>$$f[i][j]=max{(①,②)}$$</p>
-<p>根据以上分析可知<br>$$result=max(f[n],[0 \sim V])$$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N][N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">        f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">        <span class="keyword">if</span>(j&gt;=v[i])</span><br><span class="line">            f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) res=<span class="built_in">max</span>(res,f[n][i]);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当然这个题不必把每一层的值都记下来,因此本题使用一维数组来对上面的方法进行优化。</p>
-<p>虽说我们并没有将每一层的值都记录下来，但是我们再每一次循环的时候都会将每一行的值进行更新替换。</p>
-<p>对此，如果我们还想使用上一行的值的话，只能通过从后往前进行更新了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>2.完全背包问题</strong></p>
-<p><strong>问题描述</strong></p>
-<p>有 N 种物品和一个容量是 V 的背包，每种物品都有无限件可用。</p>
-<p>第 i 种物品的体积是 vi，价值是 wi。</p>
-<p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p>
-<p>输入格式</p>
-<p>第一行两个整数，N，V，用空格隔开，分别表示物品种数和背包容积。</p>
-<p>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 种物品的体积和价值。</p>
-<p>输出格式</p>
-<p>输出一个整数，表示最大价值。</p>
-<p>数据范围</p>
-<p>0&lt;N,V≤1000</p>
-<p>0&lt;vi,wi≤1000</p>
-<p>输入样例</p>
-<p>4 5</p>
-<p>1 2</p>
-<p>2 4</p>
-<p>3 4</p>
-<p>4 5</p>
-<p>输出样例：</p>
-<p>10</p>
-<hr>
-<p><strong>分析</strong></p>
-<p>同01背包,我们不妨记f[i]表示为总体积是$i$的情况下,最大价值是多少。</p>
-<p>其结果为<br>$$result =max(f[0 … m])$$</p>
-<p>实际上在01背包中的第二个代码中，我们仅需把第二个循环中的内层循环顺序做修改即可，即</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=v[i];j&lt;=m;j++)</span><br></pre></td></tr></table></figure>
-
-
-<p>关于循环反过来正确的证明如下:</p>
-<p>1.对于第一个物品考虑来说自然有<br>$$f[1]=2,f[2]=4,f[3]=6,f[4]=8,f[5]=10$$<br>显然是正确的</p>
-<p>2.假设考虑前i-1个物品之后，所有的f[j]都是正确的。</p>
-<p>3.来证明：在前i个物品中,所有的f[j]也都是正确的,<br>不妨固定某一个j,如果最优解包含了k个v[i],则一定会在循环内有</p>
-<p>$$\displaystyle f[j-k<em>v[i]]=\max(f[j-k</em>v[i]],f[j-k*v[i]-v[i]]+w[i])$$</p>
-<p>且一定会枚举到</p>
-<p>$$f[j-k*v[i]]$$</p>
-<p>其中</p>
-<p>$$f[j-k*v[i]]$$</p>
-<p>为前i-1个物品的值</p>
-<p>$$f[j-k*v[i]-v[i]]$$</p>
-<p>为前i个物品的值</p>
-<p>无论如何,最后都会传递到<br>$$max(f[v[i]],f[0]+w[i])$$</p>
-<p>由2可知<br>$$f[j]都是正确的\Rightarrow f[v[i]]也一定都是正确$$</p>
-<p>又<br>$$f[0]=0$$</p>
-<p>那么<br>$$w[i]一定正确\Rightarrow \max(f[v[i],f[0]+w[i]])一定正确\Rightarrow f[j-k*v[i]] 一定正确 \Rightarrow f[j]一定正确$$</p>
-<p>以上,得证</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v,w;</span><br><span class="line">        cin&gt;&gt;v&gt;&gt;w;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=v;j&lt;=m;j++)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-v]+w);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/01/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8802%EF%BC%89%EF%BC%9A%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -519,7 +437,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-05 16:30:41" itemprop="dateModified" datetime="2022-02-05T16:30:41+08:00">2022-02-05</time>
+                <time title="修改时间：2022-02-05 16:34:02" itemprop="dateModified" datetime="2022-02-05T16:34:02+08:00">2022-02-05</time>
               </span>
 
           <br>
@@ -558,130 +476,14 @@
 <li>3.Wallis公式</li>
 <li>4.Stirling公式</li>
 </ul>
-<p>第一次知道Toeplitz定理，是在常庚哲,史济怀的《数学分析教程（第三版）》的1.3节习题里问题的第2小题(如下)。</p>
-<p><strong>Toeplitz定理：</strong></p>
-<p>$$\displaystyle 设n,k\in N^{*}时，t_{nk}\geq0,且\sum_{k=1}^n t_{nk}=1,\lim_{n\rightarrow \infty}t_{nk}=0,如果\lim_{n\rightarrow \infty}a_n=a,令x_n=\sum_{k=1}^n t_{ak}a_k$$</p>
-<p>试证</p>
-<p>$$\displaystyle \lim_{n\rightarrow \infty}x_n=a$$</p>
-<p><strong>证明</strong></p>
-<p>$$\displaystyle 不妨先令a=0,由于\lim_{n\rightarrow \infty}a_n=a,那么对于\forall \epsilon, \exists N\in N^{*},当n&gt;N时,有\left| a_n\right|&lt;\frac{\epsilon}{2}$$</p>
-<p>此时</p>
-<p>$$\displaystyle\left|x_n\right|\leq\sum_{k=1}^nt_{nk}\left|a_k\right|=\sum_{k=1}^N t_{nk}\left|a_k\right|+\sum_{k=N+1}^n t_{nk}\left|a_k\right|$$</p>
-<p>$$\displaystyle \leq\sum_{k=1}^Nt_{nk}\left|a_k\right|+\frac{\epsilon}{2}\sum_{k=1}^Nt_{nk}=\sum_{k=1}^N t_{nk}\left|a_k\right|+\frac{\epsilon}{2}$$</p>
-<p>当$$n\rightarrow \infty$$</p>
-<p>上式中的第一项是有限个无穷小的和,因此存在N1&gt;N,当n&gt;N1有</p>
-<p>$$\displaystyle \left| x_n\right|&lt;\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$$</p>
-<p>此时有$$\displaystyle \lim_{n\rightarrow\infty}x_n=0$$</p>
-<p>$$当a\neq 0 时,有b_n=a_n-a\rightarrow 0 (n\rightarrow \infty),若令x_n^{‘}=\sum_{k=1}^n t_{nk}b_k,则x_n^{‘}\rightarrow 0(n\rightarrow \infty)$$</p>
-<p>有</p>
-<p>$$\displaystyle x_n=\sum_{k=1}^n t_{nk}a_k=\sum_{k=1}^n t_{nk}b_k+a\sum_{k=1}^n t_{nk}=x_n^{‘}+a$$</p>
-<p>取极限后有</p>
-<p>$$\displaystyle \lim_{n\rightarrow \infty}x_n=a$$</p>
-<p><strong>Stolz定理：</strong></p>
-<p>设{bn}是严格递增且趋近于正无穷的数列,如果</p>
-<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{a_n-a_{n-1}}{b_n-b_{n-1}}=A$$</p>
-<p>那么</p>
-<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{a_n}{b_n}=A$$</p>
-<p><strong>证明:</strong></p>
-<p>这个定理可以通过Toeplitz定理去推导,如下:</p>
-<p>不妨记</p>
-<p>$$a_0=b_0=0,t_{nk}=\frac{b_k-b_{k-1}}{b_n}$$</p>
-<p>则</p>
-<p>$$\displaystyle \sum_{k=1}^n t_{nk}=1 ,\lim_{n\rightarrow \infty}t_{nk}=0$$</p>
-<p>令</p>
-<p>$$\displaystyle u_n=\frac{a_n-a_{n-1}}{b_n-b_{n-1}},v_n=\sum_{k=1}^n t_{nk}u_n$$</p>
-<p>因此由Toeplitz定理即得Stolz定理.</p>
-<p><strong>3.Wallis公式</strong></p>
-<p>形式：</p>
-<p>$$\displaystyle \frac{\pi}{2}=\lim_{n\rightarrow\infty}[\frac{(2n)!!}{(2n-1)!!}]^2\cdot\frac{1}{2n+1}$$</p>
-<p>证明：考虑</p>
-<p>$$\displaystyle \int_{0}^\frac{\pi}{2}\sin ^n{x}\mathrm{d}x=-\int_{0}^{\frac{\pi}{2}}\sin^{n-1}x\mathrm d(\cos x)$$</p>
-<p>$$\displaystyle =-\cos x\cdot \sin^{n-1}x\mid_0^{\frac{\pi}{2}}+\int_{0}^{\frac{\pi}{2}}\cos x(n-1)\sin^{n-2}x\cdot \cos x\mathrm dx$$</p>
-<p>$$\displaystyle =0+\int_0^{\frac{\pi}{2}}(n-1)\cos ^2x\cdot \sin^{n-2}x\mathrm{d}x$$</p>
-<p>$$\displaystyle =\int_{0}^{\frac{\pi}{2}}(n-1)\sin^{n-2}x\mathrm dx-(n-1)\int_0^{\frac{\pi}{2}}\sin^n x\mathrm dx$$</p>
-<p>根据规律，有</p>
-<p>$$\displaystyle A_n=\int_{0}^\frac{\pi}{2}sin^n x\mathrm{d}x \Rightarrow nA_n=(n-1)\cdot A_{n-2}$$</p>
-<p>即</p>
-<p>$$\displaystyle A_n=\frac{n-1}{n}\cdot A_{n-2}$$</p>
-<p>将2n代入</p>
-<p>$$\displaystyle A_{2n}=\frac{2n-1}{2n}\cdot\frac{2n-3}{2n-2}\cdots\frac{1}{2}A_0$$</p>
-<p>不难知道</p>
-<p>$$\displaystyle A_0=\frac{\pi}{2}$$</p>
-<p>即</p>
-<p>$$\displaystyle A_{2n}=\frac{(2n-1)!!}{(2n)!!}\cdot\frac{\pi}{2}$$</p>
-<p>同样</p>
-<p>$$\displaystyle A_{2n+1}=\frac{2n}{2n+1}\cdot\frac{2n-2}{2n-1}\cdots\frac{2}{3}A_1=\frac{(2n)!!}{(2n+1)!!}$$</p>
-<p>又</p>
-<p>$$\displaystyle \int_0^{\frac{\pi}{2}}\sin ^{2n+1}x\mathrm dx &lt;\int_0^{\frac{\pi}{2}}\sin ^{2n}x\mathrm dx&lt;\int_0^{\frac{\pi}{2}}\sin ^{2n-1}x\mathrm dx$$</p>
-<p>可得</p>
-<p>$$\displaystyle \frac{(2n)!!}{(2n+1)!!}&lt;\frac{(2n-1)!!}{(2n)!!}\cdot\frac{\pi}{2}&lt;\frac{(2n-2)!!}{(2n-1)!!}$$</p>
-<p>右式与左式作差得</p>
-<p>$$\displaystyle \frac{(2n-2)!!}{(2n-1)!!}-\frac{(2n)!!}{(2n+1)!!}=\frac{(2n-2)!!(2n+1-2n)}{(2n+1)!!}$$</p>
-<p>$$\displaystyle =\frac{(2n-2)!!}{(2n+1)!!}=\frac{(2n-2)!!}{(2n-1)!!}\cdot\frac{1}{2n+1}&lt;\frac{1}{2n+1}\rightarrow0$$</p>
-<p>于是</p>
-<p>$$\displaystyle \frac{[(2n)!!]^2}{(2n+1)!!\cdot(2n-1)!!}&lt;\frac{\pi}{2}&lt;\frac{(2n)!!-(2n-2)!!}{[(2n-1)!!]^2}$$</p>
-<p>化简得</p>
-<p>$$\displaystyle \frac{[(2n)!!]}{(2n+1)!!\cdot(2n-1)!!}&lt;\frac{\pi}{2}&lt;\frac{(2n)(2n-2)!!]^2}{[(2n-1)!!]^2}$$</p>
-<p>再将右式与左式作差</p>
-<p>$$\displaystyle 2n\cdot\frac{[(2n-2)!!]^2}{[(2n-1)!!]^2}-\frac{[(2n)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{(2n(2n+1)-(2n)^2)[(2n-2)!!]^2}{(2n+1)[(2n-1)!!]^2}$$</p>
-<p>$$\displaystyle=\frac{(2n)[(2n-2)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{[(2n)!!]^2}{(2n)(2n+1)(2n-1)!!}&lt;\frac{1}{2n}\cdot\frac{\pi}{2}\rightarrow 0$$</p>
-<p>即推出了</p>
-<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{[(2n)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{\pi}{2}$$</p>
-<p>化简得</p>
-<p>$$\displaystyle\lim_{n\rightarrow \infty} \frac{(2n)[(2n-2)!!]^2}{[(2n-1)!!]^2}=\frac{\pi}{2}$$</p>
-<p><strong>4.Stirling公式</strong></p>
-<p>回忆前面学过的数列极限,里面有一道题是</p>
-<p>$$\displaystyle \lim_{n\rightarrow\infty}\sqrt[n]{\frac{n!}{n^n}}=\frac{1}{\mathrm{e}}$$</p>
-<p>其实对于这个数列加以研究</p>
-<p>$$\displaystyle a_n=\frac{n!}{n^n}\mathrm{e}^n$$</p>
-<p>其中</p>
-<p>$$\displaystyle a_{n+1}=\frac{(n+1)!}{(n+1)^{n+1}}\mathrm{e}^{n+1}$$</p>
-<p>作比从而有</p>
-<p>$$\displaystyle \frac{a_{n+1}}{a_n}=\frac{(n+1)!}{(n+1)^{n+1}}\mathrm e \frac{n^n}{n!}=\frac{\mathrm e}{(1+\frac{1}{n})^n}$$</p>
-<p>又分母是单调递增的，当n趋近于无穷时，有</p>
-<p>$$\displaystyle (1+\frac{1}{n})^n&lt;\mathrm e$$</p>
-<p>变形得</p>
-<p>$$\displaystyle n\ln\frac{n+1}{n}&lt;1 \Rightarrow \ln\frac{n+1}{n}&lt;\frac{1}{n}$$</p>
-<p>下面到了证明时间:</p>
-<p><strong>定义:</strong></p>
-<p>$$\displaystyle a_n=\frac{n!\mathrm e^n}{n^{n+\frac{1}{2}}}$$</p>
-<p>其中</p>
-<p>$$\displaystyle a_{n+1}=\frac{(n+1)!\mathrm e^{n+1}}{(n+1)^{n+\frac{3}{2}}}&lt;1$$</p>
-<p>(见下面证明)</p>
-<p>下证{an}单调递减</p>
-<p><strong>证明：</strong></p>
-<p>下面只需要比较$$\ln\frac{n+1}{n}和\frac{1}{n+\frac{1}{2}}的大小$$</p>
-<p>回忆</p>
-<p>$$\displaystyle \frac{1}{n+1}&lt;\ln\frac{n+1}{n}&lt;\frac{1}{n}$$</p>
-<p>借助积分去比较大小</p>
-<p>$$\displaystyle \int_n^{n+1}\frac{1}{x}\mathrm dx=\ln\frac{n+1}{n}$$</p>
-<p>又知这是一个凹函数,因此有</p>
-<p>$$\displaystyle \int_{n}^{n+1}\frac{1}{x}\mathrm dx\geq\frac{1}{n+\frac{1}{2}}$$</p>
-<p>故</p>
-<p>$$\displaystyle \ln\frac{n+1}{n}&gt;\frac{1}{n+\frac{1}{2}}$$</p>
-<p>推出</p>
-<p>$$\displaystyle (1+\frac{1}{n})^{n+\frac{1}{2}}&gt;\mathrm e$$</p>
-<p>结论：</p>
-<p>$$\displaystyle \lim_{n\rightarrow\infty}{\frac{n!\mathrm e^n}{n^{n+\frac{1}{2}}}}=a$$</p>
-<p>化简得</p>
-<p>$$\displaystyle n!\sim \mathrm e^{-n}\cdot n^{n+\frac{1}{2}}\cdot a (n\rightarrow \infty)$$</p>
-<p>由3中的Wallis公式</p>
-<p>$$\displaystyle \lim_{n\rightarrow \infty}\frac{[(2n)!!]^2}{(2n+1)[(2n-1)!!]^2}=\frac{\pi}{2}$$</p>
-<p>其中</p>
-<p>$$(2n)!!=2n\cdot(2n-2)\cdots 2=2^n\cdot n!$$</p>
-<p>$$\displaystyle (2n-1)!!=(2n-1)(2n-3)\cdots 1=\frac{(2n)(2n-1)\cdots 1}{(2n)!!}=\frac{(2n)!}{2^n\cdot n!}$$</p>
-<p>即</p>
-<p>$$\displaystyle \frac{\pi}{2}=\lim_{n\rightarrow\infty}\frac{(2^n\cdot n!)^4}{[(2n)!]^2}\cdot\frac{1}{2n+1}$$</p>
-<p>$$\displaystyle =\lim_{n\rightarrow\infty}\frac{2^{4n}\cdot a^4 \cdot \mathrm e^{-4n}\cdot n^{4n+2}}{a^2 \cdot\mathrm e^{-4n}\cdot 2^{4n+1}\cdot n^{4n+1}\cdot(2n+1)}=\frac{a^2}{4}$$</p>
-<p>$$\displaystyle \Rightarrow a^2=2\pi \Rightarrow a=\sqrt{2\pi}$$</p>
-<p>故</p>
-<p>$$\displaystyle n! \sim a\cdot \mathrm e^{-n}\cdot n^{n+\frac{1}{2}}$$</p>
-<p>将2n代替n，得</p>
-<p>$$\displaystyle  (2n)! \sim a\cdot \mathrm e^{-2n}\cdot 2^{2n+\frac{1}{2}}\cdot n^{2n+\frac{1}{2}}$$</p>
-<p>即</p>
-<p>$$\displaystyle  n! \sim \sqrt{2\pi}\cdot \mathrm e^{-n}\cdot n^{n+\frac{1}{2}}=\sqrt{2\pi n}\cdot \mathrm e^{-n}\cdot n^n$$</p>
-<p>得证</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/31/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -732,7 +534,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-01 04:19:32" itemprop="dateModified" datetime="2022-02-01T04:19:32+08:00">2022-02-01</time>
+                <time title="修改时间：2022-02-05 16:34:13" itemprop="dateModified" datetime="2022-02-05T16:34:13+08:00">2022-02-05</time>
               </span>
 
           <br>
@@ -778,305 +580,14 @@
 <p>其中</p>
 <p>$$\displaystyle T(n)=O(N^d*\log N)  ,当 \log_b a=d$$</p>
 <p>证明过程见（<strong>算法导论第三版 作者 Thomas H.Cormen / Charles E.Leiserson / Ronald L.Rivest / Clifford Stein  P56~60</strong>） </p>
-<hr>
-<p><strong>1.选择排序</strong></p>
-<p><strong>i).算法原理</strong></p>
-<p>1.先对数组从头到尾扫描序列，找出最小的元素，与未排序的第一个元素进行比较，若这个数比第一个元素小，那么这两个数进行交换，那么第一个位置的元素确定下来了。</p>
-<p>2.接下来的元素重复进行1操作。</p>
-<p><strong>ii).算法过程</strong></p>
-<p>以数组{9，8，5，7，6，3，9}为例（按从小到大排）</p>
-<p>1）从上述无序序列中取出最小的元素3，将3同未排序的第一个元素进行比较，若这个数比未排序的第一个元素小则两个数之间进行交换，因此第一个位置的数确定。</p>
-<p>结果：{<strong>3</strong>，8，5，7，6，<strong>9</strong>，9}</p>
-<p>2）从上述无序序列中取出最小的元素5，将5同未排序的第一个元素进行比较，若这个数比未排序的第一个元素小则两个数之间进行交换。因此第二个位置的数确定。<br>结果：{3，<strong>5</strong>，<strong>8</strong>，7，6，9，9}</p>
-<p>3）从上述无序序列中取出最小的元素6，将6同未排序的第一个元素进行比较，若这个数比未排序的第一个元素小则两个数之间进行交换。因此第三个位置的数确定。</p>
-<p>结果：{3，5，<strong>6</strong>，7，<strong>8</strong>，9，9}</p>
-<p>4）从上述无序序列中取出最小的元素7，将7同未排序的第一个元素进行比较，若这个数比未排序的第一个元素小则两个数之间进行交换。因此第二个位置的数确定。</p>
-<p>结果：{3，5，6，<strong>7</strong>，8，9，9}</p>
-<p>5)…..同上</p>
-<p>结果：{3，5，6，7，8，9，9}</p>
-<p><strong>iii).代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SelectionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> minIndex = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">      minIndex = arr[j] &lt; arr[minIndex] ? j : minIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr, i, minIndex);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>iv).复杂度分析</strong></p>
-<p>对于最好最坏情况来说比较次数均为:</p>
-<p>$$n+n-1+n-2+\cdots+1=\frac{n(n-1)}{2}$$</p>
-<p>对于交换来说，最好的情况是交换了0次，最坏的情况是交换了n-1次</p>
-<p>因此总时间复杂度为：</p>
-<p>$$T(N)=O(\frac{N^2}{2})-O(\frac{N}{2})+O(N-1)=O(N^2)$$</p>
-<p>空间复杂度：由于没有开辟临时储存空间，仅是定义了几个变量，故为O(1)。</p>
-<p><strong>2、</strong>冒泡排序</p>
-<p><strong>i).算法原理</strong></p>
-<p>1.通过比较两个相邻元素，如果左边的元素比右边的元素大（小），那么左右交换位置，最先确定最末端的位置。</p>
-<p>2.重复操作1。</p>
-<p><strong>ii).算法过程</strong></p>
-<p>以数组{5，3，4，5，2，1}为例（按从小到大排）</p>
-<p>1）从0~N-1进行两两比较（a[0]和a[1]/a[1]和a[2]/……/a[n-1]和a[n]比）若左边的数比右边的数字大，则进行一次交换，故第六位置的数确定。</p>
-<p>结果：{3，4，5，2，1，<strong>5</strong>}</p>
-<p>2）从0~N-2进行两两比较，若大，则交换，故第五位值的数确定。</p>
-<p>结果：{3，4，2，1，<strong>5</strong>，5}</p>
-<p>3）重复上述操作，直至到0~1比较。</p>
-<p>第三次交换结果：{3，2，1，<strong>4</strong>，5，5}</p>
-<p>第四次交换结果：{2，1，<strong>3</strong>，4，5，5}</p>
-<p>第五次交换结果：{1，<strong>2</strong>，3，4，5，5}</p>
-<p><strong>iii).代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BubbleSort</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>)</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> e = arr.length - <span class="number">1</span>; e &gt; <span class="number">0</span>; e--) &#123;</span><br><span class="line">     <span class="comment">//flag =1;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; e; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[i] &gt; arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">        swap(arr, i, i + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//flag=0;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//if(flag)&#123;break;&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>$$其中注释的是优化代码$$</p>
-<p><strong>iv).复杂度分析</strong></p>
-<p>最坏的情况下，即数组为反序的，交换次数为</p>
-<p>$$n+n-1+\cdots+1=\frac{n(n-1)}{2}$$</p>
-<p>在经过优化后的代码里，增加了一个标志判断是否排序，用于检测是否已经排序了，并且在最好的情况（数组正序），那么只需要遍历一遍数组即可。</p>
-<p>$$因此最好的情况时间复杂度为O（N），最坏的情况时间复杂度为O(N^2)$$</p>
-<p><strong>3、</strong>插入排序</p>
-<p><strong>i).算法原理</strong></p>
-<p>1.由于第一个元素已经有序，故直接找下一个元素比较，如果后面的元素比前面的元素小，则前面的元素往后移一位，直至前面的元素不再比该元素大或者前面没有元素，便插入该元素。</p>
-<p>2.重复操作1</p>
-<p><strong>ii).算法过程</strong></p>
-<p>以数组{4，3，1，2，5，0}为例（按从小到大排）</p>
-<p>1）首先0到0上有序，这是显然的，于是观察0到1是否有序？通过判断后面元素是否小于前面的元素，由于3&lt;4且前面没有元素了，因此插入到“4”元素的前面</p>
-<p>结果：{<strong>3</strong>，<strong>4</strong>，1，2，5，0}</p>
-<p>2）0~2上排序</p>
-<p>结果：{<strong>1</strong>，3，<strong>4</strong>，2，5，0}</p>
-<p>3）0~3上排序</p>
-<p>结果：{1，<strong>2</strong>，3，4，5，0}</p>
-<p>4）0~4上排序</p>
-<p>结果：{1，2，3，4，5，0}</p>
-<p>5）0~5上排序</p>
-<p>结果：{<strong>0</strong>，1，2，3，4，5}</p>
-<p><strong>iii).代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertionSort</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InsertionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//0～0有序 显然</span></span><br><span class="line">  <span class="comment">//0～i都有序</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; arr[j + <span class="number">1</span>]; j--) &#123;</span><br><span class="line">      swap(arr, j, j + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>iv).复杂度分析</strong></p>
-<p>大体上同冒泡排序</p>
-<p><strong>4.归并排序</strong></p>
-<p><strong>i).算法原理</strong></p>
-<p>1）将一个无序的序列从中间分成两部分，使得这两部分序列分别有序，将两个序列有序地合并进一个序列里，最后将这个序列复制回原序列。</p>
-<p><strong>ii).算法过程</strong></p>
-<p>以数组{4，2，7，9，0，1，8，6}为例（按从小到大排）</p>
-<p>1）将无序序列分成两部分{4，2，7，9}，{0，1，8，6}</p>
-<p>2）对两个无序序列进行排序得到{2，4，7，9}，{0，1，6，8}</p>
-<p>3）合并过程中引入3个指针L和R和i，L和R分别指向左右序列的第一个数，通过比较大小，取较小的元素进入新的数组，每复制完一次新数组指针加1，重复这一过程直至两个有序的序列有一个全部复制完毕，剩下的另一个依次复制进新数组，即{}，{0，1，2，4，6，7，8，9}</p>
-<p>4）将新数组元素逐一复制回原数组即可，{0，1，2，4，6，7，8，9}，{}</p>
-<p><strong>iii).代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  process(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//请把arr[L..R]上，排好序。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (L == R) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> mid = L + ((R - L) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">  process(arr, L, mid);</span><br><span class="line">  process(arr, mid + <span class="number">1</span>, R);</span><br><span class="line">  Merge(arr, L, mid, R);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> M, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span>[] help = <span class="keyword">new</span> <span class="keyword">int</span>[R - L + <span class="number">1</span>];</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> p1 = L;</span><br><span class="line">  <span class="keyword">int</span> p2 = M + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (p1 &lt;= M &amp;&amp; p2 &lt;= R) &#123;</span><br><span class="line">    help[i++] = arr[p1] &lt;= arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (p1 &lt;= M) &#123;</span><br><span class="line">    help[i++] = arr[p1++];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (p2 &lt;= R) &#123;</span><br><span class="line">    help[i++] = arr[p2++];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; help.length; i++) &#123;</span><br><span class="line">    arr[L + i] = help[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>iv).复杂度分析</strong></p>
-<p>时间复杂度：由Master公式可得$$T(N)=a*T(\frac{N}{b})+O(N^d)$$</p>
-<p>由上述代码可知 进行了两次递归，且每次递归调用均分成一半个，同时Merge流程中扫描了N个数，执行N次，可以得到$$a=2,b=2,d=1$$</p>
-<p>即时间复杂度为O(N*logN)</p>
-<p>空间复杂度：由于开辟了一个新数组来储存元素，因此复杂度为O（N）。</p>
-<p><strong>5、堆排序</strong></p>
-<p><strong>i).算法原理</strong></p>
-<p>1、将待排序序列构造成一个大顶堆,此时,整个序列的最大值就是堆顶的 根节点，将其与末尾元素进行交换,此时末尾就是最大值,然后将剩余n-1个元素重新构造成一个堆，这样会得到n个元素的次小值。</p>
-<p>2.反复执行,使得序列有序。</p>
-<p><strong>ii).算法过程</strong></p>
-<p>以[3,4,0,2,7]为例,相当于把该数组每个数add进来。</p>
-<p>首先0~0上为堆,自然成立。</p>
-<p>其次0~1上是否为大根堆,3作为父节点,4作为左子节点,不满足大根堆,因此3与4交换。</p>
-<p>依次重复到0~n-1是否为大根堆,改成大根堆即可,此时有效区为5。</p>
-<p>再进行popmax操作,将3与7交换,有效区-1,将7所在的位置与堆断链,在从头节点做heapify,将4与2交换,断链,周而复始,得到最终序列[0,2,3,4,7],此时有效区为0。</p>
-<p><strong>iii).代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(arr==<span class="keyword">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">    heapInsert(arr,i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> heapSize=arr.length;</span><br><span class="line">  swap(arr,<span class="number">0</span>,--heapSize);</span><br><span class="line">  <span class="keyword">while</span>(heapSize&gt;<span class="number">0</span>)&#123;</span><br><span class="line">    heapify(arr,<span class="number">0</span>,heapSize);</span><br><span class="line">    swap(arr,<span class="number">0</span>,--heapSize);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapify</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> index,<span class="keyword">int</span> heapSize)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> left=index*<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(left&lt;heapSize)&#123;</span><br><span class="line">  <span class="keyword">int</span> largest=left+<span class="number">1</span>&lt;heapSize&amp;&amp;arr[left+<span class="number">1</span>]&gt;arr[left]?left+<span class="number">1</span>:left;</span><br><span class="line">  largest=arr[largest]&gt;arr[index]?largest:index;</span><br><span class="line">  <span class="keyword">if</span>(largest==index)&#123;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  swap(arr,largest,index);</span><br><span class="line">  index=largest;</span><br><span class="line">  left=index*<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> tmp=arr[i];</span><br><span class="line">  arr[i]=arr[j];</span><br><span class="line">  arr[j]=tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>iv).复杂度分析</strong></p>
-<p>在一个高度为h的结点上运行heapify的代价为O（h）,那么其总代价是</p>
-<p>$$\displaystyle \sum_{h=0}^{\lfloor \lg n \rfloor} \lceil\frac{n}{2^{h+1}}\rceil O(h)=O(n\sum_{h=0}^{\lfloor \lg n \rfloor} \lceil\frac{h}{2^{h}}\rceil)$$</p>
-<p>即</p>
-<p>$$\displaystyle O(n\sum_{h=0}^{\lfloor \lg n \rfloor} \lceil\frac{h}{2^{h}}\rceil)=O(n\sum_{h=0}^\infty \frac{h}{2^{h}})=O(n)$$</p>
-<p>又每次调用Heapify的时间复杂度为O(n),而HeapInsert的时间复杂度是O(n),调用了n-1次Heapify,每次时间为O(lgn),因此HeapSort时间复杂度为O(nlgn)</p>
-<p>由于该排序为就地排序,因此额外空间复杂度为O(1)</p>
-<p><strong>6.快速排序</strong></p>
-<p>在介绍快速排序前，我们可以先了解“荷兰国旗问题”，如下：</p>
-<p><strong>Question：</strong> 给定一个数组array,和一个数num,请把小于num的数放在数组的左边,等于num的数放数组的中间,大于num的数放在数组的右边,要求额外空间复杂度为O(1),时间复杂度O(n)。</p>
-<p><strong>Solve：</strong></p>
-<p>1)当当前的数字小于num：当前数与小于区的下一个数进行交换;小于区右扩,当前的数跳下一个。</p>
-<p>2)当当前的数字等于num:当前的数直接跳到下一个。</p>
-<p>3)当当前的数字大于num:当前数与大于区前一个交换,大于区左扩,当前数不动。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] partition(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R, <span class="keyword">int</span> p)&#123;</span><br><span class="line">  <span class="keyword">int</span> less=L-<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> more=R+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> index=L;</span><br><span class="line">  <span class="keyword">while</span>(index&lt;more)&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[index]&lt;p)&#123;</span><br><span class="line">    swap(arr,++less,index++);</span><br><span class="line">    &#125;</span><br><span class="line">    elif(arr[index]&gt;p)&#123;</span><br><span class="line">      swap(arr,--more,index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      index++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;less+<span class="number">1</span>,more-<span class="number">1</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> tmp=arr[i];</span><br><span class="line">  arr[i]=arr[j];</span><br><span class="line">  arr[j]=tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2.下面介绍快速排序：</p>
-<p><strong>i).算法原理</strong></p>
-<p>1.原理同荷兰国旗</p>
-<p><strong>ii).代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(arr==<span class="keyword">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  process(arr,<span class="number">0</span>,arr.length-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(L&lt;R)&#123;</span><br><span class="line">    swap(arr,L+(<span class="keyword">int</span>)(Math.random()*(R-L+<span class="number">1</span>)),R);</span><br><span class="line">    <span class="keyword">int</span>[] p=partition(arr,L,R);</span><br><span class="line">    process(arr,L,p[<span class="number">0</span>]-<span class="number">1</span>);</span><br><span class="line">    process(arr,p[<span class="number">1</span>]+<span class="number">1</span>,R);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] partition(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> L,<span class="keyword">int</span> R)&#123;</span><br><span class="line">  <span class="keyword">int</span> less=L-<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> more=R;</span><br><span class="line">  <span class="keyword">while</span>(L&lt;more)&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[L]&lt;arr[R])&#123;</span><br><span class="line">    swap(arr,++less,L++);</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[L]&gt;arr[R])&#123;</span><br><span class="line">    swap(arr,--more,L);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    L++;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  swap(arr,more,R);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;less+<span class="number">1</span>,more&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>本质上就是在荷兰国旗上的partition中将arr[R]或者随机一个数作为了划分值。</p>
-<p><strong>iii).复杂度分析</strong>①</p>
-<p>1.最好情况</p>
-<p>即partition的两个子问题的规模都不大于数组长度的一半，在这样的情况下，递归式为</p>
-<p>$$\displaystyle T(n)=2T(\frac{n}{2})+\theta(n),其中两个子问题规模分别为\lfloor \frac{n}{2}\rfloor,\lceil \frac{n}{2}\rceil-1$$</p>
-<p>据Master公式得$$T(n)=\displaystyle\theta(nlgn)$$</p>
-<p>2.最坏情况</p>
-<p>即partition的过程中两个子问题的规模相差甚大,则有递归式</p>
-<p>$$\displaystyle T(n)=\max_{0\leq q\leq n-1}(T(q)+T(n-q-1))+\theta(n)$$</p>
-<p>由代码可知两个子问题的规模加的总和为n-1,那我们不妨可以猜测$$T(n)\leq cn^2$$</p>
-<p>代入上面式子$$\displaystyle T(n)\leq\max_{0\leq q\leq n-1}(cq^2+c(n-q-1)^2)+\theta(n)$$</p>
-<p>$$\displaystyle T(n)\leq c\cdot \max_{0\leq q\leq n-1}(q^2+(n-q-1)^2)+\theta(n)$$</p>
-<p>考虑函数$$f(q)=q^2+(n-q-1)^2 其中0\leq q\leq n-1$$</p>
-<p>易知函数是单调递增的，因此有$$f(q)\leq f(0)=(n-1)^2$$</p>
-<p>故</p>
-<p>$$T(n)\leq cn^2-c(2n-1)+\theta(n)\leq cn^2$$</p>
-<p>即</p>
-<p>$$T(n)=\theta(n^2)$$</p>
-<p>3.平均时间复杂度</p>
-<p>假定每个元素是互异的,由partition可以得到$$\displaystyle C_N=N+1+\frac{C_0+C_1+\cdots+C_{N-1}}{n}+\frac{C_{n-1}+\cdots+C_1+C_0}{n}$$</p>
-<p>即</p>
-<p>$$\displaystyle NC_N=N(N+1)+2(C_0+C_1+\cdots+C_{N-1})$$</p>
-<p>$$NC_N-(N-1)C_{N-1}=2N+2C_{N-1}$$</p>
-<p>$$\frac{C_N}{N+1}=\frac{C_{N-1}}{N}+\frac{2}{N+1}$$</p>
-<p>计算得$$\frac{C_N}{N+1}=\frac{C_1}{2}+2\times(\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{N-1})$$</p>
-<p>$$\frac{C_N}{N+1}=\frac{C_1}{2}+2\times(\ln n-\gamma)-3$$</p>
-<p>因此$$\frac{C_N}{N+1}=O(\log n)$$</p>
-<p>从而$$T(n)=\theta(n\log n)$$</p>
-<p>空间复杂度</p>
-<p>最优的情况下每次都是均分，即O(logn)</p>
-<p>最差的情况下是O(n)，n次递归</p>
-<p><strong>7、桶系列的排序</strong></p>
-<p>(不基于比较下的排序)</p>
-<p><strong>7.1计数排序</strong></p>
-<p><strong>i).算法思想</strong></p>
-<p>1.对每一个输入元素x,确定小于x的元素个数,这样一来就可以把x放到他在输出数组中的位置了。(注意:该算法对于数据的区间要求窄。)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] countSort(<span class="keyword">int</span>[] arr)&#123;</span><br><span class="line">  <span class="keyword">int</span> min=arr[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">int</span> max=arr[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(max&lt;arr[i])&#123;</span><br><span class="line">      max=arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(min&gt;arr[i])&#123;</span><br><span class="line">      min=arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> len=max-min+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span>[] temp=<span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">    temp[arr[i]-min]++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=temp[i];j&gt;<span class="number">0</span>;j--)  &#123;</span><br><span class="line">    arr[k]=i+min;</span><br><span class="line">    k++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>7.2基数排序</strong></p>
-<p><strong>i).算法思路</strong>1.先从个位数开始,将待排序的数按照这一位的值放到相应的编号0~9的桶中,等到个位数排完,再往十位,百位排,直至最高位排完,数组排序完成。</p>
-<p><strong>ii).算法过程</strong></p>
-<p>以数组{26,3,49,556,81,9,863,0}为例子,可知最高位为百位。</p>
-<p>1)先找十个桶:0~9 第一轮按照元素个位数排序,如下表格</p>
-<table>
-<thead>
-<tr>
-<th align="left">0</th>
-<th align="left">1</th>
-<th align="left">2</th>
-<th align="left">3</th>
-<th align="left">4</th>
-<th align="left">5</th>
-<th align="left">6</th>
-<th align="left">7</th>
-<th align="left">8</th>
-<th align="left">9</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">0</td>
-<td align="left">81</td>
-<td align="left"></td>
-<td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">26</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">49</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">863</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">556</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">9</td>
-</tr>
-</tbody></table>
-<p>按队列的思想先进先出取出元素,得到新数组{0,81,3,863,26,556,49,9}</p>
-<p>2)按十位数排</p>
-<table>
-<thead>
-<tr>
-<th align="left">0</th>
-<th align="left">1</th>
-<th align="left">2</th>
-<th align="left">3</th>
-<th align="left">4</th>
-<th align="left">5</th>
-<th align="left">6</th>
-<th align="left">7</th>
-<th align="left">8</th>
-<th align="left">9</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">0</td>
-<td align="left"></td>
-<td align="left">26</td>
-<td align="left"></td>
-<td align="left">49</td>
-<td align="left">556</td>
-<td align="left">863</td>
-<td align="left"></td>
-<td align="left">81</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">9</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<p>得到新数组{0,3,9,26,49,556,863,81}</p>
-<p>3）按百位数排 同上,得到新数组{0,3,9,26,49,81,556,863},排序完成。</p>
-<p><strong>iii).代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">radixSort</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> digit)</span></span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">int</span> radix=<span class="number">10</span>;</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span>[] bucket=<span class="keyword">new</span> <span class="keyword">int</span>[radix];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">1</span>;d&lt;=digit;d++)&#123;</span><br><span class="line">    <span class="keyword">int</span>[] count=<span class="keyword">new</span> <span class="keyword">int</span>[radix];</span><br><span class="line">    <span class="keyword">for</span>(i=L;i&lt;=R;i++)&#123;</span><br><span class="line">    j=getDigit(arr[i],d);</span><br><span class="line">    count[j]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;radix;i++)&#123;</span><br><span class="line">      count[i]=count[i]+count[i-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=R;i&gt;=L;i--)&#123;</span><br><span class="line">      j=getDigit(arr[i],d);</span><br><span class="line">      bucket[count[j]-<span class="number">1</span>]=arr[i];</span><br><span class="line">      count[j]--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=L,j=<span class="number">0</span>;i&lt;=R;i++,j++)&#123;</span><br><span class="line">      arr[i]=bucket[j];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>iv).复杂度分析</strong></p>
-<p>桶系列额外空间,时间复杂度均为O(n)</p>
-<p><strong>8、希尔排序</strong></p>
-<p><strong>i).算法原理</strong></p>
-<p>1.先任取一个小于n的整数作为一个增量d1,把整个序列分成d1个组,所有距离为d1的倍数的记录放在同一个组中,在各组内进行比较和交换。</p>
-<p>2.再取第二个增量d2&lt;d1,重复上面的操作,直至所取的增量dt=1为止。</p>
-<p><strong>ii).算法过程</strong>以数组{23，3，11，34，45，43，67，56，22，33，11，2，8，75，26}为 例</p>
-<p>1）不妨令d1=5进行排序，每相隔五个数进行比较，通过比较并整理得{11，2，8，22，26，23，3，11，34，33，43，67，56，75，45}</p>
-<p>2)再令d2=3进行排序，每相隔三个数进行比较，通过比较并整理得{3，2，8，11，11，23，22，26，34，33，43，45，56，75，67}</p>
-<p>3）再令d3=1进行排序，最终得到{2，3，8，11，11，22，23，26，33，34，43，45，56，67，75}</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> step=arr.length/<span class="number">2</span>;step&gt;<span class="number">0</span>;step/=<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=step;i&lt;arr.length;i++)&#123;</span><br><span class="line">      <span class="keyword">int</span> value=arr[i];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j=i-step;j&gt;=<span class="number">0</span>&amp;&amp;arr[j]&gt;value;j-=step)&#123;</span><br><span class="line">        arr[j+step]=arr[j];</span><br><span class="line">          &#125;</span><br><span class="line">      arr[j+step]=value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>iv).复杂度分析</strong></p>
-<p>时间复杂度: 在最坏的情况下，每两个数都要比较并且交换一次，因此时间复杂度为O(n^2)。</p>
-<p>最好的情况下：不交换，只进行比较，因此时间复杂度为O(n)。</p>
-<p>空间复杂度: 无论对于那种情况均为O(1)。</p>
-<p><strong>参考文献:</strong></p>
-<ul>
-<li>①:算法导论第三版 作者 Thomas H.Cormen / Charles E.Leiserson / Ronald L.Rivest / Clifford Stein 快速排序</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/29/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8801%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1127,7 +638,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-03 03:20:19" itemprop="dateModified" datetime="2022-02-03T03:20:19+08:00">2022-02-03</time>
+                <time title="修改时间：2022-02-05 16:34:33" itemprop="dateModified" datetime="2022-02-05T16:34:33+08:00">2022-02-05</time>
               </span>
 
           <br>
@@ -1163,109 +674,14 @@
 <p>首先预备知识：</p>
 <p>$$1-\cos x \sim \frac{1}{2}x^2$$</p>
 <p>$$\sqrt[n]{1+x}-1 \sim \frac{x}{n} $$</p>
-<p>好的那我们可以开始操作了</p>
-<p>$$\displaystyle\lim_{x\to0} \frac{1-\cos x \sqrt{\cos 2x}\sqrt[3]{\cos 3x}}{x^3}$$</p>
-<p>$$=\displaystyle\lim_{x\to0} \frac{1-\cos x+\cos x (1-\sqrt{\cos 2x}\sqrt[3]{\cos 3x})}{x^3}$$</p>
-<p>$$=\displaystyle\lim_{x\to0} \frac{1-\cos x}{x^2}+\displaystyle\lim_{x\to0} \frac {\cos x (1-\sqrt{\cos 2x}\sqrt[3]{\cos 3x})}{x^2}$$</p>
-<p>$$=\frac{1}{2}+\displaystyle\lim_{x\to0} \frac {1-\sqrt{\cos 2x}\sqrt[3]{\cos 3x}}{x^2}$$</p>
-<p>$$=\frac{1}{2}+\displaystyle\lim_{x\to0} \frac {1-\sqrt{\cos 2x}+\sqrt{\cos 2x}(1-\sqrt[3]{\cos 3x})}{x^2}$$</p>
-<p>$$=\frac{1}{2}+\displaystyle\lim_{x\to0} \frac {1-\sqrt{(\cos 2x-1)+1}}{x^2}+\displaystyle\lim_{x\to0} \frac {1-\sqrt[3]{(\cos 3x-1)+1}}{x^2}$$</p>
-<p>$$=\frac{1}{2}+\displaystyle\lim_{x\to0} \frac {1-\cos 2x}{2x^2}+\displaystyle\lim_{x\to0} \frac {1-\cos 3x}{3x^2}$$</p>
-<p>$$=\frac{1}{2}+1+\frac{3}{2}=3$$</p>
-<p>当然对于此题我们还可以用带Peano余项的麦克劳林公式</p>
-<p>$$\cos x =1-\frac{x^2}{2}+o(x^2)$$</p>
-<p>$$(\cos 2x)^\frac{1}{2} =1-x^2+o(x^2)$$</p>
-<p>$$(\cos 3x)^\frac{1}{3} =1-\frac{3x^2}{2}+o(x^2)$$</p>
-<p>从而有</p>
-<p>$$\cos x (\cos 2x)^\frac{1}{2} (\cos 3x)^\frac{1}{3}=1-3x^2+o(x^2) $$</p>
-<p>代入得</p>
-<p>$$A=\displaystyle\lim_{x\to 0}\frac{3x^2+o(x^2)}{x^2}=3$$</p>
-<p>不过这并不是我想讲的重点（</p>
-<p>对于上述的题，实际上我们可以进行推广（相同的办法）</p>
-<p><strong>变式1</strong></p>
-<p>$$\displaystyle\lim_{x\to0} \frac{1-\cos x \sqrt{\cos 2x}\sqrt[3]{\cos 3x}\cdots\sqrt[N]{\cos Nx}}{x^2}$$</p>
-<p>$$=\displaystyle\lim_{x\to0}\sum_{n=1}^N \frac{1-\sqrt[n]{\cos nx}}{x^2}\cdot \prod_{k=n+1}^N 1$$</p>
-<p>$$=\displaystyle\sum_{n=1}^N \frac{n}{2}\cdot \prod_{k=n+1}^N 1$$</p>
-<p>$$=\frac{1}{2}\displaystyle\sum_{n=1}^N n=\frac{1+2+3+\cdots+N}{2}$$</p>
-<p>$$=\frac{N(N+1)}{4}$$</p>
-<p>显然对于变式1的结论，我们将上述题目里n=3代入也能得到结果。</p>
-<p><strong>变式2</strong></p>
-<p>$$\displaystyle\lim_{x\to0} \frac{1-\cos x \cos 2x \cos 3x\cdots \cos nx}{x^2}$$</p>
-<p>$$=\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^2} +\lim_{x\to0}\frac{\cos x(1- \cos 2x \cos 3x\cdots \cos nx)}{x^2}$$</p>
-<p>$$=\displaystyle\lim_{x\to0}\sum_{k=1}^n \prod_{i=0}^{k-1}\cos ix\cdot\frac{1-\cos kx}{x^2}$$</p>
-<p>$$=\displaystyle\sum_{k=1}^n\frac{k^2}{2}=\frac{n(n+1)(2n+1)}{12}$$</p>
-<p>当然上面的变式也可以用麦克劳林公式，留做习题。</p>
-<p>最后丢一道思考题</p>
-<p>$$\displaystyle\lim_{x\to0} \frac{x-\sin(\sin(\sin(\sin(\sin(\sin(\sin(\sin(\sin(\sin(\sin(\sin(x))))))))))))}{x^3}$$</p>
-<p>当然这题也是十分的trivial，方法可以同上，答案是2，解答不写了（</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>没有解答了</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>好吧 其实就是</p>
-<p>这道题是有一个规律的，可以考虑先从</p>
-<p>$$\displaystyle\lim_{x\to0} \frac{x-\sin x}{x^3}$$</p>
-<p>入手，然后再套一个正弦函数，以此类推，若记规律为I_k，那么</p>
-<p>$$I_k=\frac{k}{6}$$</p>
-<p>其中 k为sin的个数</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/29/%E4%B8%80%E9%81%93%E9%9D%9E%E6%95%B0%E5%AD%A6%E7%B3%BB%E7%AB%9E%E8%B5%9B%E9%A2%98%E7%9A%84%E6%8E%A8%E5%B9%BF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1316,7 +732,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-31 01:24:10" itemprop="dateModified" datetime="2022-01-31T01:24:10+08:00">2022-01-31</time>
+                <time title="修改时间：2022-02-05 16:34:39" itemprop="dateModified" datetime="2022-02-05T16:34:39+08:00">2022-02-05</time>
               </span>
 
           <br>
@@ -1360,64 +776,14 @@
 <li><p>5.变量代换</p>
 </li>
 </ul>
-<p><strong>方法一</strong></p>
-<p>考虑</p>
-<p>$$(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2$$<br>$$=(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)(\int_0^{+\infty}{\mathrm{e}^{-y^2}}\mathrm{d}y)$$</p>
-<p>其中令 $$ x=rsin\theta,y=rcos\theta $$</p>
-<p>$$上式=\int_0^{\frac{\pi}{2}}\mathrm{d}\theta\cdot\int_0^{+\infty}\mathrm{e}^{-r^2}r\mathrm{d}r$$<br>$$=\frac{\pi}{2}\times\frac{1}{2}=\frac{\pi}{4}$$</p>
-<p>因此<br>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法二</strong></p>
-<p>考虑区间</p>
-<p>$$S_1={(x,y)|x^2+y^2\leq R^2}$$<br>$$S_2={(x,y)|0\leq x\leq R,0\leq y\leq R}$$<br>$$S_3={(x,y)|x^2+y^2\leq 2R^2}$$</p>
-<p>其中</p>
-<p>$$(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2$$<br>$$=(\int_0^{R}{\mathrm{e}^{-x^2}}\mathrm{d}x)(\int_0^{R}{\mathrm{e}^{-y^2}}\mathrm{d}y)$$<br>$$=\int_0^{R} \int_0^{R}{\mathrm{e}^{-(x^2+y^2)}}\mathrm{d}x\mathrm{d}y$$<br>$$=\iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y$$</p>
-<p>通过区间的面积得出</p>
-<p>$$\iint_{S1}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y \leq \iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y \leq \iint_{S3}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y$$</p>
-<p>计算方法同方法一,可以得出<br>$$\iint_{S1}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y=\frac{\pi}{4}(1-\mathrm{e}^{-R^2})$$</p>
-<p>不失一般性<br>$$\iint_{S3}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y=\frac{\pi}{4}(1-\mathrm{e}^{-2R^2})$$</p>
-<p>从而有<br>$$\frac{\pi}{4}(1-\mathrm{e}^{-R^2})\leq \iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y \leq \frac{\pi}{4}(1-\mathrm{e}^{-2R^2})$$<br>取$$R\rightarrow \infty$$，由夹逼准则可以得到</p>
-<p>$$(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2=\iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y=\frac{\pi}{4}$$</p>
-<p>所以</p>
-<p>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法三</strong>①</p>
-<p>考虑曲线$$z=\mathrm{e}^{-x^{2}}$$绕$z$轴旋转一周生成的旋转体的体积,由此可得<br>$$V=\int_0^{1}\pi x^{2}\mathrm{d}z$$<br>$$=\pi \int_0^{1}(-\ln z)\mathrm{d}z$$<br>$$=\pi (z-z\ln z) \mid_{0}^{1}$$<br>$$=\pi (1- \underset{z\rightarrow 0^+}{\lim}\left(z-z\ln z \right))=\pi$$</p>
-<p>那么旋转体旋转所生成的曲面方程为$$z=e^{-(x^{2}+y^{2})}$$实际上旋转体的体积也可以理解成曲面与xOy之间部分的体积，即<br>$$\pi =V=\iint_{R^2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y$$<br>$$=\int_{-\infty}^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x\cdot\int_{-\infty}^{+\infty}{\mathrm{e}^{-y^2}}\mathrm{d}y$$<br>$$=(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2$$</p>
-<p>因此<br>$$\int_{-\infty}^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\sqrt{\pi}$$</p>
-<p>故<br>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法四</strong>②</p>
-<p>我们不加证明的给出在$$0\leq x\leq 1$$时，有不等式<br>$$1-x^2\leq \mathrm{e} ^{-x^2}$$</p>
-<p>并且有不等式<br>$$\mathrm{e}^{-x^2}\leq {\frac{1}{1+x^2}} (x \geq 0)$$</p>
-<p>借助这两个不等式我们可以得到</p>
-<p>$$(1-x^2)^n\leq \mathrm{e}^{-{nx^2}}\leq \frac{1}{(1+x^2)^{n}}$$</p>
-<p>两边取0到1的积分得</p>
-<p>$$\int_0^{1}{(1-x^2)^n}\mathrm{d}x \leq \int_0^{1}\mathrm{e}^{-{nx^2}}\mathrm{d}x \leq \int_0^{1}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>对第一个不等式右侧加强可以得到</p>
-<p> $$\int_0^{+\infty}\mathrm{e}^{-{nx^2}}\mathrm{d}x\leq \int_0^{+\infty}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>因此有</p>
-<p>$$\int_0^{1}{(1-x^2)^n}\mathrm{d}x &lt;\int_0^{+\infty}\mathrm{e}^{-{nx^2}}\mathrm{d}x\leq \int_0^{+\infty}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>记$$\sqrt{n}x=t$$,于是有</p>
-<p>$$\sqrt{n}\int_0^{1}{(1-x^2)^n}\mathrm{d}x &lt;\int_0^{+\infty}\mathrm{e}^{-{t^2}}\mathrm{d}t\leq \sqrt{n}\int_0^{+\infty}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>对于左侧我们令$$x=\sin t$$便得到</p>
-<p>$$左式子=\sqrt{n}\int_0^{\frac{\pi}{2}}\cos^{2n+1}t\mathrm{d}t$$<br>$$=\sqrt{n}{\frac{(2n)!!}{(2n+1)!!}}$$<br>$$=\frac{\sqrt{n}}{\sqrt{2n+1}}\cdot\frac{(2n)!!}{\sqrt{2n+1}\cdot (2n-1)!!}$$<br>$$\rightarrow\frac{1}{\sqrt{2}}\cdot\sqrt{\frac{\pi}{2}}=\frac{\sqrt{\pi}}{2}$$</p>
-<p>对于右侧我们可以令$$x=\tan t$$便得到</p>
-<p>$$右式子=\sqrt{n}\int_0^{\frac{\pi}{2}}\frac{\sec^2t \mathrm{d}t}{sec^{2n}t}$$</p>
-<p>$$=\sqrt{n}\int_0^{\frac{\pi}{2}}\cos^{2n-2}t\mathrm{d}t$$<br>$$=\sqrt{n}\cdot \frac{(2n-3)!!}{(2n-2)!!}\cdot\frac{\pi}{2}$$<br>$$=\frac{\sqrt{n}\cdot \frac{\pi}{2}}{\frac{\sqrt{2n-1}\cdot(2n-2)!!}{\sqrt{2n-1}\cdot(2n-3)!!}}$$<br>$$\rightarrow\frac{1}{2}\cdot\frac{\frac{\pi}{2}}{\sqrt{\frac{\pi}{2}}}=\frac{\sqrt{\pi}}{2}$$</p>
-<p>自此,由夹逼准则可以得到</p>
-<p>$$\int_0^{+\infty}\mathrm{e}^{-{t^2}}\mathrm{d}t=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法五</strong></p>
-<p>不妨令$$t=x^2$$</p>
-<p>于是有</p>
-<p>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x$$<br>$$=\int_0^{+\infty}{\mathrm{e}^{-t}}\frac{\mathrm{d}t}{2\sqrt{t}}$$<br>$$=\frac{1}{2}\int_0^{+\infty}{\mathrm{e}^{-t}}t^{\frac{1}{2}-1}{\mathrm{d}t}$$<br>$$=\frac{1}{2}\Gamma(\frac{1}{2})$$</p>
-<p>由余元公式易知$$\Gamma(\frac{1}{2})=\sqrt{\pi}$$</p>
-<p>因此<br>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>参考:</strong></p>
-<ul>
-<li><p>①:CSDN:无穷积分 ∫e^(-x^2)dx 的几种巧妙解法,作者cyzhou1221</p>
-</li>
-<li><p>②:《数学分析教程》第三版上册，常庚哲 史济怀 编著 ，P312 问题7.4 第一题</p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/28/%E4%B8%80%E4%B8%AA%E5%B8%B8%E8%A7%81%E6%97%A0%E7%A9%B7%E7%A7%AF%E5%88%86%E7%9A%84%E8%AF%81%E6%98%8E/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1592,7 +958,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
