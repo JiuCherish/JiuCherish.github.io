@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第 72 场双周赛 链接↓ 第 72 场双周赛 这场手速场，题目质量过低（…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第72场双周赛解答">
+<meta property="og:url" content="http://example.com/2022/02/20/%E7%AC%AC72%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/index.html">
+<meta property="og:site_name" content="玖的数学&amp;算法录">
+<meta property="og:description" content="第 72 场双周赛 链接↓ 第 72 场双周赛 这场手速场，题目质量过低（…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-19T16:35:50.000Z">
+<meta property="article:modified_time" content="2022-02-19T16:59:41.938Z">
+<meta property="article:author" content="JiuCherish">
+<meta property="article:tag" content="Leetcode双周赛">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/02/20/%E7%AC%AC72%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>第72场双周赛解答 | 玖的数学&算法录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+ <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+<script type="text/javascript" src="/js/love.js"></script>
+
+  <style type="text/css">
+  body {
+      background: url(https://s4.ax1x.com/2022/01/27/7XdpZT.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: 50% 50%;
+}
+  .main-inner{
+	opacity: 0.8;
+}
+  .header-inner{
+	opacity: 0.8;
+	z-index: 1;
+}
+  </style>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">玖的数学&算法录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/20/%E7%AC%AC72%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第72场双周赛解答
+        </h1>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 00:35:50 / 修改时间：00:59:41" itemprop="dateCreated datePublished" datetime="2022-02-20T00:35:50+08:00">2022-02-20</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<p><strong>第 72 场双周赛</strong></p>
+<p>链接↓</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/contest/biweekly-contest-72/">第 72 场双周赛</a></p>
+<p>这场手速场，题目质量过低（…</p>
+<span id="more"></span>
+
+
+
+<h4 id="5996-统计数组中相等且可以被整除的数对"><a href="#5996-统计数组中相等且可以被整除的数对" class="headerlink" title="5996.统计数组中相等且可以被整除的数对"></a>5996.统计数组中相等且可以被整除的数对</h4><p>给你一个下标从 <strong>0</strong> 开始长度为 <code>n</code> 的整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你返回满足 <code>0 &lt;= i &lt; j &lt; n</code> ，<code>nums[i] == nums[j]</code> 且 <code>(i * j)</code> 能被 <code>k</code> 整除的数对 <code>(i, j)</code> 的 <strong>数目</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,1,2,2,2,1,3], k = 2</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">总共有 4 对数符合所有要求：</span><br><span class="line">- nums[0] == nums[6] 且 0 * 6 == 0 ，能被 2 整除。</span><br><span class="line">- nums[2] == nums[3] 且 2 * 3 == 6 ，能被 2 整除。</span><br><span class="line">- nums[2] == nums[4] 且 2 * 4 == 8 ，能被 2 整除。</span><br><span class="line">- nums[3] == nums[4] 且 3 * 4 == 12 ，能被 2 整除。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,3,4], k = 1</span><br><span class="line">输出：0</span><br><span class="line">解释：由于数组中没有重复数值，所以没有数对 (i,j) 符合所有要求。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+<li><code>1 &lt;= nums[i], k &lt;= 100</code></li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+<p>直接暴力，按题目意思</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPairs</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;nums.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==nums[j])&#123;</span><br><span class="line">                <span class="keyword">if</span>((i*j)%k==<span class="number">0</span>)&#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="5997-找到和为给定整数的三个连续整数"><a href="#5997-找到和为给定整数的三个连续整数" class="headerlink" title="5997.找到和为给定整数的三个连续整数"></a>5997.找到和为给定整数的三个连续整数</h4><p>给你一个整数 <code>num</code> ，请你返回三个连续的整数，它们的 <strong>和</strong> 为 <code>num</code> 。如果 <code>num</code> 无法被表示成三个连续整数的和，请你返回一个 <strong>空</strong> 数组。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：num = 33</span><br><span class="line">输出：[10,11,12]</span><br><span class="line">解释：33 可以表示为 10 + 11 + 12 = 33 。</span><br><span class="line">10, 11, 12 是 3 个连续整数，所以返回 [10, 11, 12]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：num = 4</span><br><span class="line">输出：[]</span><br><span class="line">解释：没有办法将 4 表示成 3 个连续整数的和。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= num &lt;= 1015</code></li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+<p>按题目意思</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; <span class="title">sumOfThree</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> num)</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; ans;</span><br><span class="line">    <span class="keyword">if</span>(num%<span class="number">3</span>==<span class="number">0</span>)&#123;</span><br><span class="line">        ans.<span class="built_in">push_back</span>(num/<span class="number">3</span><span class="number">-1</span>);</span><br><span class="line">        ans.<span class="built_in">push_back</span>(num/<span class="number">3</span>);</span><br><span class="line">        ans.<span class="built_in">push_back</span>(num/<span class="number">3</span>+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这也叫Medium难度？</p>
+<hr>
+<h4 id="5998-拆分成最多数目的偶整数之和"><a href="#5998-拆分成最多数目的偶整数之和" class="headerlink" title="5998.拆分成最多数目的偶整数之和"></a>5998.拆分成最多数目的偶整数之和</h4><p>给你一个整数 <code>finalSum</code> 。请你将它拆分成若干个 <strong>互不相同</strong> 的偶整数之和，且拆分出来的偶整数数目 <strong>最多</strong> 。</p>
+<ul>
+<li>比方说，给你 <code>finalSum = 12</code> ，那么这些拆分是 <strong>符合要求</strong> 的（互不相同的偶整数且和为 <code>finalSum</code>）：<code>(2 + 10)</code> ，<code>(2 + 4 + 6)</code> 和 <code>(4 + 8)</code> 。它们中，<code>(2 + 4 + 6)</code> 包含最多数目的整数。注意 <code>finalSum</code> 不能拆分成 <code>(2 + 2 + 4 + 4)</code> ，因为拆分出来的整数必须互不相同。</li>
+</ul>
+<p>请你返回一个整数数组，表示将整数拆分成 <strong>最多</strong> 数目的偶整数数组。如果没有办法将 <code>finalSum</code> 进行拆分，请你返回一个 <strong>空</strong> 数组。你可以按 <strong>任意</strong> 顺序返回这些整数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：finalSum = 12</span><br><span class="line">输出：[2,4,6]</span><br><span class="line">解释：以下是一些符合要求的拆分：(2 + 10)，(2 + 4 + 6) 和 (4 + 8) 。</span><br><span class="line">(2 + 4 + 6) 为最多数目的整数，数目为 3 ，所以我们返回 [2,4,6] 。</span><br><span class="line">[2,6,4] ，[6,2,4] 等等也都是可行的解。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：finalSum = 7</span><br><span class="line">输出：[]</span><br><span class="line">解释：没有办法将 finalSum 进行拆分。</span><br><span class="line">所以返回空数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：finalSum = 28</span><br><span class="line">输出：[6,8,2,12]</span><br><span class="line">解释：以下是一些符合要求的拆分：(2 + 26)，(6 + 8 + 2 + 12) 和 (4 + 24) 。</span><br><span class="line">(6 + 8 + 2 + 12) 有最多数目的整数，数目为 4 ，所以我们返回 [6,8,2,12] 。</span><br><span class="line">[10,2,4,12] ，[6,2,4,16] 等等也都是可行的解。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= finalSum &lt;= 1010</code></li>
+</ul>
+<hr>
+<p><strong>小彩蛋：</strong></p>
+<p>有意思的是我报错的时候，样例给出了2，然后我返回了[2,0],直接给我报错了。</p>
+<p>在中文题目里第一行最后一句偶整数数目 <strong>最多</strong> 。</p>
+<p>在英文描述里positive even integers.</p>
+<p>真有他的.jpg</p>
+<hr>
+<p><strong>分析：</strong></p>
+<p>首先考虑是否能mod2</p>
+<p>不能的话直接返回空数组</p>
+<p>记录一个最小的 <strong>正偶数</strong> ，用结果值去作差，每完成一次放入就到下一个正偶数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; <span class="title">maximumEvenSplit</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> f)</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; ans;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(f%<span class="number">2</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(f==<span class="number">4</span>)&#123;</span><br><span class="line">        ans.<span class="built_in">push_back</span>(f);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(f)&#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(a);</span><br><span class="line">            f-=a;</span><br><span class="line">            <span class="keyword">if</span>(f==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>((f/<span class="number">2</span>)<span class="number">-2</span>&lt;=a)&#123;</span><br><span class="line">                ans.<span class="built_in">push_back</span>(f);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            a+=<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="5999-统计数组中好三元组数目"><a href="#5999-统计数组中好三元组数目" class="headerlink" title="5999.统计数组中好三元组数目"></a>5999.统计数组中好三元组数目</h4><p>给你两个下标从 <strong>0</strong> 开始且长度为 <code>n</code> 的整数数组 <code>nums1</code> 和 <code>nums2</code> ，两者都是 <code>[0, 1, ..., n - 1]</code> 的 <strong>排列</strong> 。</p>
+<p><strong>好三元组</strong> 指的是 <code>3</code> 个 <strong>互不相同</strong> 的值，且它们在数组 <code>nums1</code> 和 <code>nums2</code> 中出现顺序保持一致。换句话说，如果我们将 <code>pos1v</code> 记为值 <code>v</code> 在 <code>nums1</code> 中出现的位置，<code>pos2v</code> 为值 <code>v</code> 在 <code>nums2</code> 中的位置，那么一个好三元组定义为 <code>0 &lt;= x, y, z &lt;= n - 1</code> ，且 <code>pos1x &lt; pos1y &lt; pos1z</code> 和 <code>pos2x &lt; pos2y &lt; pos2z</code> 都成立的 <code>(x, y, z)</code> 。</p>
+<p>请你返回好三元组的 <strong>总数目</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [2,0,1,3], nums2 = [0,1,2,3]</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">总共有 4 个三元组 (x,y,z) 满足 pos1x &lt; pos1y &lt; pos1z ，分别是 (2,0,1) ，(2,0,3) ，(2,1,3) 和 (0,1,3) 。</span><br><span class="line">这些三元组中，只有 (0,1,3) 满足 pos2x &lt; pos2y &lt; pos2z 。所以只有 1 个好三元组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [4,0,1,3,2], nums2 = [4,1,0,2,3]</span><br><span class="line">输出：4</span><br><span class="line">解释：总共有 4 个好三元组 (4,0,3) ，(4,0,2) ，(4,1,3) 和 (4,1,2) 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums1.length == nums2.length</code></li>
+<li><code>3 &lt;= n &lt;= 105</code></li>
+<li><code>0 &lt;= nums1[i], nums2[i] &lt;= n - 1</code></li>
+<li><code>nums1</code> 和 <code>nums2</code> 是 <code>[0, 1, ..., n - 1]</code> 的排列。</li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode%E5%8F%8C%E5%91%A8%E8%B5%9B/" rel="tag"># Leetcode双周赛</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/13/%E7%AC%AC280%E5%9C%BA%E5%91%A8%E8%B5%9B/" rel="prev" title="第280场周赛解答">
+      <i class="fa fa-chevron-left"></i> 第280场周赛解答
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#5996-%E7%BB%9F%E8%AE%A1%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9B%B8%E7%AD%89%E4%B8%94%E5%8F%AF%E4%BB%A5%E8%A2%AB%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%B0%E5%AF%B9"><span class="nav-number">1.</span> <span class="nav-text">5996.统计数组中相等且可以被整除的数对</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5997-%E6%89%BE%E5%88%B0%E5%92%8C%E4%B8%BA%E7%BB%99%E5%AE%9A%E6%95%B4%E6%95%B0%E7%9A%84%E4%B8%89%E4%B8%AA%E8%BF%9E%E7%BB%AD%E6%95%B4%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">5997.找到和为给定整数的三个连续整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5998-%E6%8B%86%E5%88%86%E6%88%90%E6%9C%80%E5%A4%9A%E6%95%B0%E7%9B%AE%E7%9A%84%E5%81%B6%E6%95%B4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-number">3.</span> <span class="nav-text">5998.拆分成最多数目的偶整数之和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5999-%E7%BB%9F%E8%AE%A1%E6%95%B0%E7%BB%84%E4%B8%AD%E5%A5%BD%E4%B8%89%E5%85%83%E7%BB%84%E6%95%B0%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">5999.统计数组中好三元组数目</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JiuCherish"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">JiuCherish</p>
+  <div class="site-description" itemprop="description">希望自己能会一点东西</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JiuCherish</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">42k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
