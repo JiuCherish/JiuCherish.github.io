@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第 73 场双周赛 链接↓ 第 73 场双周赛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第73场双周赛解答">
+<meta property="og:url" content="http://example.com/2022/03/07/%E7%AC%AC73%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/index.html">
+<meta property="og:site_name" content="玖的数学&amp;算法录">
+<meta property="og:description" content="第 73 场双周赛 链接↓ 第 73 场双周赛">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2019/12/12/e1.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2019/12/12/e2.png">
+<meta property="article:published_time" content="2022-03-07T10:54:02.000Z">
+<meta property="article:modified_time" content="2022-03-11T20:43:38.690Z">
+<meta property="article:author" content="JiuCherish">
+<meta property="article:tag" content="Leetcode双周赛">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2019/12/12/e1.png">
+
+<link rel="canonical" href="http://example.com/2022/03/07/%E7%AC%AC73%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>第73场双周赛解答 | 玖的数学&算法录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+ <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+<script type="text/javascript" src="/js/love.js"></script>
+
+  <style type="text/css">
+  body {
+      background: url(https://s4.ax1x.com/2022/01/27/7XdpZT.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: 50% 50%;
+}
+  .main-inner{
+	opacity: 0.8;
+}
+  .header-inner{
+	opacity: 0.8;
+	z-index: 1;
+}
+  </style>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">玖的数学&算法录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/07/%E7%AC%AC73%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第73场双周赛解答
+        </h1>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-07 18:54:02" itemprop="dateCreated datePublished" datetime="2022-03-07T18:54:02+08:00">2022-03-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 04:43:38" itemprop="dateModified" datetime="2022-03-12T04:43:38+08:00">2022-03-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<p><strong>第 73 场双周赛</strong></p>
+<p>链接↓</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/contest/biweekly-contest-73/">第 73 场双周赛</a></p>
+<span id="more"></span>
+
+
+
+<h4 id="2190-数组中紧跟-key-之后出现最频繁的数字"><a href="#2190-数组中紧跟-key-之后出现最频繁的数字" class="headerlink" title="2190.数组中紧跟 key 之后出现最频繁的数字"></a>2190.数组中紧跟 key 之后出现最频繁的数字</h4><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> ，同时给你一个整数 <code>key</code> ，它在 <code>nums</code> 出现过。</p>
+<p><strong>统计</strong> 在 <code>nums</code> 数组中紧跟着 <code>key</code> 后面出现的不同整数 <code>target</code> 的出现次数。换言之，<code>target</code> 的出现次数为满足以下条件的 <code>i</code> 的数目：</p>
+<ul>
+<li><code>0 &lt;= i &lt;= n - 2</code></li>
+<li><code>nums[i] == key</code> 且</li>
+<li><code>nums[i + 1] == target</code> 。</li>
+</ul>
+<p>请你返回出现 <strong>最多</strong> 次数的 <code>target</code> 。测试数据保证出现次数最多的 <code>target</code> 是唯一的。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,100,200,1,100], key = 1</span><br><span class="line">输出：100</span><br><span class="line">解释：对于 target = 100 ，在下标 1 和 4 处出现过 2 次，且都紧跟着 key 。</span><br><span class="line">没有其他整数在 key 后面紧跟着出现，所以我们返回 100 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,2,2,2,3], key = 2</span><br><span class="line">输出：2</span><br><span class="line">解释：对于 target = 2 ，在下标 1 ，2 和 3 处出现过 3 次，且都紧跟着 key 。</span><br><span class="line">对于 target = 3 ，在下标 4 出出现过 1 次，且紧跟着 key 。</span><br><span class="line">target = 2 是紧跟着 key 之后出现次数最多的数字，所以我们返回 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+<li>测试数据保证答案是唯一的。</li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+<p>根据题意，如果数组前一个数等于key，那么统计当前的值出现的次数，最后遍历1到1000，如果当前值出现的次数比答案大，那么将该值赋值到答案，最后返回即可。</p>
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXH=<span class="number">1e5</span>;</span><br><span class="line"><span class="keyword">int</span> a[MAXH];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">mostFrequent</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">size</span>(a));</span><br><span class="line">    <span class="keyword">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nums.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i<span class="number">-1</span>]==key) a[nums[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]&gt;a[ans]) ans=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="2191-将杂乱无章的数字排序"><a href="#2191-将杂乱无章的数字排序" class="headerlink" title="2191.将杂乱无章的数字排序"></a>2191.将杂乱无章的数字排序</h4><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>mapping</code> ，它表示一个十进制数的映射规则，<code>mapping[i] = j</code> 表示这个规则下将数位 <code>i</code> 映射为数位 <code>j</code> 。</p>
+<p>一个整数 <strong>映射后的值</strong> 为将原数字每一个数位 <code>i</code> （<code>0 &lt;= i &lt;= 9</code>）映射为 <code>mapping[i]</code> 。</p>
+<p>另外给你一个整数数组 <code>nums</code> ，请你将数组 <code>nums</code> 中每个数按照它们映射后对应数字非递减顺序排序后返回。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>如果两个数字映射后对应的数字大小相同，则将它们按照输入中的 <strong>相对顺序</strong> 排序。</li>
+<li><code>nums</code> 中的元素只有在排序的时候需要按照映射后的值进行比较，返回的值应该是输入的元素本身。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入：mapping = [8,9,4,0,2,1,3,5,7,6], nums = [991,338,38]</span><br><span class="line">输出：[338,38,991]</span><br><span class="line">解释：</span><br><span class="line">将数字 991 按照如下规则映射：</span><br><span class="line">1. mapping[9] = 6 ，所有数位 9 都会变成 6 。</span><br><span class="line">2. mapping[1] = 9 ，所有数位 1 都会变成 8 。</span><br><span class="line">所以，991 映射的值为 669 。</span><br><span class="line">338 映射为 007 ，去掉前导 0 后得到 7 。</span><br><span class="line">38 映射为 07 ，去掉前导 0 后得到 7 。</span><br><span class="line">由于 338 和 38 映射后的值相同，所以它们的前后顺序保留原数组中的相对位置关系，338 在 38 的前面。</span><br><span class="line">所以，排序后的数组为 [338,38,991] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：mapping = [0,1,2,3,4,5,6,7,8,9], nums = [789,456,123]</span><br><span class="line">输出：[123,456,789]</span><br><span class="line">解释：789 映射为 789 ，456 映射为 456 ，123 映射为 123 。所以排序后数组为 [123,456,789] 。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>mapping.length == 10</code></li>
+<li><code>0 &lt;= mapping[i] &lt;= 9</code></li>
+<li><code>mapping[i]</code> 的值 <strong>互不相同</strong> 。</li>
+<li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
+<li><code>0 &lt;= nums[i] &lt; 109</code></li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+<p>题目意思是</p>
+<table>
+<thead>
+<tr>
+<th align="left">map值</th>
+<th>8</th>
+<th align="left">9</th>
+<th align="left">4</th>
+<th align="left">0</th>
+<th align="left">2</th>
+<th align="left">1</th>
+<th align="left">3</th>
+<th align="left">5</th>
+<th align="left">7</th>
+<th align="left">6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">原始值</td>
+<td>0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">7</td>
+<td align="left">8</td>
+<td align="left">9</td>
+</tr>
+</tbody></table>
+<p>即[991]所对应的值就是[669],以此类推</p>
+<p>通过λ表达式去重写这个sort函数，将每个位上的数字分出来，然后对他进行转换，最后比较大小返回到原数组。</p>
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortJumbled</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; mapping, vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">     <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(),nums.<span class="built_in">end</span>(),[&amp;](<span class="keyword">int</span> a,<span class="keyword">int</span> b)&#123;</span><br><span class="line">     ll va=<span class="number">0</span>,vb=<span class="number">0</span>,base=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(a==<span class="number">0</span>) va=mapping[<span class="number">0</span>];</span><br><span class="line">         <span class="keyword">else</span> &#123;</span><br><span class="line">             base=<span class="number">1</span>;</span><br><span class="line">         <span class="keyword">while</span>(a)&#123;</span><br><span class="line">             <span class="keyword">int</span> x=a%<span class="number">10</span>;a/=<span class="number">10</span>;</span><br><span class="line">             va=va+base*mapping[x];</span><br><span class="line">             base*=<span class="number">10</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;   </span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>) vb=mapping[<span class="number">0</span>];<span class="keyword">else</span>&#123;</span><br><span class="line">        base=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(b)&#123;</span><br><span class="line">            <span class="keyword">int</span> x=b%<span class="number">10</span>;b/=<span class="number">10</span>;</span><br><span class="line">            vb=vb+base*mapping[x];</span><br><span class="line">            base*=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">return</span> va&lt;vb;</span><br><span class="line">    &#125;);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="2192-有向无环图中一个节点的所有祖先"><a href="#2192-有向无环图中一个节点的所有祖先" class="headerlink" title="2192.有向无环图中一个节点的所有祖先"></a>2192.有向无环图中一个节点的所有祖先</h4><p>给你一个正整数 <code>n</code> ，它表示一个 <strong>有向无环图</strong> 中节点的数目，节点编号为 <code>0</code> 到 <code>n - 1</code> （包括两者）。</p>
+<p>给你一个二维整数数组 <code>edges</code> ，其中 <code>edges[i] = [fromi, toi]</code> 表示图中一条从 <code>fromi</code> 到 <code>toi</code> 的单向边。</p>
+<p>请你返回一个数组 <code>answer</code>，其中 <code>answer[i]</code>是第 <code>i</code> 个节点的所有 <strong>祖先</strong> ，这些祖先节点 <strong>升序</strong> 排序。</p>
+<p>如果 <code>u</code> 通过一系列边，能够到达 <code>v</code> ，那么我们称节点 <code>u</code> 是节点 <code>v</code> 的 <strong>祖先</strong> 节点。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2019/12/12/e1.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 8, edgeList = [[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]</span><br><span class="line">输出：[[],[],[],[0,1],[0,2],[0,1,3],[0,1,2,3,4],[0,1,2,3]]</span><br><span class="line">解释：</span><br><span class="line">上图为输入所对应的图。</span><br><span class="line">- 节点 0 ，1 和 2 没有任何祖先。</span><br><span class="line">- 节点 3 有 2 个祖先 0 和 1 。</span><br><span class="line">- 节点 4 有 2 个祖先 0 和 2 。</span><br><span class="line">- 节点 5 有 3 个祖先 0 ，1 和 3 。</span><br><span class="line">- 节点 6 有 5 个祖先 0 ，1 ，2 ，3 和 4 。</span><br><span class="line">- 节点 7 有 4 个祖先 0 ，1 ，2 和 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2019/12/12/e2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 5, edgeList = [[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]</span><br><span class="line">输出：[[],[0],[0,1],[0,1,2],[0,1,2,3]]</span><br><span class="line">解释：</span><br><span class="line">上图为输入所对应的图。</span><br><span class="line">- 节点 0 没有任何祖先。</span><br><span class="line">- 节点 1 有 1 个祖先 0 。</span><br><span class="line">- 节点 2 有 2 个祖先 0 和 1 。</span><br><span class="line">- 节点 3 有 3 个祖先 0 ，1 和 2 。</span><br><span class="line">- 节点 4 有 4 个祖先 0 ，1 ，2 和 3 。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 1000</code></li>
+<li><code>0 &lt;= edges.length &lt;= min(2000, n * (n - 1) / 2)</code></li>
+<li><code>edges[i].length == 2</code></li>
+<li><code>0 &lt;= fromi, toi &lt;= n - 1</code></li>
+<li><code>fromi != toi</code></li>
+<li>图中不会有重边。</li>
+<li>图是 <strong>有向</strong> 且 <strong>无环</strong> 的。</li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+<p>根据题目意思</p>
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">1e3</span>+<span class="number">10</span>;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; ans[MAXN];</span><br><span class="line"><span class="keyword">bool</span> dirs[MAXN][MAXN];</span><br><span class="line">queue&lt;<span class="keyword">int</span>&gt; que;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()) que.<span class="built_in">pop</span>();</span><br><span class="line">        </span><br><span class="line">        que.<span class="built_in">push</span>(s);</span><br><span class="line">        dirs[s][s]=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="keyword">int</span> x=que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> v:ans[x])&#123;</span><br><span class="line">                <span class="keyword">if</span>(!dirs[s][v])&#123;</span><br><span class="line">                    dirs[s][v]=<span class="literal">true</span>;</span><br><span class="line">                    que.<span class="built_in">push</span>(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">     vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">getAncestors</span>(<span class="keyword">int</span> n, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; edges) &#123; </span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)&#123;</span><br><span class="line">             ans[i].<span class="built_in">clear</span>();</span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=n;j++) dirs[i][j]=<span class="literal">false</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">for</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; e:edges) ans[e[<span class="number">0</span>]].<span class="built_in">push_back</span>(e[<span class="number">1</span>]);</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)<span class="built_in">bfs</span>(i);</span><br><span class="line">         </span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">             vector&lt;<span class="keyword">int</span>&gt; cur;</span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                 <span class="keyword">if</span>(j!=i&amp;&amp;dirs[j][i]) cur.<span class="built_in">push_back</span>(j);</span><br><span class="line">             &#125;</span><br><span class="line">             res.<span class="built_in">push_back</span>(cur);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> res;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="2193-得到回文串的最少操作次数"><a href="#2193-得到回文串的最少操作次数" class="headerlink" title="2193.得到回文串的最少操作次数"></a>2193.得到回文串的最少操作次数</h4><p>给你一个只包含小写英文字母的字符串 <code>s</code> 。</p>
+<p>每一次 <strong>操作</strong> ，你可以选择 <code>s</code> 中两个 <strong>相邻</strong> 的字符，并将它们交换。</p>
+<p>请你返回将 <code>s</code> 变成回文串的 <strong>最少操作次数</strong> 。</p>
+<p><strong>注意</strong> ，输入数据会确保 <code>s</code> 一定能变成一个回文串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;aabb&quot;</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">我们可以将 s 变成 2 个回文串，&quot;abba&quot; 和 &quot;baab&quot; 。</span><br><span class="line">- 我们可以通过 2 次操作得到 &quot;abba&quot; ：&quot;aabb&quot; -&gt; &quot;abab&quot; -&gt; &quot;abba&quot; 。</span><br><span class="line">- 我们可以通过 2 次操作得到 &quot;baab&quot; ：&quot;aabb&quot; -&gt; &quot;abab&quot; -&gt; &quot;baab&quot; 。</span><br><span class="line">因此，得到回文串的最少总操作次数为 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;letelt&quot;</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">通过 2 次操作从 s 能得到回文串 &quot;lettel&quot; 。</span><br><span class="line">其中一种方法是：&quot;letelt&quot; -&gt; &quot;letetl&quot; -&gt; &quot;lettel&quot; 。</span><br><span class="line">其他回文串比方说 &quot;tleelt&quot; 也可以通过 2 次操作得到。</span><br><span class="line">可以证明少于 2 次操作，无法得到回文串。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 2000</code></li>
+<li><code>s</code> 只包含小写英文字母。</li>
+<li><code>s</code> 可以通过有限次操作得到一个回文串。</li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+<p>考虑左指针与右指针，由于数据范围过小，因此考虑贪心</p>
+<p><strong>情况：</strong></p>
+<ul>
+<li><p>如果找到，且不是本身，将找到的字母移动到右侧的对称位置</p>
+</li>
+<li><p>如果找到，但是是当前字母本身，这说明当前字母需要最后放在字符串的正中间。注意这里不能一步到位，而只能先将其向右移动一步，以避免进行多余操作。操作完成后，我们需要继续处理当前位置</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5041">原题链接</a></p>
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minMovesToMakePalindrome</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=s.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n/<span class="number">2</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> left=i;</span><br><span class="line">        <span class="keyword">int</span> right=n-left<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(s[right]!=s[left])&#123;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="keyword">if</span> (left == right) &#123;</span><br><span class="line">                <span class="built_in">swap</span>(s[left], s[left + <span class="number">1</span>]);</span><br><span class="line">                ans++;</span><br><span class="line">                i--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = right; j &lt; n - left - <span class="number">1</span>; j++) &#123;</span><br><span class="line">                    <span class="built_in">swap</span>(s[j], s[j + <span class="number">1</span>]);</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode%E5%8F%8C%E5%91%A8%E8%B5%9B/" rel="tag"># Leetcode双周赛</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/27/%E7%AC%AC282%E5%9C%BA%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/" rel="prev" title="第282场周赛解答">
+      <i class="fa fa-chevron-left"></i> 第282场周赛解答
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/07/%E7%AC%AC283%E5%9C%BA%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/" rel="next" title="第283场周赛解答">
+      第283场周赛解答 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2190-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%B4%A7%E8%B7%9F-key-%E4%B9%8B%E5%90%8E%E5%87%BA%E7%8E%B0%E6%9C%80%E9%A2%91%E7%B9%81%E7%9A%84%E6%95%B0%E5%AD%97"><span class="nav-number">1.</span> <span class="nav-text">2190.数组中紧跟 key 之后出现最频繁的数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2191-%E5%B0%86%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%95%B0%E5%AD%97%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">2191.将杂乱无章的数字排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2192-%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE%E4%B8%AD%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%89%80%E6%9C%89%E7%A5%96%E5%85%88"><span class="nav-number">3.</span> <span class="nav-text">2192.有向无环图中一个节点的所有祖先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2193-%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">2193.得到回文串的最少操作次数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JiuCherish"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">JiuCherish</p>
+  <div class="site-description" itemprop="description">希望自己能会一点东西</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JiuCherish</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">64k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">58 分钟</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

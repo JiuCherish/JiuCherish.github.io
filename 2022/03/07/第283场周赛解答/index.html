@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第283场周赛 链接↓ 第283场周赛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第283场周赛解答">
+<meta property="og:url" content="http://example.com/2022/03/07/%E7%AC%AC283%E5%9C%BA%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/index.html">
+<meta property="og:site_name" content="玖的数学&amp;算法录">
+<meta property="og:description" content="第283场周赛 链接↓ 第283场周赛">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2022/02/08/ex1drawio.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2022/02/09/exam2drawio.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2022/02/09/example1drawio.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2022/02/09/example2drawio.png">
+<meta property="article:published_time" content="2022-03-07T10:54:36.000Z">
+<meta property="article:modified_time" content="2022-03-11T21:12:52.168Z">
+<meta property="article:author" content="JiuCherish">
+<meta property="article:tag" content="Leetcode周赛">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2022/02/08/ex1drawio.png">
+
+<link rel="canonical" href="http://example.com/2022/03/07/%E7%AC%AC283%E5%9C%BA%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>第283场周赛解答 | 玖的数学&算法录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+ <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+<script type="text/javascript" src="/js/love.js"></script>
+
+  <style type="text/css">
+  body {
+      background: url(https://s4.ax1x.com/2022/01/27/7XdpZT.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: 50% 50%;
+}
+  .main-inner{
+	opacity: 0.8;
+}
+  .header-inner{
+	opacity: 0.8;
+	z-index: 1;
+}
+  </style>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">玖的数学&算法录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/07/%E7%AC%AC283%E5%9C%BA%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第283场周赛解答
+        </h1>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-07 18:54:36" itemprop="dateCreated datePublished" datetime="2022-03-07T18:54:36+08:00">2022-03-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 05:12:52" itemprop="dateModified" datetime="2022-03-12T05:12:52+08:00">2022-03-12</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<p><strong>第283场周赛</strong></p>
+<p>链接↓</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/contest/weekly-contest-283/">第283场周赛</a></p>
+<span id="more"></span>
+
+
+
+<h4 id="2194-Excel-表中某个范围内的单元格"><a href="#2194-Excel-表中某个范围内的单元格" class="headerlink" title="2194.Excel 表中某个范围内的单元格"></a>2194.Excel 表中某个范围内的单元格</h4><p>Excel 表中的一个单元格 <code>(r, c)</code> 会以字符串 的形式进行表示，其中：</p>
+<p><code>col&gt;</code> 即单元格的列号 <code>c</code> 。用英文字母表中的 <strong>字母</strong> 标识。</p>
+<ul>
+<li><ul>
+<li>例如，第 <code>1</code> 列用 <code>&#39;A&#39;</code> 表示，第 <code>2</code> 列用 <code>&#39;B&#39;</code> 表示，第 <code>3</code> 列用 <code>&#39;C&#39;</code> 表示，以此类推。</li>
+</ul>
+</li>
+</ul>
+<p><row>即单元格的行号 <code>r</code> 。第 <code>r</code> 行就用 <strong>整数</strong> <code>r</code> 标识。</p>
+<p>给你一个格式为 <code>&quot;:&quot;</code> 的字符串 <code>s</code> ，其中 <code> 表示 `c1` 列，</code> 表示 <code>r1</code> 行，<code> 表示 `c2` 列，</code> 表示 <code>r2</code> 行，并满足 <code>r1 &lt;= r2</code> 且 <code>c1 &lt;= c2</code> 。</p>
+<p>找出所有满足 <code>r1 &lt;= x &lt;= r2</code> 且 <code>c1 &lt;= y &lt;= c2</code> 的单元格，并以列表形式返回。单元格应该按前面描述的格式用 <strong>字符串</strong> 表示，并以 <strong>非递减</strong> 顺序排列（先按列排，再按行排）。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/02/08/ex1drawio.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;K1:L2&quot;</span><br><span class="line">输出：[&quot;K1&quot;,&quot;K2&quot;,&quot;L1&quot;,&quot;L2&quot;]</span><br><span class="line">解释：</span><br><span class="line">上图显示了列表中应该出现的单元格。</span><br><span class="line">红色箭头指示单元格的出现顺序。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/02/09/exam2drawio.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;A1:F1&quot;</span><br><span class="line">输出：[&quot;A1&quot;,&quot;B1&quot;,&quot;C1&quot;,&quot;D1&quot;,&quot;E1&quot;,&quot;F1&quot;]</span><br><span class="line">解释：</span><br><span class="line">上图显示了列表中应该出现的单元格。 </span><br><span class="line">红色箭头指示单元格的出现顺序。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>s.length == 5</code></li>
+<li><code>&#39;A&#39; &lt;= s[0] &lt;= s[3] &lt;= &#39;Z&#39;</code></li>
+<li><code>&#39;1&#39; &lt;= s[1] &lt;= s[4] &lt;= &#39;9&#39;</code></li>
+<li><code>s</code> 由大写英文字母、数字、和 <code>&#39;:&#39;</code> 组成</li>
+</ul>
+<hr>
+<p><strong>分析</strong></p>
+<p>模拟</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">cellsInRange</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">     vector&lt;string&gt; ans;</span><br><span class="line">     <span class="keyword">int</span> r1=s[<span class="number">0</span>],r2=s[<span class="number">1</span>],l1=s[<span class="number">3</span>],l2=s[<span class="number">4</span>];</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=r1;i&lt;=l1;i++) &#123;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> j=r2;j&lt;=l2;j++)&#123;</span><br><span class="line">            string s=<span class="string">&quot;&quot;</span>;</span><br><span class="line">            s+=<span class="built_in"><span class="keyword">char</span></span>(i);</span><br><span class="line">            s+=<span class="built_in"><span class="keyword">char</span></span>(j);</span><br><span class="line">            ans.<span class="built_in">push_back</span>(s);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;  </span><br><span class="line">     <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="2195-向数组中追加-K-个整数"><a href="#2195-向数组中追加-K-个整数" class="headerlink" title="2195.向数组中追加 K 个整数"></a>2195.向数组中追加 K 个整数</h4><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> 。请你向 <code>nums</code> 中追加 <code>k</code> 个 <strong>未</strong> 出现在 <code>nums</code> 中的、<strong>互不相同</strong> 的 <strong>正</strong> 整数，并使结果数组的元素和 <strong>最小</strong> 。</p>
+<p>返回追加到 <code>nums</code> 中的 <code>k</code> 个整数之和。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,4,25,10,25], k = 2</span><br><span class="line">输出：5</span><br><span class="line">解释：在该解法中，向数组中追加的两个互不相同且未出现的正整数是 2 和 3 。</span><br><span class="line">nums 最终元素和为 1 + 4 + 25 + 10 + 25 + 2 + 3 = 70 ，这是所有情况中的最小值。</span><br><span class="line">所以追加到数组中的两个整数之和是 2 + 3 = 5 ，所以返回 5 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [5,6], k = 6</span><br><span class="line">输出：25</span><br><span class="line">解释：在该解法中，向数组中追加的两个互不相同且未出现的正整数是 1 、2 、3 、4 、7 和 8 。</span><br><span class="line">nums 最终元素和为 5 + 6 + 1 + 2 + 3 + 4 + 7 + 8 = 36 ，这是所有情况中的最小值。</span><br><span class="line">所以追加到数组中的两个整数之和是 1 + 2 + 3 + 4 + 7 + 8 = 25 ，所以返回 25 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i], k &lt;= 109</code></li>
+</ul>
+<hr>
+<p><strong>分析</strong></p>
+<p>模拟，根据等差公式求和，最后对1~k范围内，若原数组中已含有该元素，将其替换。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line">unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">bool</span>&gt; vis;</span><br><span class="line">    set&lt;<span class="keyword">int</span>&gt; cur_v;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">minimalKSum</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        ll ans=<span class="number">1ll</span>*(<span class="number">1</span>+k)*k/<span class="number">2ll</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> cur=k+<span class="number">1</span>;</span><br><span class="line">        vis.<span class="built_in">clear</span>();cur_v.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v:nums)&#123;</span><br><span class="line">            vis[v]=<span class="literal">true</span>;</span><br><span class="line">            cur_v.<span class="built_in">insert</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v:cur_v)&#123;</span><br><span class="line">            <span class="keyword">if</span>(v&lt;=k)&#123;</span><br><span class="line">                <span class="keyword">while</span>(vis[cur]) cur+=<span class="number">1</span>;</span><br><span class="line">                ans+=cur-v;</span><br><span class="line">                vis[cur]=<span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="2196-根据描述创建二叉树"><a href="#2196-根据描述创建二叉树" class="headerlink" title="2196.根据描述创建二叉树"></a>2196.根据描述创建二叉树</h4><p>给你一个二维整数数组 <code>descriptions</code> ，其中 <code>descriptions[i] = [parenti, childi, isLefti]</code> 表示 <code>parenti</code> 是 <code>childi</code> 在 <strong>二叉树</strong> 中的 <strong>父节点</strong>，二叉树中各节点的值 <strong>互不相同</strong> 。此外：</p>
+<ul>
+<li>如果 <code>isLefti == 1</code> ，那么 <code>childi</code> 就是 <code>parenti</code> 的左子节点。</li>
+<li>如果 <code>isLefti == 0</code> ，那么 <code>childi</code> 就是 <code>parenti</code> 的右子节点。</li>
+</ul>
+<p>请你根据 <code>descriptions</code> 的描述来构造二叉树并返回其 <strong>根节点</strong> 。</p>
+<p>测试用例会保证可以构造出 <strong>有效</strong> 的二叉树。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/02/09/example1drawio.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：descriptions = [[20,15,1],[20,17,0],[50,20,1],[50,80,0],[80,19,1]]</span><br><span class="line">输出：[50,20,80,15,17,19]</span><br><span class="line">解释：根节点是值为 50 的节点，因为它没有父节点。</span><br><span class="line">结果二叉树如上图所示。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2022/02/09/example2drawio.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：descriptions = [[1,2,1],[2,3,0],[3,4,1]]</span><br><span class="line">输出：[1,2,null,null,3,4]</span><br><span class="line">解释：根节点是值为 1 的节点，因为它没有父节点。 </span><br><span class="line">结果二叉树如上图所示。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= descriptions.length &lt;= 104</code></li>
+<li><code>descriptions[i].length == 3</code></li>
+<li><code>1 &lt;= parenti, childi &lt;= 105</code></li>
+<li><code>0 &lt;= isLefti &lt;= 1</code></li>
+<li><code>descriptions</code> 所描述的二叉树是一棵有效二叉树</li>
+</ul>
+<hr>
+<p><strong>分析</strong></p>
+<p>模拟</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">unordered_map&lt;<span class="keyword">int</span>,TreeNode*&gt; root;</span><br><span class="line">set&lt;<span class="keyword">int</span>&gt; indeg;</span><br><span class="line">set&lt;<span class="keyword">int</span>&gt; apps;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">getNode</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(apps.<span class="built_in">count</span>(x)==<span class="number">0</span>)&#123;</span><br><span class="line">            apps.<span class="built_in">insert</span>(x);</span><br><span class="line">            TreeNode *rt=<span class="keyword">new</span> <span class="built_in">TreeNode</span>(x);</span><br><span class="line">            root[x]=rt;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root[x];</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">createBinaryTree</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; descriptions)</span> </span>&#123;</span><br><span class="line">        root.<span class="built_in">clear</span>();</span><br><span class="line">        indeg.<span class="built_in">clear</span>();</span><br><span class="line">        apps.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">for</span>(vector&lt;<span class="keyword">int</span>&gt;&amp; des:descriptions)&#123;</span><br><span class="line">            <span class="keyword">int</span> fa=des[<span class="number">0</span>],ch=des[<span class="number">1</span>],lf=des[<span class="number">2</span>];</span><br><span class="line">            TreeNode *f=<span class="built_in">getNode</span>(fa);</span><br><span class="line">            TreeNode *c=<span class="built_in">getNode</span>(ch);</span><br><span class="line">            indeg.<span class="built_in">insert</span>(ch);</span><br><span class="line">            <span class="keyword">if</span>(lf==<span class="number">1</span>) f-&gt;left=c;</span><br><span class="line">            <span class="keyword">else</span> f-&gt;right=c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x:apps)&#123;</span><br><span class="line">            <span class="keyword">if</span>(indeg.<span class="built_in">count</span>(x)==<span class="number">0</span>) <span class="keyword">return</span> root[x];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="2197-替换数组中的非互质数"><a href="#2197-替换数组中的非互质数" class="headerlink" title="2197.替换数组中的非互质数"></a>2197.替换数组中的非互质数</h4><p>给你一个整数数组 <code>nums</code> 。请你对数组执行下述操作：</p>
+<ol>
+<li>从 <code>nums</code> 中找出 <strong>任意</strong> 两个 <strong>相邻</strong> 的 <strong>非互质</strong> 数。</li>
+<li>如果不存在这样的数，<strong>终止</strong> 这一过程。</li>
+<li>否则，删除这两个数，并 <strong>替换</strong> 为它们的 <strong>最小公倍数</strong>（Least Common Multiple，LCM）。</li>
+<li>只要还能找出两个相邻的非互质数就继续 <strong>重复</strong> 这一过程。</li>
+</ol>
+<p>返回修改后得到的 <strong>最终</strong> 数组。可以证明的是，以 <strong>任意</strong> 顺序替换相邻的非互质数都可以得到相同的结果。</p>
+<p>生成的测试用例可以保证最终数组中的值 <strong>小于或者等于</strong> <code>108</code> 。</p>
+<p>两个数字 <code>x</code> 和 <code>y</code> 满足 <strong>非互质数</strong> 的条件是：<code>GCD(x, y) &gt; 1</code> ，其中 <code>GCD(x, y)</code> 是 <code>x</code> 和 <code>y</code> 的 <strong>最大公约数</strong> 。</p>
+<p><strong>示例 1 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [6,4,3,2,7,6,2]</span><br><span class="line">输出：[12,7,6]</span><br><span class="line">解释：</span><br><span class="line">- (6, 4) 是一组非互质数，且 LCM(6, 4) = 12 。得到 nums = [12,3,2,7,6,2] 。</span><br><span class="line">- (12, 3) 是一组非互质数，且 LCM(12, 3) = 12 。得到 nums = [12,2,7,6,2] 。</span><br><span class="line">- (12, 2) 是一组非互质数，且 LCM(12, 2) = 12 。得到 nums = [12,7,6,2] 。</span><br><span class="line">- (6, 2) 是一组非互质数，且 LCM(6, 2) = 6 。得到 nums = [12,7,6] 。</span><br><span class="line">现在，nums 中不存在相邻的非互质数。</span><br><span class="line">因此，修改后得到的最终数组是 [12,7,6] 。</span><br><span class="line">注意，存在其他方法可以获得相同的最终数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,2,1,1,3,3,3]</span><br><span class="line">输出：[2,1,1,3]</span><br><span class="line">解释：</span><br><span class="line">- (3, 3) 是一组非互质数，且 LCM(3, 3) = 3 。得到 nums = [2,2,1,1,3,3] 。</span><br><span class="line">- (3, 3) 是一组非互质数，且 LCM(3, 3) = 3 。得到 nums = [2,2,1,1,3] 。</span><br><span class="line">- (2, 2) 是一组非互质数，且 LCM(2, 2) = 2 。得到 nums = [2,1,1,3] 。</span><br><span class="line">现在，nums 中不存在相邻的非互质数。 </span><br><span class="line">因此，修改后得到的最终数组是 [2,1,1,3] 。 </span><br><span class="line">注意，存在其他方法可以获得相同的最终数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
+<li>生成的测试用例可以保证最终数组中的值 <strong>小于或者等于</strong> <code>108</code> 。</li>
+</ul>
+<hr>
+<p><strong>分析：</strong></p>
+<p>栈模拟</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">replaceNonCoprimes</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(num);</span><br><span class="line">            <span class="keyword">int</span> n = ans.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">while</span> (n &gt;= <span class="number">2</span> &amp;&amp; <span class="built_in">gcd</span>(ans[n - <span class="number">2</span>], ans[n - <span class="number">1</span>]) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> r = ans.<span class="built_in">back</span>();</span><br><span class="line">                ans.<span class="built_in">pop_back</span>();</span><br><span class="line">                ans.<span class="built_in">back</span>() *= r / <span class="built_in">gcd</span>(ans.<span class="built_in">back</span>(), r);</span><br><span class="line">                n--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode%E5%91%A8%E8%B5%9B/" rel="tag"># Leetcode周赛</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/07/%E7%AC%AC73%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B%E8%A7%A3%E7%AD%94/" rel="prev" title="第73场双周赛解答">
+      <i class="fa fa-chevron-left"></i> 第73场双周赛解答
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2194-Excel-%E8%A1%A8%E4%B8%AD%E6%9F%90%E4%B8%AA%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E5%8D%95%E5%85%83%E6%A0%BC"><span class="nav-number">1.</span> <span class="nav-text">2194.Excel 表中某个范围内的单元格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2195-%E5%90%91%E6%95%B0%E7%BB%84%E4%B8%AD%E8%BF%BD%E5%8A%A0-K-%E4%B8%AA%E6%95%B4%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">2195.向数组中追加 K 个整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2196-%E6%A0%B9%E6%8D%AE%E6%8F%8F%E8%BF%B0%E5%88%9B%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">2196.根据描述创建二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2197-%E6%9B%BF%E6%8D%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%9D%9E%E4%BA%92%E8%B4%A8%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">2197.替换数组中的非互质数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JiuCherish"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">JiuCherish</p>
+  <div class="site-description" itemprop="description">希望自己能会一点东西</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JiuCherish</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">64k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">58 分钟</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
