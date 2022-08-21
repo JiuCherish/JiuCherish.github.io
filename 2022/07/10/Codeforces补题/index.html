@@ -28,7 +28,7 @@
 <meta property="og:description" content="受队友影响，也开始在博客更新自己补题的记录 (1&#x2F;1000)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-09T18:07:06.000Z">
-<meta property="article:modified_time" content="2022-08-07T14:51:31.043Z">
+<meta property="article:modified_time" content="2022-08-21T16:50:12.580Z">
 <meta property="article:author" content="JiuCherish">
 <meta property="article:tag" content="Codeforces">
 <meta name="twitter:card" content="summary">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-07 22:51:31" itemprop="dateModified" datetime="2022-08-07T22:51:31+08:00">2022-08-07</time>
+                <time title="修改时间：2022-08-22 00:50:12" itemprop="dateModified" datetime="2022-08-22T00:50:12+08:00">2022-08-22</time>
               </span>
 
           <br>
@@ -230,14 +230,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>936</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -267,6 +267,16 @@
 
 <p>代码实现：对于到0~n-1的数，找到最大的平方数t*t，使得满足(n - 1) + u等于t * t即可，同时注意倒着打印就好。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">int</span> now = n, w = n;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="keyword">int</span> t = <span class="built_in">sqrt</span>(n);</span><br><span class="line">	    <span class="keyword">while</span>(!( n - <span class="number">1</span> &lt;= t * t <span class="keyword">and</span> t * t &lt;= <span class="number">2</span> * ( n - <span class="number">1</span> ))) t++;</span><br><span class="line">	    <span class="keyword">int</span> u = t * t - ( n - <span class="number">1</span> );</span><br><span class="line">	    <span class="keyword">int</span> len = n - u;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)</span><br><span class="line">	    &#123;</span><br><span class="line">	        a[now] = t * t - now + <span class="number">1</span>;</span><br><span class="line">	        now--;</span><br><span class="line">	    &#125;</span><br><span class="line">	    n -= len;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=w;i++)&#123;</span><br><span class="line">        cout &lt;&lt; a[i] &lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1715-C（？分）"><a href="#1715-C（？分）" class="headerlink" title="1715 C（？分）"></a>1715 C（？分）</h4><p><strong>题意</strong>：给定一个数组，该数组的价值为</p>
+<p>$$\displaystyle \sum_{l=1}^{n}\sum_{r=l}^{n}g(l,r)$$</p>
+<p>其中g(l,r)表示在[l,r]的范围内，能分出连续不同段的数量，问每次单点修改，求数组的总价值。</p>
+<h5 id="模拟-1"><a href="#模拟-1" class="headerlink" title="模拟"></a>模拟</h5><p>初始化：在最开始约定，如果当前值与前一个值不同，那么就会多出<strong>i</strong>倍的<strong>n-i+1</strong>，否则只是多出<strong>n-i+1</strong></p>
+<p>单点修改：</p>
+<p>显然我们需要考虑当前数组修改前后是否有变化，以flag1,flag2记录未修改的时候是否和前者相等或后者相等。flag3，4则是记录修改后是否相等。如果修改后均没变化，那么答案就是初始化的答案，如果有变化，那么分成①前不同：修改代价是**(n - index+ 1)<em>(index - 1)</em>* ②后不同：修改代价是：**(n-index)<em>(index)</em>*</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    ll sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">        <span class="keyword">if</span>(a[i] != a[i - <span class="number">1</span>] || i == <span class="number">1</span>)&#123;</span><br><span class="line">            sum += <span class="number">1ll</span> * (n - i + <span class="number">1</span>) * i;</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            sum += n - i + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    a[<span class="number">0</span>] = <span class="number">-1</span> , a[n + <span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(m --)&#123;</span><br><span class="line">        <span class="keyword">int</span> index,x;</span><br><span class="line">        cin &gt;&gt; index &gt;&gt; x;</span><br><span class="line">        <span class="keyword">bool</span> flag1 = <span class="number">0</span>,flag2 = <span class="number">0</span>,flag3 = <span class="number">0</span>,flag4 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[index] == a[index - <span class="number">1</span>]) flag1 = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[index] == a[index + <span class="number">1</span>]) flag2 = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        a[index] = x;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(a[index] == a[index - <span class="number">1</span>]) flag3 = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[index] == a[index + <span class="number">1</span>]) flag4 = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(flag1 == flag3 &amp;&amp; flag2 == flag4)&#123;</span><br><span class="line">            cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(flag1 != flag3)&#123;</span><br><span class="line">                ll num = <span class="number">1ll</span> * (index - <span class="number">1</span>) * (n - index + <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(flag1 == <span class="number">0</span>) sum -= num;</span><br><span class="line">                <span class="keyword">else</span> sum += num;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag2 != flag4)&#123;</span><br><span class="line">                ll num = <span class="number">1ll</span> * index * (n - index);</span><br><span class="line">                <span class="keyword">if</span>(flag2 == <span class="number">0</span>) sum -= num;</span><br><span class="line">                <span class="keyword">else</span> sum += num;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -351,7 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1713-C%EF%BC%881200%E5%88%86%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1713 C（1200分）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F"><span class="nav-number">1.1.</span> <span class="nav-text">模拟</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1713-C%EF%BC%881200%E5%88%86%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1713 C（1200分）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F"><span class="nav-number">1.1.</span> <span class="nav-text">模拟</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1715-C%EF%BC%88%EF%BC%9F%E5%88%86%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">1715 C（？分）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F-1"><span class="nav-number">2.1.</span> <span class="nav-text">模拟</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -411,12 +421,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">83k</span>
+    <span title="站点总字数">84k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:16</span>
+    <span title="站点阅读时长">1:17</span>
 </div>
 
 <div class="powered-by">
