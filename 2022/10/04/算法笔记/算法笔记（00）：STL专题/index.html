@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="pairC++11 定义数对123pair&lt;int,int&gt; a(3,5)&#x2F;&#x2F;或者a &#x3D; make_pair(4,6)    修改数对12a.first &#x3D; 1a.second &#x3D; 2    比较大小逻辑1a &lt; b ? a.first &lt; b.first || (a.first &#x3D;&#x3D; b.first &amp;&amp; a.second &lt; b.sec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法笔记（00）：STL专题">
+<meta property="og:url" content="http://example.com/2022/10/04/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8800%EF%BC%89%EF%BC%9ASTL%E4%B8%93%E9%A2%98/index.html">
+<meta property="og:site_name" content="玖的数学&amp;算法录">
+<meta property="og:description" content="pairC++11 定义数对123pair&lt;int,int&gt; a(3,5)&#x2F;&#x2F;或者a &#x3D; make_pair(4,6)    修改数对12a.first &#x3D; 1a.second &#x3D; 2    比较大小逻辑1a &lt; b ? a.first &lt; b.first || (a.first &#x3D;&#x3D; b.first &amp;&amp; a.second &lt; b.sec">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-04T11:51:57.000Z">
+<meta property="article:modified_time" content="2022-10-04T16:40:33.673Z">
+<meta property="article:author" content="JiuCherish">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/10/04/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8800%EF%BC%89%EF%BC%9ASTL%E4%B8%93%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>算法笔记（00）：STL专题 | 玖的数学&算法录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+ <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+<script type="text/javascript" src="/js/love.js"></script>
+
+  <style type="text/css">
+  body {
+      background: url(https://s4.ax1x.com/2022/01/27/7XdpZT.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: 50% 50%;
+}
+  .main-inner{
+	opacity: 0.8;
+}
+  .header-inner{
+	opacity: 0.8;
+	z-index: 1;
+}
+  </style>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">玖的数学&算法录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/04/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8800%EF%BC%89%EF%BC%9ASTL%E4%B8%93%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法笔记（00）：STL专题
+        </h1>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-04 19:51:57" itemprop="dateCreated datePublished" datetime="2022-10-04T19:51:57+08:00">2022-10-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-05 00:40:33" itemprop="dateModified" datetime="2022-10-05T00:40:33+08:00">2022-10-05</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+
+
+<h4 id="pair"><a href="#pair" class="headerlink" title="pair"></a>pair</h4><p>C++11</p>
+<h5 id="定义数对"><a href="#定义数对" class="headerlink" title="定义数对"></a>定义数对</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="title">a</span><span class="params">(<span class="number">3</span>,<span class="number">5</span>)</span></span></span><br><span class="line"><span class="function"><span class="comment">//或者</span></span></span><br><span class="line"><span class="function">a </span>= <span class="built_in">make_pair</span>(<span class="number">4</span>,<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="修改数对"><a href="#修改数对" class="headerlink" title="修改数对"></a>修改数对</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.first = <span class="number">1</span></span><br><span class="line">a.second = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="比较大小逻辑"><a href="#比较大小逻辑" class="headerlink" title="比较大小逻辑"></a>比较大小逻辑</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a &lt; b ? a.first &lt; b.first || (a.first == b.first &amp;&amp; a.second &lt; b.second)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="array"><a href="#array" class="headerlink" title="array"></a>array</h4><p>C++11</p>
+<h5 id="定义数组"><a href="#定义数组" class="headerlink" title="定义数组"></a>定义数组</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">array&lt;<span class="keyword">int</span>,5&gt; a;</span><br><span class="line"><span class="comment">//等同于 </span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h4><p>栈</p>
+<h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="keyword">int</span>&gt; s</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">s.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line">s.<span class="built_in">push</span>(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,s.<span class="built_in">top</span>());</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(<span class="keyword">int</span>)s.<span class="built_in">size</span>());</span><br><span class="line">s.<span class="built_in">pop</span>();</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,s.<span class="built_in">top</span>());</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(<span class="keyword">int</span>)s.<span class="built_in">size</span>());</span><br><span class="line">s.<span class="built_in">empty</span>(); <span class="comment">//空的时候返回true</span></span><br><span class="line"><span class="comment">//只能手动pop 没有clear()函数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h4><p>队列（先进先出）</p>
+<h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="keyword">int</span>&gt; q;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">q.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line">q.<span class="built_in">push</span>(<span class="number">2</span>);</span><br><span class="line">q.<span class="built_in">push</span>(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>,q.<span class="built_in">front</span>(),q.<span class="built_in">back</span>())<span class="comment">//输出第一个和最后一个数</span></span><br><span class="line">q.<span class="built_in">pop</span>();</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>,q.<span class="built_in">front</span>(),q.<span class="built_in">back</span>())</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1 3</span></span><br><span class="line"><span class="comment">2 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="bfs写法"><a href="#bfs写法" class="headerlink" title="bfs写法"></a>bfs写法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">q.<span class="built_in">push</span>(s);</span><br><span class="line"><span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">    <span class="keyword">int</span> x = q.<span class="built_in">front</span>();</span><br><span class="line">    q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y : adj[x])&#123;</span><br><span class="line">        q.<span class="built_in">push</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>同样也q.empty()和q.size的写法</p>
+<h4 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h4><p>优先队列（大根堆）</p>
+<p>时间复杂度：O(logn)</p>
+<h5 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">v.<span class="built_in">push</span>(<span class="number">3</span>);</span><br><span class="line">v.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line">v.<span class="built_in">push</span>(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">while</span>(!v.<span class="built_in">empty</span>())&#123;</span><br><span class="line">	<span class="keyword">int</span> x = v.<span class="built_in">top</span>();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,x);</span><br><span class="line">    v.<span class="built_in">pop</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//小根堆</span></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">v.<span class="built_in">push</span>(<span class="number">-3</span>);</span><br><span class="line">v.<span class="built_in">push</span>(<span class="number">-1</span>);</span><br><span class="line">v.<span class="built_in">push</span>(<span class="number">-2</span>);</span><br><span class="line"><span class="keyword">while</span>(!v.<span class="built_in">empty</span>())&#123;</span><br><span class="line">	<span class="keyword">int</span> x = v.<span class="built_in">top</span>();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,-x);</span><br><span class="line">    v.<span class="built_in">pop</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>小根堆做法：对push进去的元素取反</p>
+<p>或者</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;<span class="keyword">int</span>, vector&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt;&gt; v;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h4><p>双端队列</p>
+<h5 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deque&lt;<span class="keyword">int</span>&gt; v</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="用法-2"><a href="#用法-2" class="headerlink" title="用法"></a>用法</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deque&lt;<span class="keyword">int</span>&gt; v</span><br><span class="line"><span class="comment">//头部插入和尾部插入</span></span><br><span class="line">v.<span class="built_in">push_front</span>(<span class="number">1</span>);</span><br><span class="line">v.<span class="built_in">push_back</span>(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//允许通过下标访问某个元素 printf(&quot;%d\n&quot;,v[1]);</span></span><br><span class="line"><span class="comment">//栈和队列不行</span></span><br><span class="line">v.<span class="built_in">pop_front</span>();</span><br><span class="line">v.<span class="built_in">pop_back</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>其中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">push_front</span>(),<span class="built_in">pop_front</span>(),<span class="built_in">push_back</span>(),<span class="built_in">pop_back</span>()</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度均为O(1)</p>
+<h4 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h4><p>容器</p>
+<p>(可以不设置大小)</p>
+<h5 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; v</span></span><br><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">3</span>,<span class="number">100</span>)</span></span>; <span class="comment">//大小为3，每个为100</span></span><br><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">3</span>)</span></span>; <span class="comment">// 构造一个长度为3的容器</span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">3</span>,<span class="number">100</span>&#125; <span class="comment">//大括号表示放这几个元素进去 C++11后的语法</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="改变容器大小"><a href="#改变容器大小" class="headerlink" title="改变容器大小"></a>改变容器大小</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v.<span class="built_in">resize</span>(<span class="number">100</span>);<span class="comment">//将大小设置成100</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>其中 <strong>v.size()</strong> 是无符号型，当 <strong>v.size()</strong> 为空的时候 写循环 <strong>v.size() - 1</strong>会死循环，建议写成 <strong>(int)v.size() - 1</strong></p>
+<h5 id="末尾存入数与删除数"><a href="#末尾存入数与删除数" class="headerlink" title="末尾存入数与删除数"></a>末尾存入数与删除数</h5><p>时间复杂度均为O(1)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">v.<span class="built_in">push_back</span>(<span class="number">1</span>);</span><br><span class="line">v.<span class="built_in">pop_back</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>迭代器</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it = v.<span class="built_in">begin</span>() <span class="comment">//用指针指向容器开头</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,*it);</span><br><span class="line"><span class="comment">//v.end()表示最后一个元素的下一个下标</span></span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it = v.<span class="built_in">begin</span>();it != v.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">    *it = *it + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,*it);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//C++11 auto 遍历</span></span><br><span class="line"><span class="comment">//C98 int i : X</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="插入-删除元素"><a href="#插入-删除元素" class="headerlink" title="插入/删除元素"></a>插入/删除元素</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v.<span class="built_in">insert</span>(v.<span class="built_in">begin</span>() + <span class="number">1</span>, <span class="number">2</span>) <span class="comment">//在这个迭代器前插入一个元素</span></span><br><span class="line">v.<span class="built_in">erase</span>(v.<span class="built_in">begin</span>() + <span class="number">2</span>); <span class="comment">//就是删除掉对应元素</span></span><br><span class="line"><span class="comment">//时间复杂度：O(n)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x : v)&#123;</span><br><span class="line">	x += <span class="number">1</span>;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    等同于&#123;</span></span><br><span class="line"><span class="comment">    int x = v[i];</span></span><br><span class="line"><span class="comment">    x += 1;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//修改容器内的每个数:</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> &amp;x : v)&#123;</span><br><span class="line">    x += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> it = <span class="built_in">lower_bound</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),<span class="number">2</span>)<span class="comment">//返回 &gt;= 100 的第一个位置</span></span><br><span class="line"><span class="keyword">auto</span> it = <span class="built_in">upper_bound</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),<span class="number">2</span>); <span class="comment">//返回 &gt; 100 的第一个位置</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="存图"><a href="#存图" class="headerlink" title="存图"></a>存图</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="keyword">int</span>&gt; g;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">	<span class="keyword">int</span> u,v;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">	g[u].<span class="built_in">push_back</span>(v);</span><br><span class="line">	g[v].<span class="built_in">push_back</span>(u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><p>集合</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/20/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E5%8D%81%E5%9C%BA/" rel="prev" title="2022牛客多校第十场">
+      <i class="fa fa-chevron-left"></i> 2022牛客多校第十场
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#pair"><span class="nav-number">1.</span> <span class="nav-text">pair</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E5%AF%B9"><span class="nav-number">1.1.</span> <span class="nav-text">定义数对</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E5%AF%B9"><span class="nav-number">1.2.</span> <span class="nav-text">修改数对</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%A4%A7%E5%B0%8F%E9%80%BB%E8%BE%91"><span class="nav-number">1.3.</span> <span class="nav-text">比较大小逻辑</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#array"><span class="nav-number">2.</span> <span class="nav-text">array</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84"><span class="nav-number">2.1.</span> <span class="nav-text">定义数组</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stack"><span class="nav-number">3.</span> <span class="nav-text">stack</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">基本用法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue"><span class="nav-number">4.</span> <span class="nav-text">queue</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bfs%E5%86%99%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">bfs写法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#priority-queue"><span class="nav-number">5.</span> <span class="nav-text">priority_queue</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8%E6%B3%95-1"><span class="nav-number">5.1.</span> <span class="nav-text">用法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deque"><span class="nav-number">6.</span> <span class="nav-text">deque</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">6.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8%E6%B3%95-2"><span class="nav-number">6.2.</span> <span class="nav-text">用法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vector"><span class="nav-number">7.</span> <span class="nav-text">vector</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="nav-number">7.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%94%B9%E5%8F%98%E5%AE%B9%E5%99%A8%E5%A4%A7%E5%B0%8F"><span class="nav-number">7.2.</span> <span class="nav-text">改变容器大小</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%AB%E5%B0%BE%E5%AD%98%E5%85%A5%E6%95%B0%E4%B8%8E%E5%88%A0%E9%99%A4%E6%95%B0"><span class="nav-number">7.3.</span> <span class="nav-text">末尾存入数与删除数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8F%92%E5%85%A5-%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">7.4.</span> <span class="nav-text">插入&#x2F;删除元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%81%8D%E5%8E%86"><span class="nav-number">7.5.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-number">7.6.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">7.7.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%98%E5%9B%BE"><span class="nav-number">7.8.</span> <span class="nav-text">存图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">8.</span> <span class="nav-text">set</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JiuCherish"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">JiuCherish</p>
+  <div class="site-description" itemprop="description">希望自己能会一点东西</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JiuCherish</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">87k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:19</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
