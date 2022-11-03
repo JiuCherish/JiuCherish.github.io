@@ -20,20 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="问题(欧拉-泊松积分): $$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x$$ 方法  1.极坐标变换  2.几何做法  3.几何做法(二)  4.不等式放缩+Wallis  5.变量代换">
+  <meta name="description" content="希望自己能会一点东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个常见无穷积分的证明">
-<meta property="og:url" content="http://example.com/2022/01/28/%E4%B8%80%E4%B8%AA%E5%B8%B8%E8%A7%81%E6%97%A0%E7%A9%B7%E7%A7%AF%E5%88%86%E7%9A%84%E8%AF%81%E6%98%8E/index.html">
+<meta property="og:title" content="算法笔记（05）：并查集">
+<meta property="og:url" content="http://example.com/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
 <meta property="og:site_name" content="玖的数学&amp;算法录">
-<meta property="og:description" content="问题(欧拉-泊松积分): $$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x$$ 方法  1.极坐标变换  2.几何做法  3.几何做法(二)  4.不等式放缩+Wallis  5.变量代换">
+<meta property="og:description" content="希望自己能会一点东西">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-28T12:39:22.000Z">
-<meta property="article:modified_time" content="2022-02-05T08:34:39.464Z">
+<meta property="article:published_time" content="2022-10-25T01:52:41.000Z">
+<meta property="article:modified_time" content="2022-10-25T01:52:41.447Z">
 <meta property="article:author" content="JiuCherish">
-<meta property="article:tag" content="数学分析">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/01/28/%E4%B8%80%E4%B8%AA%E5%B8%B8%E8%A7%81%E6%97%A0%E7%A9%B7%E7%A7%AF%E5%88%86%E7%9A%84%E8%AF%81%E6%98%8E/">
+<link rel="canonical" href="http://example.com/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/">
 
 
 <script id="page-configurations">
@@ -46,7 +45,7 @@
   };
 </script>
 
-  <title>一个常见无穷积分的证明 | 玖的数学&算法录</title>
+  <title>算法笔记（05）：并查集 | 玖的数学&算法录</title>
   
 
 
@@ -190,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/28/%E4%B8%80%E4%B8%AA%E5%B8%B8%E8%A7%81%E6%97%A0%E7%A9%B7%E7%A7%AF%E5%88%86%E7%9A%84%E8%AF%81%E6%98%8E/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -203,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          一个常见无穷积分的证明
+          算法笔记（05）：并查集
         </h1>
 
         <div class="post-meta">
@@ -214,15 +213,8 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-01-28 20:39:22" itemprop="dateCreated datePublished" datetime="2022-01-28T20:39:22+08:00">2022-01-28</time>
+              <time title="创建时间：2022-10-25 09:52:41" itemprop="dateCreated datePublished" datetime="2022-10-25T09:52:41+08:00">2022-10-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-05 16:34:39" itemprop="dateModified" datetime="2022-02-05T16:34:39+08:00">2022-02-05</time>
-              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -230,14 +222,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.3k</span>
+              <span>0</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -249,84 +241,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-<p><strong>问题(欧拉-泊松积分)</strong>: $$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x$$</p>
-<p><strong>方法</strong></p>
-<ul>
-<li><p>1.极坐标变换</p>
-</li>
-<li><p>2.几何做法</p>
-</li>
-<li><p>3.几何做法(二)</p>
-</li>
-<li><p>4.不等式放缩+Wallis</p>
-</li>
-<li><p>5.变量代换</p>
-</li>
-</ul>
-<span id="more"></span>
-
-
-
-<p><strong>方法一</strong></p>
-<p>考虑</p>
-<p>$$(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2$$<br>$$=(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)(\int_0^{+\infty}{\mathrm{e}^{-y^2}}\mathrm{d}y)$$</p>
-<p>其中令 $$ x=rsin\theta,y=rcos\theta $$</p>
-<p>$$上式=\int_0^{\frac{\pi}{2}}\mathrm{d}\theta\cdot\int_0^{+\infty}\mathrm{e}^{-r^2}r\mathrm{d}r$$<br>$$=\frac{\pi}{2}\times\frac{1}{2}=\frac{\pi}{4}$$</p>
-<p>因此<br>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法二</strong></p>
-<p>考虑区间</p>
-<p>$$S_1={(x,y)|x^2+y^2\leq R^2}$$<br>$$S_2={(x,y)|0\leq x\leq R,0\leq y\leq R}$$<br>$$S_3={(x,y)|x^2+y^2\leq 2R^2}$$</p>
-<p>其中</p>
-<p>$$(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2$$<br>$$=(\int_0^{R}{\mathrm{e}^{-x^2}}\mathrm{d}x)(\int_0^{R}{\mathrm{e}^{-y^2}}\mathrm{d}y)$$<br>$$=\int_0^{R} \int_0^{R}{\mathrm{e}^{-(x^2+y^2)}}\mathrm{d}x\mathrm{d}y$$<br>$$=\iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y$$</p>
-<p>通过区间的面积得出</p>
-<p>$$\iint_{S1}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y \leq \iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y \leq \iint_{S3}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y$$</p>
-<p>计算方法同方法一,可以得出<br>$$\iint_{S1}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y=\frac{\pi}{4}(1-\mathrm{e}^{-R^2})$$</p>
-<p>不失一般性<br>$$\iint_{S3}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y=\frac{\pi}{4}(1-\mathrm{e}^{-2R^2})$$</p>
-<p>从而有<br>$$\frac{\pi}{4}(1-\mathrm{e}^{-R^2})\leq \iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y \leq \frac{\pi}{4}(1-\mathrm{e}^{-2R^2})$$<br>取$$R\rightarrow \infty$$，由夹逼准则可以得到</p>
-<p>$$(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2=\iint_{S2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y=\frac{\pi}{4}$$</p>
-<p>所以</p>
-<p>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法三</strong>①</p>
-<p>考虑曲线$$z=\mathrm{e}^{-x^{2}}$$绕$z$轴旋转一周生成的旋转体的体积,由此可得<br>$$V=\int_0^{1}\pi x^{2}\mathrm{d}z$$<br>$$=\pi \int_0^{1}(-\ln z)\mathrm{d}z$$<br>$$=\pi (z-z\ln z) \mid_{0}^{1}$$<br>$$=\pi (1- \underset{z\rightarrow 0^+}{\lim}\left(z-z\ln z \right))=\pi$$</p>
-<p>那么旋转体旋转所生成的曲面方程为$$z=e^{-(x^{2}+y^{2})}$$实际上旋转体的体积也可以理解成曲面与xOy之间部分的体积，即<br>$$\pi =V=\iint_{R^2}\mathrm{e}^{-(x^2+y^2)}\mathrm{d}x\mathrm{d}y$$<br>$$=\int_{-\infty}^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x\cdot\int_{-\infty}^{+\infty}{\mathrm{e}^{-y^2}}\mathrm{d}y$$<br>$$=(\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x)^2$$</p>
-<p>因此<br>$$\int_{-\infty}^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\sqrt{\pi}$$</p>
-<p>故<br>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法四</strong>②</p>
-<p>我们不加证明的给出在$$0\leq x\leq 1$$时，有不等式<br>$$1-x^2\leq \mathrm{e} ^{-x^2}$$</p>
-<p>并且有不等式<br>$$\mathrm{e}^{-x^2}\leq {\frac{1}{1+x^2}} (x \geq 0)$$</p>
-<p>借助这两个不等式我们可以得到</p>
-<p>$$(1-x^2)^n\leq \mathrm{e}^{-{nx^2}}\leq \frac{1}{(1+x^2)^{n}}$$</p>
-<p>两边取0到1的积分得</p>
-<p>$$\int_0^{1}{(1-x^2)^n}\mathrm{d}x \leq \int_0^{1}\mathrm{e}^{-{nx^2}}\mathrm{d}x \leq \int_0^{1}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>对第一个不等式右侧加强可以得到</p>
-<p> $$\int_0^{+\infty}\mathrm{e}^{-{nx^2}}\mathrm{d}x\leq \int_0^{+\infty}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>因此有</p>
-<p>$$\int_0^{1}{(1-x^2)^n}\mathrm{d}x &lt;\int_0^{+\infty}\mathrm{e}^{-{nx^2}}\mathrm{d}x\leq \int_0^{+\infty}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>记$$\sqrt{n}x=t$$,于是有</p>
-<p>$$\sqrt{n}\int_0^{1}{(1-x^2)^n}\mathrm{d}x &lt;\int_0^{+\infty}\mathrm{e}^{-{t^2}}\mathrm{d}t\leq \sqrt{n}\int_0^{+\infty}\frac{1}{(1+x^2)^{n}}\mathrm{d}x$$</p>
-<p>对于左侧我们令$$x=\sin t$$便得到</p>
-<p>$$左式子=\sqrt{n}\int_0^{\frac{\pi}{2}}\cos^{2n+1}t\mathrm{d}t$$<br>$$=\sqrt{n}{\frac{(2n)!!}{(2n+1)!!}}$$<br>$$=\frac{\sqrt{n}}{\sqrt{2n+1}}\cdot\frac{(2n)!!}{\sqrt{2n+1}\cdot (2n-1)!!}$$<br>$$\rightarrow\frac{1}{\sqrt{2}}\cdot\sqrt{\frac{\pi}{2}}=\frac{\sqrt{\pi}}{2}$$</p>
-<p>对于右侧我们可以令$$x=\tan t$$便得到</p>
-<p>$$右式子=\sqrt{n}\int_0^{\frac{\pi}{2}}\frac{\sec^2t \mathrm{d}t}{sec^{2n}t}$$</p>
-<p>$$=\sqrt{n}\int_0^{\frac{\pi}{2}}\cos^{2n-2}t\mathrm{d}t$$<br>$$=\sqrt{n}\cdot \frac{(2n-3)!!}{(2n-2)!!}\cdot\frac{\pi}{2}$$<br>$$=\frac{\sqrt{n}\cdot \frac{\pi}{2}}{\frac{\sqrt{2n-1}\cdot(2n-2)!!}{\sqrt{2n-1}\cdot(2n-3)!!}}$$<br>$$\rightarrow\frac{1}{2}\cdot\frac{\frac{\pi}{2}}{\sqrt{\frac{\pi}{2}}}=\frac{\sqrt{\pi}}{2}$$</p>
-<p>自此,由夹逼准则可以得到</p>
-<p>$$\int_0^{+\infty}\mathrm{e}^{-{t^2}}\mathrm{d}t=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>方法五</strong></p>
-<p>不妨令$$t=x^2$$</p>
-<p>于是有</p>
-<p>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x$$<br>$$=\int_0^{+\infty}{\mathrm{e}^{-t}}\frac{\mathrm{d}t}{2\sqrt{t}}$$<br>$$=\frac{1}{2}\int_0^{+\infty}{\mathrm{e}^{-t}}t^{\frac{1}{2}-1}{\mathrm{d}t}$$<br>$$=\frac{1}{2}\Gamma(\frac{1}{2})$$</p>
-<p>由余元公式易知$$\Gamma(\frac{1}{2})=\sqrt{\pi}$$</p>
-<p>因此<br>$$\int_0^{+\infty}{\mathrm{e}^{-x^2}}\mathrm{d}x=\frac{\sqrt{\pi}}{2}$$</p>
-<p><strong>参考:</strong></p>
-<ul>
-<li><p>①:CSDN:无穷积分 ∫e^(-x^2)dx 的几种巧妙解法,作者cyzhou1221</p>
-</li>
-<li><p>②:《数学分析教程》第三版上册，常庚哲 史济怀 编著 ，P312 问题7.4 第一题</p>
-</li>
-</ul>
-
+        
     </div>
 
     
@@ -334,20 +249,17 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/" rel="tag"># 数学分析</a>
-          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/01/29/%E4%B8%80%E9%81%93%E9%9D%9E%E6%95%B0%E5%AD%A6%E7%B3%BB%E7%AB%9E%E8%B5%9B%E9%A2%98%E7%9A%84%E6%8E%A8%E5%B9%BF/" rel="next" title="一道非数学系竞赛题的推广">
-      一道非数学系竞赛题的推广 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/10/04/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8800%EF%BC%89%EF%BC%9ASTL%E4%B8%93%E9%A2%98/" rel="prev" title="算法笔记（00）：STL专题">
+      <i class="fa fa-chevron-left"></i> 算法笔记（00）：STL专题
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
