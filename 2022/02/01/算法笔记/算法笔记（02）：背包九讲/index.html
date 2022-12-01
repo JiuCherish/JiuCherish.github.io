@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="(还未更完) 背包九讲类型：  1.01背包问题 2.完全背包问题 3.多重背包问题 4.混合背包问题 5.二位费用的背包问题 6.分组背包问题 7.有依赖的背包问题 8.背包问题求方案数 9.求背包问题的具体方案  上面的内容均来自acwing题源 首先简单的介绍几种背包的区别 1.01背包 最基本的背包问题,每个物品只有选或不选两种状态。 2.完全背包问题 基本的背包问题模型,其每个物">
+  <meta name="description" content="(还未更完) 背包九讲类型：  1.01背包问题 2.完全背包问题 3.多重背包问题 4.分组背包问题 5.二维背包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法笔记（02）：背包九讲（更新中）">
 <meta property="og:url" content="http://example.com/2022/02/01/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8802%EF%BC%89%EF%BC%9A%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/index.html">
 <meta property="og:site_name" content="玖的数学&amp;算法录">
-<meta property="og:description" content="(还未更完) 背包九讲类型：  1.01背包问题 2.完全背包问题 3.多重背包问题 4.混合背包问题 5.二位费用的背包问题 6.分组背包问题 7.有依赖的背包问题 8.背包问题求方案数 9.求背包问题的具体方案  上面的内容均来自acwing题源 首先简单的介绍几种背包的区别 1.01背包 最基本的背包问题,每个物品只有选或不选两种状态。 2.完全背包问题 基本的背包问题模型,其每个物">
+<meta property="og:description" content="(还未更完) 背包九讲类型：  1.01背包问题 2.完全背包问题 3.多重背包问题 4.分组背包问题 5.二维背包">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-01T04:22:22.000Z">
-<meta property="article:modified_time" content="2022-10-10T13:55:13.927Z">
+<meta property="article:modified_time" content="2022-12-01T04:06:48.327Z">
 <meta property="article:author" content="JiuCherish">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-10 21:55:13" itemprop="dateModified" datetime="2022-10-10T21:55:13+08:00">2022-10-10</time>
+                <time title="修改时间：2022-12-01 12:06:48" itemprop="dateModified" datetime="2022-12-01T12:06:48+08:00">2022-12-01</time>
               </span>
 
           <br>
@@ -230,14 +230,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>8.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -259,22 +259,9 @@
 <li>1.01背包问题</li>
 <li>2.完全背包问题</li>
 <li>3.多重背包问题</li>
-<li>4.混合背包问题</li>
-<li>5.二位费用的背包问题</li>
-<li>6.分组背包问题</li>
-<li>7.有依赖的背包问题</li>
-<li>8.背包问题求方案数</li>
-<li>9.求背包问题的具体方案</li>
+<li>4.分组背包问题</li>
+<li>5.二维背包</li>
 </ul>
-<p>上面的内容均来自<br><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/">acwing题源</a></p>
-<p>首先简单的介绍几种背包的区别</p>
-<p><strong>1.01背包</strong></p>
-<p>最基本的背包问题,每个物品只有选或不选两种状态。</p>
-<p><strong>2.完全背包问题</strong></p>
-<p>基本的背包问题模型,其每个物品可以放无数多次。</p>
-<p><strong>3.多重背包问题</strong></p>
-<p>01背包上的一个拓展,每个物品只能取0,1,…,s次。</p>
-<p><strong>4.混合背包问题</strong></p>
 <span id="more"></span>
 
 <h4 id="1-01背包问题"><a href="#1-01背包问题" class="headerlink" title="1.01背包问题"></a>1.01背包问题</h4><p><strong>问题描述</strong></p>
@@ -282,24 +269,23 @@
 <p>第 i 件物品的体积是 vi，价值是 wi。</p>
 <p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
 <p>输出最大价值。</p>
-<p>输入格式<br>第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。</p>
+<p><strong>输入格式</strong><br>第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。</p>
 <p>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。</p>
-<p>输出格式</p>
+<p><strong>输出格式</strong></p>
 <p>输出一个整数，表示最大价值。</p>
-<p>数据范围</p>
+<p><strong>数据范围</strong></p>
 <p>0&lt;N,V≤1000</p>
 <p>0&lt;vi,wi≤1000</p>
-<p>输入样例</p>
+<p><strong>输入样例</strong></p>
 <p>4 5</p>
 <p>1 2</p>
 <p>2 4</p>
 <p>3 4</p>
 <p>4 5</p>
-<p>输出样例：</p>
+<p><strong>输出样例：</strong></p>
 <p>8</p>
 <hr>
-<p><strong>分析</strong></p>
-<p>对于本题我们不妨记</p>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a><strong>分析</strong></h5><p>对于本题我们不妨记</p>
 <p>$$f[i][j]$$</p>
 <p>表示只看前i个物品，总体积是j的情况下，总价值最大是多少？</p>
 <p>首先根据题目分析可以知道,每件物品只有不选或者选两种情况,记为0和1:<br>$$①f[i][j]=f[i-1][j]$$</p>
@@ -308,37 +294,36 @@
 <p>对每一种情况都进行一次记录其最大值,即</p>
 <p>$$f[i][j]=max{(①,②)}$$</p>
 <p>根据以上分析可知<br>$$result=max(f[n],[0 \sim V])$$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N][N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">        f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">        <span class="keyword">if</span>(j&gt;=v[i])</span><br><span class="line">            f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) res=<span class="built_in">max</span>(res,f[n][i]);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N][N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">        f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">        <span class="keyword">if</span>(j&gt;=v[i])</span><br><span class="line">            f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) res=<span class="built_in">max</span>(res,f[n][i]);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>当然这个题不必把每一层的值都记下来,因此本题使用一维数组来对上面的方法进行优化。</p>
 <p>虽说我们并没有将每一层的值都记录下来，但是我们再每一次循环的时候都会将每一行的值进行更新替换。</p>
 <p>对此，如果我们还想使用上一行的值的话，只能通过从后往前进行更新了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--)&#123;</span><br><span class="line">        f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--)&#123;</span><br><span class="line">        	f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h4 id="2-完全背包问题"><a href="#2-完全背包问题" class="headerlink" title="2.完全背包问题"></a>2.完全背包问题</h4><p><strong>问题描述</strong></p>
 <p>有 N 种物品和一个容量是 V 的背包，<strong>每种物品都有无限件可用。</strong></p>
 <p>第 i 种物品的体积是 vi，价值是 wi。</p>
 <p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p>
-<p>输入格式</p>
+<p><strong>输入格式</strong></p>
 <p>第一行两个整数，N，V，用空格隔开，分别表示物品种数和背包容积。</p>
 <p>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 种物品的体积和价值。</p>
-<p>输出格式</p>
+<p><strong>输出格式</strong></p>
 <p>输出一个整数，表示最大价值。</p>
-<p>数据范围</p>
+<p><strong>数据范围</strong></p>
 <p>0&lt;N,V≤1000</p>
 <p>0&lt;vi,wi≤1000</p>
-<p>输入样例</p>
+<p><strong>输入样例</strong></p>
 <p>4 5</p>
 <p>1 2</p>
 <p>2 4</p>
 <p>3 4</p>
 <p>4 5</p>
-<p>输出样例：</p>
+<p><strong>输出样例：</strong></p>
 <p>10</p>
 <hr>
-<p><strong>分析</strong></p>
-<p>同01背包,我们不妨记f[i]表示为总体积是i的情况下,最大价值是多少。</p>
+<h5 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a><strong>分析</strong></h5><p>同01背包,我们不妨记f[i]表示为总体积是i的情况下,最大价值是多少。</p>
 <p>其结果为<br>$$result =max(f[0 … m])$$</p>
 <p>实际上在01背包中的第二个代码中，我们仅需把第二个循环中的内层循环顺序做修改即可，即</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=v[i];j&lt;=m;j++)</span><br></pre></td></tr></table></figure>
@@ -361,13 +346,96 @@
 <p>又<br>$$f[0]=0$$</p>
 <p>那么<br>$$w[i]一定正确\Rightarrow \max(f[v[i],f[0]+w[i]])一定正确\Rightarrow f[j-k*v[i]] 一定正确 \Rightarrow f[j]一定正确$$</p>
 <p>以上,得证</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v,w;</span><br><span class="line">        cin&gt;&gt;v&gt;&gt;w;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=v;j&lt;=m;j++)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-v]+w);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v,w;</span><br><span class="line">        cin&gt;&gt;v&gt;&gt;w;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=v;j&lt;=m;j++)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-v]+w);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="3-多重背包问题"><a href="#3-多重背包问题" class="headerlink" title="3.多重背包问题"></a>3.多重背包问题</h4><p><strong>问题描述</strong></p>
-<p>有 N 种物品和一个容量是 V 的背包。</p>
-<p>第 i 种物品最多有 si 件，每件体积是 vi，价值是 wi。</p>
-<p>求解将哪些物品装入背包，可使物品体积总和不超过背包容量，且价值总和最大。<br>输出最大价值。</p>
+<h4 id="3-多重背包问题-easy"><a href="#3-多重背包问题-easy" class="headerlink" title="3.多重背包问题(easy)"></a>3.多重背包问题(easy)</h4><p><strong>问题描述</strong></p>
+<p>有 n 种物品要放到一个袋子里，袋子的总容量为 m，第 ii 种物品的体积为 vi，把它放进袋子里会获得 wi 的收益，<strong>一共有 li 个</strong>。问如何选择物品，使得在物品的总体积不超过 m 的情况下，获得最大的收益？请求出最大收益。</p>
+<p><strong>数据范围</strong></p>
+<p>$$1\leq n, m, v_i, w_i, l_i \leq 100$$</p>
+<h5 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h5><p>第 i 种物品可以使用 li 次， 我们可以把它拆成 Ii个物品，每个物品只可以用一次。即转换成01背包问题。</p>
+<h5 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"><span class="keyword">int</span> v[N],w[N],l[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i]&gt;&gt;l[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>;k &lt;= l[i];k++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--)&#123;</span><br><span class="line">        	f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-多重背包问题-medium"><a href="#4-多重背包问题-medium" class="headerlink" title="4.多重背包问题(medium)"></a>4.多重背包问题(medium)</h4><p>与easy版本不同的是：该题的数据范围更大了。</p>
+<p><strong>问题描述</strong></p>
+<p>有 n 种物品要放到一个袋子里，袋子的总容量为 m，第 i 种物品的体积为 vi，把它放进袋子里会获得 wi 的收益，<strong>一共有 li 个</strong>。问如何选择物品，使得在物品的总体积不超过 m 的情况下，获得最大的收益？请求出最大收益。</p>
+<p><strong>数据范围</strong></p>
+<p>$$1\leq n, m, v_i, w_i, l_i \leq 2000$$</p>
+<h5 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h5><p>通过二进制拆分的方法可以优化本题。</p>
+<p>令 m 为最大的 i 满足 $$2^{i + 1} - 1 \leq n$$ , 我们从 $$1, 2, 4, 8, 16, \cdots ,2 ^ m, n - 2^{m + 1} + 1$$ 中选一些数字相加，就可以得出任意  <strong>[0,n]</strong> 内的值，每个数字只能用一次。</p>
+<p>引理：从$$1,2,\cdots,2^m$$ 中选一些数字相加，可以得出任意$$[0,2^{m + 1})$$ 内的值，每个数字只能用一次。</p>
+<p>用数学归纳法进行证明：</p>
+<p>当 <strong>m = 0</strong> 的时候显然是成立的；</p>
+<p>假设当 <strong>m = k</strong> 时也成立，也就是从$$1,2,\cdots,2^k$$ 中选一些数字相加，可以得出任意 $$[0,2^{k + 1})$$ 内的值；</p>
+<p>不难知道 对$$[0,2^{k + 2})$$ 内的值可以从 $$1,2,\cdots,2^k$$ 中选一些数字相加得到；</p>
+<p>也就是说对任意 <strong>m = k + 1</strong> 也成立。</p>
+<p>同样：对于在$$[2^{m + 1},n]$$ 内的值，我们取$$n - 2^{m + 1} + 1$$ 后，剩下的数字在$$[2^{m + 2} - n - 1,2^{m + 1})$$ 内，也可以从$$1,2,\cdots,2^m$$中选一些数字相加得到。</p>
+<hr>
+<p>而通过以上的操作，我们可以把它拆成 <strong>O(log n)</strong> 个物品，每个物品只能用一次。</p>
+<h5 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, f[<span class="number">2001</span>], v[<span class="number">2001</span>], w[<span class="number">2001</span>], l[<span class="number">2001</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i] &gt;&gt; l[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> res = l[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>;k &lt;= res; res -= k, k *= <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = m;j &gt;= v[i] * k; j--)</span><br><span class="line">                f[j] = <span class="built_in">max</span>(f[j],f[j - v[i] * k] + w[i] * k);</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> j = m;j &gt;= v[i] * res; j--)</span><br><span class="line">            f[j] = <span class="built_in">max</span>(f[j], f[j - v[i] * res] + w[i] * res);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; f[m] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-多重背包问题-hard"><a href="#5-多重背包问题-hard" class="headerlink" title="5.多重背包问题(hard)"></a>5.多重背包问题(hard)</h4><p>与easy和medium版本不同的是：该题的数据范围更大了。</p>
+<p><strong>问题描述</strong></p>
+<p>有 n 种物品要放到一个袋子里，袋子的总容量为 m，第 i 种物品的体积为 vi，把它放进袋子里会获得 wi 的收益，<strong>一共有 li 个</strong>。问如何选择物品，使得在物品的总体积不超过 m 的情况下，获得最大的收益？请求出最大收益。</p>
+<p><strong>数据范围</strong></p>
+<p>$$1\leq n, m, v_i, w_i, l_i \leq 10000$$</p>
+<h5 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h5><p>把考虑了前 i 组物品以后，总体积为 <strong>0~m</strong> 时的最大收益都记下来。</p>
+<p>考虑了前 i 组物品， 总体积为 j 时分成两种情况：</p>
+<p><strong>Case 1：</strong> 第 i 组物品一个没取，问题就变成了考虑前 i - 1 组物品，总体积为 j 时的情况。</p>
+<p><strong>Case 2：</strong> 第 i 组物品取了， 我们枚举取了其中的物品 k ， 问题变成了考虑了前 i - 1 组物品， 总体积为 j - v_i * k 时的情况。</p>
+<p><strong>f[i] [j]</strong> 表示考虑了前 i 组物品，总体积为 j 时的最大收益。</p>
+<p>转移为：$$\displaystyle f[i][j] = max(f[i - 1][j],\max_{1\leq k\leq min(\frac{j}{v_i},l_i)}f[i - 1][j - v_i * k] + w_i * k)$$</p>
+<p>需对时间复杂度进行优化</p>
+<hr>
+<p>在某一类下标 k 的位置，可以转移到下表在 <strong>[k + 1,k + l_i]</strong> 中的位置。</p>
+<p>而下标k，x之间转移的时候，转移状态可以为：</p>
+<p>$$\displaystyle \max_{k,1\leq k &lt; x, x - k \leq l_i} (f[k] + (x - k) * w_i)$$</p>
+<p>那么将 **f[k] - k * w_i **放进单调队列即可。</p>
+<h5 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, v, w, t, f[<span class="number">10001</span>], c[<span class="number">10001</span>][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		cin &gt;&gt; v &gt;&gt; w &gt;&gt; t;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; v; j++) &#123;</span><br><span class="line">			<span class="keyword">int</span> k = <span class="number">0</span>, l = <span class="number">1</span>;</span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> p = j, x = <span class="number">1</span>; p &lt;= m; p += v, ++x)&#123;</span><br><span class="line">                 <span class="keyword">int</span> e = f[p] - x * w, r = x + t;</span><br><span class="line">                 <span class="keyword">for</span>(; k &gt;= l &amp;&amp; c[k][<span class="number">0</span>] &lt;= e; --k);</span><br><span class="line">                     c[++k][<span class="number">0</span>] = e; c[k][<span class="number">1</span>] = r;</span><br><span class="line">                     f[p] = c[l][<span class="number">0</span>] + x * w;</span><br><span class="line">                     <span class="keyword">for</span>(; k &gt;= l &amp;&amp; c[l][<span class="number">1</span>] == x; ++l);</span><br><span class="line">             &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; f[m] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="6-分组背包"><a href="#6-分组背包" class="headerlink" title="6.分组背包"></a>6.分组背包</h4><p>有 n 种物品要放到一个袋子里，袋子的总容量为 m。第 i 个物品属于第 ai 组，<strong>每组物品我们只能从中选择一个</strong>。第 i 种物品的体积为 vi，把它放进袋子里会获得 wi 的收益。问如何选择物品，使得在物品的总体积不超过 m 的情况下，获得最大的收益？请求出最大收益。</p>
+<p>数据范围：</p>
+<p>$$1\leq n, m, a_i, v_i, w_i \leq 1000$$</p>
+<h5 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h5><p>把考虑了前 i 组物品以后，总体积为 <strong>0~m</strong> 时的最大收益都记下来。</p>
+<p>考虑了前 i 组物品， 总体积为 j 时分成两种情况：</p>
+<p><strong>Case 1：</strong> 第 i 组物品一个没取，问题就变成了考虑前 i - 1 组物品，总体积为 j 时的情况。</p>
+<p><strong>Case 2：</strong> 第 i 组物品取了， 我们枚举取了其中的物品 k ， 问题变成了考虑了前 i - 1 组物品， 总体积为 j - v_k 时的情况。</p>
+<p><strong>f[i] [j]</strong> 表示考虑了前 i 组物品，总体积为 j 时的最大收益。</p>
+<h5 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, a[<span class="number">1001</span>], v[<span class="number">1001</span>], w[<span class="number">1001</span>], f[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; c[<span class="number">1001</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		cin &gt;&gt; a[i] &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">         c[a[i]].<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">1000</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m ; j++) &#123;</span><br><span class="line">            f[i][j] = f[i - <span class="number">1</span>][j];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> k : c[i]) &#123;</span><br><span class="line">                <span class="keyword">if</span>(v[k] &lt;= j)</span><br><span class="line">                    f[i][j] = <span class="built_in">max</span>(f[i][j], f[i - <span class="number">1</span>][j - v[k] ] + w[k]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; f[<span class="number">1000</span>][m] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>以上可以通过01背包来进行优化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, a[<span class="number">1001</span>], v[<span class="number">1001</span>], w[<span class="number">1001</span>], f[<span class="number">1001</span>];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; c[<span class="number">1001</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		cin &gt;&gt; a[i] &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">         c[a[i]].<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">1000</span>; i++) </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = m; j ; j--) </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> k : c[i]) </span><br><span class="line">                <span class="keyword">if</span>(v[k] &lt;= j)</span><br><span class="line">                    f[j] = <span class="built_in">max</span>(f[j], f[j - v[k]] + w[k]);</span><br><span class="line">    cout &lt;&lt; f[m] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-二维背包"><a href="#7-二维背包" class="headerlink" title="7.二维背包"></a>7.二维背包</h4><p>有 n 种物品要放到一个袋子里，袋子的总容量为 m，我们一共有 k 点体力值。第 i 种物品的体积为 vi，把它放进袋子里会获得 wi 的收益，并且消耗我们 ti 点体力值，<strong>每种物品只能取一次</strong>。问如何选择物品，使得在物品的总体积不超过 m 并且花费总体力不超过 k 的情况下，获得最大的收益？请求出最大收益。</p>
+<p>数据范围：</p>
+<p>$$1\leq n, m, k, a_i, v_i, w_i \leq 100$$</p>
+<h5 id="分析-6"><a href="#分析-6" class="headerlink" title="分析"></a>分析</h5><p>相较于分组背包就是多了一个体力限制。</p>
+<p>把考虑了前 i 组物品以后，总体积为 <strong>0~m</strong> ，总体力为 <strong>0~k</strong> 时的最大收益都记下来。</p>
+<p>考虑了前 i 组物品， 总体积为 j，总体力为 x 时分为两种情况：</p>
+<p><strong>Case 1：</strong> 第 i 组物品一个没取，问题就变成了考虑前 i - 1 组物品，总体积为 j 时，总体力为x时的情况。</p>
+<p><strong>Case 2：</strong> 第 i 组物品取了， 我们枚举取了其中的物品 k ， 问题变成了考虑了前 i - 1 组物品， 总体积为 j - v_k ，总体力为 x - t_i 时的情况。</p>
+<p><strong>f[i] [j] [x]</strong> 表示考虑了前 i 组物品，总体积为 j ，总体力为 x 时的最大收益。</p>
+<h5 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, k, v[<span class="number">1001</span>], w[<span class="number">1001</span>], t[<span class="number">1001</span>], f[<span class="number">101</span>][<span class="number">101</span>][<span class="number">101</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		cin &gt;&gt; v[i] &gt;&gt; w[i] &gt;&gt; t[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m ; j++) </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">0</span>; x &lt;= k; x++) &#123;</span><br><span class="line">            	f[i][j][x] = f[i - <span class="number">1</span>][j][x];</span><br><span class="line">            	<span class="keyword">if</span>(j &gt;= v[i] &amp;&amp; x &gt;= t[i])</span><br><span class="line">                    f[i][j][x] = <span class="built_in">max</span>(f[i][j][x], f[i - <span class="number">1</span>][j - v[i]][x - t[i]] + w[i]);</span><br><span class="line">            &#125;</span><br><span class="line">          </span><br><span class="line">    cout &lt;&lt; f[n][m][k] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>优化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, k, v[<span class="number">1001</span>], w[<span class="number">1001</span>], t[<span class="number">1001</span>], f[<span class="number">101</span>][<span class="number">101</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		cin &gt;&gt; v[i] &gt;&gt; w[i] &gt;&gt; t[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = m; j &gt;= v[i] ; j--) </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> x = k; x &gt;= t[i]; x--) </span><br><span class="line">            	f[j][x] = <span class="built_in">max</span>(f[j][x], f[j - v[i]][x - t[i]] + w[i]);        </span><br><span class="line">    cout &lt;&lt; f[m][k] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 
     </div>
 
@@ -451,7 +519,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">1.01背包问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">2.完全背包问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">3.多重背包问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">1.01背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">2.完全背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">2.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-easy"><span class="nav-number">3.</span> <span class="nav-text">3.多重背包问题(easy)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90-2"><span class="nav-number">3.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">3.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-medium"><span class="nav-number">4.</span> <span class="nav-text">4.多重背包问题(medium)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90-3"><span class="nav-number">4.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">4.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-hard"><span class="nav-number">5.</span> <span class="nav-text">5.多重背包问题(hard)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90-4"><span class="nav-number">5.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="nav-number">5.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%86%E7%BB%84%E8%83%8C%E5%8C%85"><span class="nav-number">6.</span> <span class="nav-text">6.分组背包</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90-5"><span class="nav-number">6.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="nav-number">6.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E4%BA%8C%E7%BB%B4%E8%83%8C%E5%8C%85"><span class="nav-number">7.</span> <span class="nav-text">7.二维背包</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E6%9E%90-6"><span class="nav-number">7.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-6"><span class="nav-number">7.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -511,12 +579,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">83k</span>
+    <span title="站点总字数">89k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:16</span>
+    <span title="站点阅读时长">1:21</span>
 </div>
 
 <div class="powered-by">
