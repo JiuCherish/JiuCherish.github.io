@@ -315,6 +315,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/07/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8806%EF%BC%89%EF%BC%9Akmp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/07/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8806%EF%BC%89%EF%BC%9Akmp/" class="post-title-link" itemprop="url">算法笔记（06）：KMP</a>
+        </h2>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-01-07 01:35:00" itemprop="dateCreated datePublished" datetime="2023-01-07T01:35:00+08:00">2023-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-09 13:16:00" itemprop="dateModified" datetime="2023-01-09T13:16:00+08:00">2023-01-09</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>441</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<h4 id="kmp"><a href="#kmp" class="headerlink" title="kmp"></a>kmp</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><p><strong>O（n + m)</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/01/Atcoder/ABC283/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -347,7 +435,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-09 13:11:57" itemprop="dateModified" datetime="2023-01-09T13:11:57+08:00">2023-01-09</time>
+                <time title="修改时间：2023-01-09 13:15:26" itemprop="dateModified" datetime="2023-01-09T13:15:26+08:00">2023-01-09</time>
               </span>
 
           <br>
@@ -407,7 +495,87 @@
 <ul>
 <li>选择任意一行，翻转此行内的所有元素。</li>
 </ul>
-<p>如果当前 <strong>[i,j]</strong> 的 <strong>01</strong> 性与 $[i-1][j]$</p>
+<p>如果当前 <strong>[i,j]</strong> 的 <strong>01</strong> 性与 <strong>$[i-1][j]$</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="post-title-link" itemprop="url">算法笔记（05）：并查集</a>
+        </h2>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-25 09:52:41" itemprop="dateCreated datePublished" datetime="2022-10-25T09:52:41+08:00">2022-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-09 13:16:03" itemprop="dateModified" datetime="2023-01-09T13:16:03+08:00">2023-01-09</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
       
     </div>
@@ -904,210 +1072,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%BA%94%E5%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/01/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%BA%94%E5%9C%BA/" class="post-title-link" itemprop="url">2022牛客多校第五场</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-01 16:40:32" itemprop="dateCreated datePublished" datetime="2022-08-01T16:40:32+08:00">2022-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-15 17:00:20" itemprop="dateModified" datetime="2022-08-15T17:00:20+08:00">2022-08-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="post-title-link" itemprop="url">数学分析每日一题</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-01 01:49:39" itemprop="dateCreated datePublished" datetime="2022-08-01T01:49:39+08:00">2022-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-19 23:29:34" itemprop="dateModified" datetime="2022-08-19T23:29:34+08:00">2022-08-19</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-
-<p><strong>数分每日一题</strong></p>
-<h4 id="8-1"><a href="#8-1" class="headerlink" title="8.1"></a>8.1</h4><h5 id="Fejer积分"><a href="#Fejer积分" class="headerlink" title="Fejer积分"></a>Fejer积分</h5><p>记</p>
-<p>$$\displaystyle I_n = \int_{0} ^ \frac{\pi}{2}(\frac{\sin nx}{\sin x})^2\mathrm{d}x$$</p>
-<p>证明</p>
-<p>$$\displaystyle I_n = \frac{n \pi}{2}$$</p>
-<p><strong>prove:</strong></p>
-<p>$$\displaystyle I_n - I_{n - 1} = \int_{0} ^ {\frac{\pi}{2}}\frac{\sin ^ 2 nx - \sin^2{(n-1)x}}{\sin ^2 x}\mathrm dx$$</p>
-<p>$$\displaystyle =\frac{1}{2} \int_{0} ^ \frac{\pi}{2} \frac{\cos(2n - 2)x - \cos 2nx}{\sin ^ 2x}\mathrm dx$$</p>
-<p>$$\displaystyle = \int_{0} ^ \frac{\pi}{2} \frac{\sin (2n - 1)x}{\sin x}\mathrm dx = J_{n}$$</p>
-<p>$$\displaystyle J_n - J_{n-1} = \int_0^\frac{\pi}{2} \frac{\sin(2n - 1)x - \sin(2n - 3)x}{\sin x}\mathrm dx$$</p>
-<p>$$\displaystyle = \int_0^\frac{\pi}{2} \frac{2\sin\frac{2n - 1 -(2n - 3)}{2} x \cdot \cos \frac{(2n - 1 ) + (2n - 3)}{2}x}{\sin x}\mathrm dx$$</p>
-<p>$$\displaystyle = 2\int_0^\frac{\pi}{2} \cos(2n - 2)x \mathrm dx = 0$$</p>
-<p>即得出</p>
-<p>$$J_n = J_{n-1} = \cdots = J_{1}$$</p>
-<p>又</p>
-<p>$$\displaystyle J_1 = \int_{0}^\frac{\pi}{2} \mathrm dx = \frac{\pi}{2} , I_1 = \frac{\pi}{2}$$ </p>
-<p>因此由等差数列求和公式得出</p>
-<p>$$\displaystyle I_n = I_1 + (n - 1)\cdot \frac{\pi}{2} = \frac{n\pi}{2}$$</p>
-<h4 id="8-2"><a href="#8-2" class="headerlink" title="8.2"></a>8.2</h4><h5 id="IMC-2022-Day1-problem1"><a href="#IMC-2022-Day1-problem1" class="headerlink" title="IMC 2022 Day1 problem1"></a>IMC 2022 Day1 problem1</h5><p><strong>Problem 1</strong> : Let f :[0,1]-&gt;(0,∞) be an integrable function such that f(x) · f(1-x) = 1 for all x ∈ [0,1]. Prove that</p>
-<p>$$\displaystyle \int_0^{1} f(x)\mathrm{d}x \geq 1$$</p>
-<p>译：设**f[0,1] -&gt; (0,+∞)**是一个可积函数，满足f(x)f(1-x) = 1，对于所有x∈[0,1],证明：</p>
-<p>$$\displaystyle \int_0^{1} f(x)\mathrm{d}x \geq 1$$</p>
-<p>在初次动手本题的时候我也没想到这是道错题，直到我看到了向老师讲数学公众号举出的反例才意识到。</p>
-<p>本题条件较弱，若考虑 <strong>f</strong> 只是可积的，那么 <strong>f</strong> 未必一定是正值函数，例如考虑</p>
-<p>$$f(x)=1,x\in[0,\frac{1}{4})\cup(\frac{3}{4},1]$$</p>
-<p>$$f(x)=-1,x\in[\frac{1}{4},\frac{3}{4}]$$</p>
-<p>那么是满足条件的，但是</p>
-<p>$$\displaystyle \int_0^{1}f(x)\mathrm{d}x = 0$$</p>
-<p>所以本题需要将条件加强，将 <strong>可积</strong> 改成 <strong>连续</strong> 即可。</p>
-<p><strong>Prove1:</strong></p>
-<p>由 <strong>AM-GM</strong> 不等式得</p>
-<p>$$\displaystyle f(x) + f(1-x) \geq 2\sqrt{f(x)f(1-x)}=2$$</p>
-<p>同时我们考虑</p>
-<p>$$\displaystyle \int_0^{1}f(x)\mathrm{d}x = \int_0^\frac{1}{2}f(x)\mathrm{d}x+\int_0^\frac{1}{2}f(1-x)\mathrm{d}x$$</p>
-<p>$$\displaystyle =\int_0^\frac{1}{2}(f(x)+f(1-x))\mathrm{d}x\geq\int_0^\frac{1}{2}2\mathrm{d}x=1$$</p>
-<p><strong>Prove2:</strong></p>
-<p>注意到:</p>
-<p>$$\displaystyle \int_0^1 f(x)\mathrm{d}x=\int_0^1 f(1-x)\mathrm{d}x =\int_0^1\frac{1}{f(x)}\mathrm{d}x$$</p>
-<p>所以有</p>
-<p>$$\displaystyle (\int_0^1 f(x)\mathrm{d}x)^2 = \int_0^1 f(x)\mathrm{d}x\cdot\int_0^1\frac{1}{f(x)}\mathrm{d}x \geq (\int_0^1 1\mathrm{d}x)^2\geq1$$</p>
-<h4 id="8-3"><a href="#8-3" class="headerlink" title="8.3"></a>8.3</h4><p>3</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1179,7 +1143,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
