@@ -342,6 +342,13 @@
 
               <time title="创建时间：2023-01-17 02:51:24" itemprop="dateCreated datePublished" datetime="2023-01-17T02:51:24+08:00">2023-01-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-12 22:44:17" itemprop="dateModified" datetime="2023-02-12T22:44:17+08:00">2023-02-12</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -349,14 +356,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -368,7 +375,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<p>难度：</p>
+<p><strong>签到：A</strong></p>
+<p><strong>简单：CDGH</strong></p>
+<p><strong>中等偏下：EFI</strong></p>
+<p><strong>中等偏上：BJKL</strong></p>
+<h3 id="A-阿宁的签到题"><a href="#A-阿宁的签到题" class="headerlink" title="A.阿宁的签到题"></a>A.阿宁的签到题</h3><h4 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h4><p>在这次寒假集训营中每一个题都有一个难度评分x。</p>
+<p>  题目分为以下等级： </p>
+<ul>
+<li><p>​    very easy (1≤x≤7)</p>
+</li>
+<li><p>​    easy (7&lt;x≤233) </p>
+</li>
+<li><p>​    medium (233&lt;x≤10032)</p>
+</li>
+<li><p>​    hard (10032&lt;x≤114514)   </p>
+</li>
+<li><p>​    very hard (114514&lt;x≤1919810)   </p>
+</li>
+<li><p>​    can not imagine (1919810&lt;x)     </p>
+<p>你拿到这次寒假集训营其中的一道题，并且对它评估了一个分数，请你根据以上划分输出等级</p>
+</li>
+</ul>
+<h4 id="数据范围："><a href="#数据范围：" class="headerlink" title="数据范围："></a>数据范围：</h4><p>$$1 \leq x &lt; 2^{31}$$</p>
+<h4 id="题解：模拟"><a href="#题解：模拟" class="headerlink" title="题解：模拟"></a>题解：模拟</h4><p>按题目</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    std::cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">if</span>(n &gt;= <span class="number">1</span> <span class="keyword">and</span> n &lt;= <span class="number">7</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;very easy&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(n &gt; <span class="number">7</span> <span class="keyword">and</span> n &lt;= <span class="number">233</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;easy&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(n &gt; <span class="number">233</span> <span class="keyword">and</span> n &lt;= <span class="number">10032</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;medium&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(n &gt; <span class="number">10032</span> <span class="keyword">and</span> n &lt;= <span class="number">114514</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;hard&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(n &gt; <span class="number">114514</span> <span class="keyword">and</span> n &lt;= <span class="number">1919810</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;very hard&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;can not imagine&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="B-阿宁的倍数"><a href="#B-阿宁的倍数" class="headerlink" title="B.阿宁的倍数"></a>B.阿宁的倍数</h3><h4 id="题意：-1"><a href="#题意：-1" class="headerlink" title="题意："></a>题意：</h4><p>阿宁有一个长度为 <strong>n</strong> 的数组 <strong>a</strong>，下标从 <strong>1</strong> 开始，有 <strong>q</strong> 次操作。</p>
+<p> 修改操作：数组末尾增加一个数 <strong>x</strong>，数组长度加 <strong>1</strong> 。<br> 询问操作：有多少个 <strong>i(i&gt;x)</strong> ，满足 <strong>ai</strong> 是 <strong>ax</strong> ​的倍数？</p>
+<h4 id="数据范围：-1"><a href="#数据范围：-1" class="headerlink" title="数据范围："></a>数据范围：</h4><p>$$1 \leq n,q,a_i \leq 2\times 10^5$$</p>
+<p>$$1 \leq op \leq 2$$</p>
+<h4 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h4><h3 id="C-阿宁的大背包"><a href="#C-阿宁的大背包" class="headerlink" title="C. 阿宁的大背包"></a>C. 阿宁的大背包</h3><h4 id="题意：-2"><a href="#题意：-2" class="headerlink" title="题意："></a>题意：</h4><p>本质是杨辉三角：给你一个排列，按杨辉三角计算，问最后输出的那个背包最大值可以是多少。</p>
+<h4 id="数据范围：-2"><a href="#数据范围：-2" class="headerlink" title="数据范围："></a>数据范围：</h4><p>$$1 \leq n \leq 10^3$$</p>
+<h4 id="题解：构造，暴力"><a href="#题解：构造，暴力" class="headerlink" title="题解：构造，暴力"></a>题解：构造，暴力</h4><p>考虑前n / 2为1，3，5，7…..，后面为6，4，2…构造即可。</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    std::cin &gt;&gt; n;</span><br><span class="line">    i64 ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> w = n;</span><br><span class="line">    std::vector&lt;i64&gt; a;</span><br><span class="line">    <span class="keyword">if</span>(!(n &amp; <span class="number">1</span>))&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n / <span class="number">2</span>;i++) &#123;</span><br><span class="line">            i64 now = <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">            a.<span class="built_in">pb</span>(now);</span><br><span class="line">            c[i] = now;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ww = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=n / <span class="number">2</span>;i&lt;n;i++) &#123;</span><br><span class="line">            i64 now = n - ww * <span class="number">2</span>;</span><br><span class="line">            c[i] = now;</span><br><span class="line">            a.<span class="built_in">pb</span>(now);</span><br><span class="line">            ww++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n / <span class="number">2</span>;i++) &#123;</span><br><span class="line">            i64 now = <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">            a.<span class="built_in">pb</span>(now);</span><br><span class="line">            c[i] = now;</span><br><span class="line">        &#125;     </span><br><span class="line">        <span class="keyword">int</span> ww = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=n/<span class="number">2</span> + <span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">            a.<span class="built_in">pb</span>(ww);</span><br><span class="line">            c[i] = ww;</span><br><span class="line">            ww -= <span class="number">2</span>;</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line">    std::vector&lt;i64&gt; b;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(a.<span class="built_in">size</span>() &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        b.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">SZ</span>(a) - <span class="number">1</span>;i++) &#123;</span><br><span class="line">            b.<span class="built_in">pb</span>((a[i] + a[i + <span class="number">1</span>]) % MOD);</span><br><span class="line">        &#125;</span><br><span class="line">        a.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="built_in">SZ</span>(b) - <span class="number">1</span>;i++) &#123;</span><br><span class="line">            a.<span class="built_in">pb</span>((b[i] + b[i + <span class="number">1</span>]) % MOD);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!(n &amp; <span class="number">1</span>))</span><br><span class="line">        std::cout &lt;&lt; b[<span class="number">0</span>] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        std::cout &lt;&lt; a[<span class="number">0</span>] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">        std::cout &lt;&lt; c[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="D-阿宁的毒瘤题"><a href="#D-阿宁的毒瘤题" class="headerlink" title="D.阿宁的毒瘤题"></a>D.阿宁的毒瘤题</h3><h4 id="题意：-3"><a href="#题意：-3" class="headerlink" title="题意："></a>题意：</h4><p>给定一个长度为 <strong>n</strong> 且仅有小写字母的字符串 <strong>s</strong>, 问 <strong>s</strong> 串的 “udu” 子序列的个数、</p>
+<p>现在需要通过修改其中 <strong>s</strong> 串的一个字符（也可以不修改），使得修改后上面子序列的个数达到最小。</p>
+<p>子序列定义：从原串的顺序取一些字符，组成新的字符串，例如”dudu”、”udu”是”dudovoudu”的子序列，而”uudd”不是。</p>
+<h4 id="题解：贡献"><a href="#题解：贡献" class="headerlink" title="题解：贡献"></a>题解：贡献</h4><p>计算出每个位置的贡献，最后把贡献最大的替换掉即可。</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">	std::string s;</span><br><span class="line">    std::cin &gt;&gt; s;</span><br><span class="line">    <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;i64&gt; <span class="title">preU</span><span class="params">(n + <span class="number">5</span>)</span>,<span class="title">preUD</span><span class="params">(n + <span class="number">5</span>)</span>,<span class="title">afU</span><span class="params">(n + <span class="number">5</span>)</span>,<span class="title">afUD</span><span class="params">(n + <span class="number">5</span>)</span>,<span class="title">val</span><span class="params">(n + <span class="number">5</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        preU[i] += preU[i - <span class="number">1</span>] + (s[i - <span class="number">1</span>] == <span class="string">&#x27;u&#x27;</span>);</span><br><span class="line">        preUD[i] += preUD[i - <span class="number">1</span>] + (s[i - <span class="number">1</span>] == <span class="string">&#x27;d&#x27;</span> ? preU[i - <span class="number">1</span>] : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">        afU[i] += afU[i + <span class="number">1</span>] + (s[i - <span class="number">1</span>] == <span class="string">&#x27;u&#x27;</span>);</span><br><span class="line">        afUD[i] += afUD[i + <span class="number">1</span>] + (s[i - <span class="number">1</span>] == <span class="string">&#x27;d&#x27;</span> ? afU[i + <span class="number">1</span>] : <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    i64 mx = <span class="number">0</span>,idx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i - <span class="number">1</span>] == <span class="string">&#x27;u&#x27;</span>) &#123;</span><br><span class="line">            val[i - <span class="number">1</span>] = preUD[i - <span class="number">1</span>] + afUD[i + <span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(s[i - <span class="number">1</span>] == <span class="string">&#x27;d&#x27;</span>) &#123;</span><br><span class="line">            val[i - <span class="number">1</span>] = preU[i - <span class="number">1</span>] * afU[i + <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(val[i] &gt; mx) &#123;</span><br><span class="line">            mx = val[i];</span><br><span class="line">            idx = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    s[idx] = <span class="string">&#x27;z&#x27;</span>;</span><br><span class="line">    cout &lt;&lt; s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="E-阿宁的生成树"><a href="#E-阿宁的生成树" class="headerlink" title="E.阿宁的生成树"></a>E.阿宁的生成树</h3><h4 id="题意：-4"><a href="#题意：-4" class="headerlink" title="题意："></a>题意：</h4><p>给你一个 <strong>n</strong> 节点的完全图，编号从 <strong>1</strong> 到 <strong>n</strong> 。对于点 <strong>i</strong>, <strong>j</strong> （i &lt; j），如果 <strong>j - i &lt;= k</strong> , 那么 <strong>i</strong> 和 <strong>j</strong> 之间有一条边权为 <strong>lcm(i,j)</strong> 的边，否则有一条边权为 <strong>gcd(i,j)</strong> 的边。</p>
+<p>试求出该完全图的最小生成树。</p>
+<h4 id="数据范围：-3"><a href="#数据范围：-3" class="headerlink" title="数据范围："></a>数据范围：</h4><p>$$1 \leq n,k \leq 2 \times 10^5$$</p>
+<h3 id="F-阿宁的二进制"><a href="#F-阿宁的二进制" class="headerlink" title="F.阿宁的二进制"></a>F.阿宁的二进制</h3><h3 id="G-阿宁的整数配对"><a href="#G-阿宁的整数配对" class="headerlink" title="G.阿宁的整数配对"></a>G.阿宁的整数配对</h3><h3 id="H-阿宁讨伐虚空"><a href="#H-阿宁讨伐虚空" class="headerlink" title="H.阿宁讨伐虚空"></a>H.阿宁讨伐虚空</h3><h3 id="I-阿宁前往沙城"><a href="#I-阿宁前往沙城" class="headerlink" title="I. 阿宁前往沙城"></a>I. 阿宁前往沙城</h3><h3 id="J-阿宁指指点点"><a href="#J-阿宁指指点点" class="headerlink" title="J.阿宁指指点点"></a>J.阿宁指指点点</h3><h3 id="K-阿宁大战小红"><a href="#K-阿宁大战小红" class="headerlink" title="K.阿宁大战小红"></a>K.阿宁大战小红</h3><h3 id="L-阿宁睡大觉"><a href="#L-阿宁睡大觉" class="headerlink" title="L.阿宁睡大觉"></a>L.阿宁睡大觉</h3>
       
     </div>
 
@@ -419,7 +490,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-02 01:18:11" itemprop="dateModified" datetime="2023-02-02T01:18:11+08:00">2023-02-02</time>
+                <time title="修改时间：2023-02-10 00:35:43" itemprop="dateModified" datetime="2023-02-10T00:35:43+08:00">2023-02-10</time>
               </span>
 
           <br>
@@ -1466,12 +1537,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">106k</span>
+    <span title="站点总字数">109k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:36</span>
+    <span title="站点阅读时长">1:39</span>
 </div>
 
 <div class="powered-by">
