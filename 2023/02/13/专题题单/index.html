@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前缀和截断数组（acwing）题面： 给定一个长度为 n 的数组 a 现在，要将数组从中间截断，得到三个 非空 子数组。 要求，三个子数组内各元素之和都相等，问有几种截法。 数据范围： $$1 \leq n \leq 10^5 , -10000 \leq a_i \leq 10000$$ 题解： 如果整个数组之和 除不尽3，那么一定分割不成功，如果现在的段刚好为sum &#x2F; 3那么说明这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACM基础训练专题题单">
+<meta property="og:url" content="http://example.com/2023/02/13/%E4%B8%93%E9%A2%98%E9%A2%98%E5%8D%95/index.html">
+<meta property="og:site_name" content="玖的数学&amp;算法录">
+<meta property="og:description" content="前缀和截断数组（acwing）题面： 给定一个长度为 n 的数组 a 现在，要将数组从中间截断，得到三个 非空 子数组。 要求，三个子数组内各元素之和都相等，问有几种截法。 数据范围： $$1 \leq n \leq 10^5 , -10000 \leq a_i \leq 10000$$ 题解： 如果整个数组之和 除不尽3，那么一定分割不成功，如果现在的段刚好为sum &#x2F; 3那么说明这">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-13T13:45:25.000Z">
+<meta property="article:modified_time" content="2023-02-13T14:46:22.032Z">
+<meta property="article:author" content="JiuCherish">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/02/13/%E4%B8%93%E9%A2%98%E9%A2%98%E5%8D%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ACM基础训练专题题单 | 玖的数学&算法录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+ <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+<script type="text/javascript" src="/js/love.js"></script>
+
+  <style type="text/css">
+  body {
+      background: url(https://s4.ax1x.com/2022/01/27/7XdpZT.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: 50% 50%;
+}
+  .main-inner{
+	opacity: 0.8;
+}
+  .header-inner{
+	opacity: 0.8;
+	z-index: 1;
+}
+  </style>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">玖的数学&算法录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/13/%E4%B8%93%E9%A2%98%E9%A2%98%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ACM基础训练专题题单
+        </h1>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-13 21:45:25 / 修改时间：22:46:22" itemprop="dateCreated datePublished" datetime="2023-02-13T21:45:25+08:00">2023-02-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+
+
+<h4 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h4><h5 id="截断数组（acwing）"><a href="#截断数组（acwing）" class="headerlink" title="截断数组（acwing）"></a>截断数组（acwing）</h5><p>题面：</p>
+<p>给定一个长度为 <strong>n</strong> 的数组 a</p>
+<p>现在，要将数组从中间截断，得到三个 <strong>非空</strong> 子数组。</p>
+<p>要求，三个子数组内各元素之和都相等，问有几种截法。</p>
+<p>数据范围：</p>
+<p>$$1 \leq n \leq 10^5 , -10000 \leq a_i \leq 10000$$</p>
+<p>题解：</p>
+<p>如果整个数组之和 除不尽3，那么一定分割不成功，如果现在的段刚好为sum / 3那么说明这一段能分出来，用aa去记录可以分成几段，最后在找一个位置，使得sum / 3 * 2的位置即可。</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> n;</span><br><span class="line">   std::cin &gt;&gt; n;</span><br><span class="line">   i64 sum = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">      std::cin &gt;&gt; a[i];</span><br><span class="line">      b[i] = b[i - <span class="number">1</span>] + a[i];</span><br><span class="line">      sum += a[i];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">int</span> aa = <span class="number">0</span>;</span><br><span class="line">   i64 ans = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span>(sum % <span class="number">3</span>) &#123;</span><br><span class="line">      std::cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">         <span class="keyword">if</span>(b[i] == sum / <span class="number">3</span> * <span class="number">2</span>)  ans += aa;</span><br><span class="line">         <span class="keyword">if</span>(b[i] == sum / <span class="number">3</span>) aa++;</span><br><span class="line">      &#125;</span><br><span class="line">      std::cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="前缀和-1"><a href="#前缀和-1" class="headerlink" title="前缀和"></a>前缀和</h5><p>题面：</p>
+<p>给你一个长度为 <strong>n</strong> 的整数序列。</p>
+<p>在进行 <strong>m</strong> 次询问，每次询问输入一对<strong>l,r</strong></p>
+<p>问：区间[l,r]的和。</p>
+<p>数据范围：</p>
+<p>$$1 \leq l \leq r\leq n$$</p>
+<p>$$1 \leq n,m \leq 100000$$</p>
+<p>$$-1000 \leq a_i \leq 1000$$</p>
+<p>题解：</p>
+<p>模板题。</p>
+<p>代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,q;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        std::cin &gt;&gt; a[i];</span><br><span class="line">        b[i] = b[i - <span class="number">1</span>] + a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(q--) &#123;</span><br><span class="line">        <span class="keyword">int</span> l,r;</span><br><span class="line">        std::cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        std::cout &lt;&lt; b[r] - b[l - <span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="子矩阵的和"><a href="#子矩阵的和" class="headerlink" title="子矩阵的和"></a>子矩阵的和</h5><p>题意：</p>
+<p>给<strong>n</strong> 行 <strong>m</strong> 列的整数矩阵，在给 <strong>q</strong>次询问</p>
+<p>问 <strong>x1,y1,x2,y2</strong> 所围成的矩阵数值之和是多少？</p>
+<p>数据范围</p>
+<p>$$1 \leq n,m \leq 1000$$</p>
+<p>$$1 \leq q \leq 200000$$</p>
+<p>$$1 \leq x_1 \leq x_2 \leq n$$</p>
+<p>$$1 \leq y_1 \leq y_2 \leq m$$</p>
+<p>$$-1000 \leq a_i \leq 1000$$</p>
+<p>题解：</p>
+<p>模板题</p>
+<p>代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m,q;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++) &#123;</span><br><span class="line">            std::cin &gt;&gt; a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++) &#123;</span><br><span class="line">            b[i][j] = b[i - <span class="number">1</span>][j] + b[i][j - <span class="number">1</span>] - b[i - <span class="number">1</span>][j - <span class="number">1</span>] + a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(q--) &#123;</span><br><span class="line">        <span class="keyword">int</span> x1,x2,y1,y2;</span><br><span class="line">        std::cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;</span><br><span class="line">        std::cout &lt;&lt; b[x2][y2] - b[x2][y1 - <span class="number">1</span>] - b[x1 - <span class="number">1</span>][y2] + b[x1 - <span class="number">1</span>][y1 - <span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/01/17/2023%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83%E8%90%A5/2023%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83%E8%90%A56/" rel="prev" title="2023牛客寒假算法训练营6">
+      <i class="fa fa-chevron-left"></i> 2023牛客寒假算法训练营6
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">1.</span> <span class="nav-text">前缀和</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%AA%E6%96%AD%E6%95%B0%E7%BB%84%EF%BC%88acwing%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">截断数组（acwing）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C-1"><span class="nav-number">1.2.</span> <span class="nav-text">前缀和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%90%E7%9F%A9%E9%98%B5%E7%9A%84%E5%92%8C"><span class="nav-number">1.3.</span> <span class="nav-text">子矩阵的和</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="JiuCherish"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">JiuCherish</p>
+  <div class="site-description" itemprop="description">希望自己能会一点东西</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JiuCherish</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">111k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:41</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
