@@ -346,10 +346,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-02-13 21:45:25 / 修改时间：22:46:22" itemprop="dateCreated datePublished" datetime="2023-02-13T21:45:25+08:00">2023-02-13</time>
+              <time title="创建时间：2023-02-13 21:45:25" itemprop="dateCreated datePublished" datetime="2023-02-13T21:45:25+08:00">2023-02-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-23 13:51:37" itemprop="dateModified" datetime="2023-02-23T13:51:37+08:00">2023-02-23</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -357,14 +363,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
+              <span>3.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -423,6 +429,66 @@
 <p>模板题</p>
 <p>代码</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m,q;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; m &gt;&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++) &#123;</span><br><span class="line">            std::cin &gt;&gt; a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++) &#123;</span><br><span class="line">            b[i][j] = b[i - <span class="number">1</span>][j] + b[i][j - <span class="number">1</span>] - b[i - <span class="number">1</span>][j - <span class="number">1</span>] + a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(q--) &#123;</span><br><span class="line">        <span class="keyword">int</span> x1,x2,y1,y2;</span><br><span class="line">        std::cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;</span><br><span class="line">        std::cout &lt;&lt; b[x2][y2] - b[x2][y1 - <span class="number">1</span>] - b[x1 - <span class="number">1</span>][y2] + b[x1 - <span class="number">1</span>][y1 - <span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="k倍区间"><a href="#k倍区间" class="headerlink" title="k倍区间"></a>k倍区间</h5><p>题意：</p>
+<p>给长度为 <strong>n</strong> 的数列，约定 <strong>k</strong> 倍区间表示 数列区间[i,j]的和是 <strong>k</strong> 的倍数。</p>
+<p>问数列中有几个 <strong>k</strong> 被区间。</p>
+<p>数据范围</p>
+<p>$$1 \leq n,k \leq 100000$$</p>
+<p>$$1 \leq a_i \leq 100000$$</p>
+<p>题解：</p>
+<p>只需要知道</p>
+<p>$$(a + b)mod c 等价于 a modc + bmod c$$</p>
+<p>即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,k;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    i64 sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        std::cin &gt;&gt; a[i];</span><br><span class="line">        b[i] = b[i - <span class="number">1</span>] + a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    res[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        sum += res[b[i] % k];</span><br><span class="line">        res[b[i] % k]++;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h4><h5 id="改变数组元素"><a href="#改变数组元素" class="headerlink" title="改变数组元素"></a>改变数组元素</h5><p>给定一个空数组 <strong>V</strong> 和一个整数数组a。</p>
+<p>现在对数组V进行 <strong>n</strong> 次操作</p>
+<p>第 <strong>i</strong> 次操作的具体流程如下：</p>
+<ol>
+<li>从数组 V 尾部插入整数 0。</li>
+<li>将位于数组 V 末尾的 ai 个元素都变为 1（已经是 1 的不予理会）。</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li>ai 可能为 0，即不做任何改变。</li>
+<li>ai 可能大于目前数组 V 所包含的元素个数，此时视为将数组内所有元素变为 1。</li>
+</ul>
+<p>请你输出所有操作完成后的数组 V。</p>
+<p>数据范围</p>
+<p>$$1 \leq T \leq 20000$$</p>
+<p>$$1 \leq n \leq 2 \times 10^5$$</p>
+<p>$$0 \leq a_i \leq n$$</p>
+<p>保证 $$\sum T * n &lt; 2 \times 10^5$$</p>
+<p>题解：</p>
+<p>维护区间，用当前数是k，就把该数和该数前面k个数变成1。</p>
+<p>代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    std::cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) std::cin &gt;&gt; a[i];</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">1e9</span>;</span><br><span class="line">    std::vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">        l = std::<span class="built_in">min</span>(l,i - a[i] + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(l &lt;= i) &#123;</span><br><span class="line">            ans.<span class="built_in">pb</span>(<span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans.<span class="built_in">pb</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    std::<span class="built_in">reverse</span>(ans.<span class="built_in">begin</span>(),ans.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> x : ans) std::cout &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h5 id="差分-1"><a href="#差分-1" class="headerlink" title="差分"></a>差分</h5><p>给你一个 长度为 <strong>n</strong> 的数组</p>
+<p>你有 <strong>m</strong> 次操作，包括了 <strong>l,r,c</strong>，表示将数组 [l,r] 之间的每个数都加上 <strong>c</strong></p>
+<p>请你输出进行完成所有操作后的数组。</p>
+<p>数据范围：</p>
+<p>$$1 \leq l \leq r\leq n$$</p>
+<p>$$1 \leq n,m \leq 100000$$</p>
+<p>$$-1000 \leq c \leq 1000$$</p>
+<p>$$-1000 \leq a_i \leq 1000$$</p>
+<p>题解</p>
+<p>模板</p>
+<p>代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,q;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        std::cin &gt;&gt; a[i];</span><br><span class="line">        b[i] = a[i] - a[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(q--) &#123;</span><br><span class="line">        <span class="keyword">int</span> l,r,x;</span><br><span class="line">        std::cin &gt;&gt; l &gt;&gt; r &gt;&gt; x;</span><br><span class="line">        b[l] += x;</span><br><span class="line">        b[r + <span class="number">1</span>] -= x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        x += b[i];</span><br><span class="line">        std::cout &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 
       
@@ -1016,7 +1082,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-09 13:16:00" itemprop="dateModified" datetime="2023-01-09T13:16:00+08:00">2023-01-09</time>
+                <time title="修改时间：2023-03-07 00:44:11" itemprop="dateModified" datetime="2023-03-07T00:44:11+08:00">2023-03-07</time>
               </span>
 
           <br>
@@ -1025,14 +1091,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>441</span>
+              <span>3.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -1048,11 +1114,66 @@
 
 
 
-<h4 id="kmp"><a href="#kmp" class="headerlink" title="kmp"></a>kmp</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="kmp"><a href="#kmp" class="headerlink" title="kmp"></a>kmp</h4><p>注意：next数组不要用next命名（可能和关键字重复）。</p>
+<p>简单介绍：</p>
+<p>字符串匹配问题：字符串 <strong>s</strong> 中查找某个字符串 <strong>p</strong> 是否出现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
 <h5 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><p><strong>O（n + m)</strong></p>
+<h5 id="Question-1-KMP板子题"><a href="#Question-1-KMP板子题" class="headerlink" title="Question 1: KMP板子题"></a>Question 1: KMP板子题</h5><p>给你两个字符串 a,b，字符串均由小写字母组成，现在问你 b 在 a 中出现了几次。</p>
+<p>题解：很裸。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//算nxt</span></span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退 算f</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(f[i] == m) ++ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!ans) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(f[i] == m)</span><br><span class="line">                std::cout &lt;&lt; i - m + <span class="number">1</span> &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; s + <span class="number">1</span> &gt;&gt; p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">kmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="Question-2-最小循环覆盖"><a href="#Question-2-最小循环覆盖" class="headerlink" title="Question 2:最小循环覆盖"></a>Question 2:最小循环覆盖</h5><p>给你一个字符串 a，你需要求出这个字符串的最小循环覆盖的长度。</p>
+<p>b 是 a 的最小循环覆盖，当且仅当 a 是通过 b 复制多次并连接后得到的字符串的前缀，且 b 是满足条件的字符串中长度最小的。</p>
+<p>输入一个字符串 a，输出一个数表示最小循环覆盖 b 的长度。</p>
+<p>题解：</p>
+<p>简单来说就是找任意一段字符，然后后面每一段字符和你找的字符是相同的。</p>
+<p>妙妙结论题：找到的长度其实就是 m - nxt[m];</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//算nxt</span></span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退 算f</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; m - nxt[m] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">kmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="Question-3-UVA-12467-Secret-word"><a href="#Question-3-UVA-12467-Secret-word" class="headerlink" title="Question 3:[UVA 12467] Secret word"></a>Question 3:[UVA 12467] Secret word</h5><p>给你一个字符串 s，你需要找出 s 中最长的 <code>secret word</code>，一个字符串 p 是 <code>secret word</code> 需要满足：</p>
+<ul>
+<li>p 是 s 的子串（p 可以与 s 相等）；</li>
+<li>将 p 翻转后是 s 的前缀。</li>
+</ul>
+<p>输入一行字符串 s，输出一行字符串为你求得的 p。</p>
+<p>题解：就是讲字符串延长2倍，然后跑一个kmp，找到最大的nxt值，最后反向打印即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//算nxt</span></span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    p[m + <span class="number">1</span>] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m + <span class="number">2</span>,j = m; j; --j, ++i)</span><br><span class="line">        p[i] = p[j];</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m + m + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退 算f</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=m+<span class="number">2</span>;i&lt;=m+m+<span class="number">1</span>;i++) &#123;</span><br><span class="line">        x = std::<span class="built_in">max</span>(x,nxt[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = x;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">        std::cout &lt;&lt; p[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">kmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="扩展KMP（Z-algorithm）"><a href="#扩展KMP（Z-algorithm）" class="headerlink" title="扩展KMP（Z  algorithm）"></a>扩展KMP（Z  algorithm）</h4><p>与kmp区别：两者求next数组不同，一个是到字符s[i]结束，另一个是从字符s[i]开始。</p>
+<p>思路：</p>
+<p>代码解读：</p>
+<p>对于满足 <strong>i &gt; 1</strong> 的位置 <strong>i</strong> , <strong>z[i]</strong> 表示字符串 <strong>s</strong> 和后缀 <strong>s[i]~s[n]</strong> 的最长公共前缀的长度。</p>
+<p>如何求 <strong>z</strong> 数组呢？</p>
+<p>首先 <strong>z[1] = 0</strong> ，开始往后枚举每个位置，去计算。</p>
+<p>若是算第 <strong>z[i]</strong> 的值，此时 从 <strong>1</strong> 到 <strong>i</strong> 的结果一定是算好的。</p>
+<p>对于 <strong>j</strong>, 有 <strong>s[j] … s[j + z[j] - 1]</strong> 和 <strong>s[1] … s[z[j]]</strong> 完全相等。</p>
+<p>为了计算 <strong>z[i]</strong> ，在枚举 <strong>i</strong> 的过程中，我们需要维护一个 <strong>R</strong> 最大的区间 [L,R]。</p>
+<p>其中 L = j (j &lt; i), R = j + z[j] - 1。</p>
+<p>情况一：假如 i &lt;= R</p>
+<p>我们知道：s[L] 到 S[R] 一定和区间 S[1] 到 S[R - L + 1] 是一一映射的关系。</p>
+<p>那么我们约定一个数 k = i - L + 1，那么此时在[L,R]中的位置对应了 <strong>k</strong> 在 [1,R - L + 1] 中的位置，此时 s[i] 到 S[R] 和 S[k] 到 S[R - L + 1 是一一映射的。</p>
+<p>Case1 : 如果 z[k] &lt; R - i + 1，那么匹配不到右边，此时只能z[i] = z[k]</p>
+<p>Case2 : 如果 z[k] &gt;= R - i + 1 那么 i 是能匹配到 R 的，这时从 R + 1 开始暴力向后匹配即可。</p>
+<p>情况二：假如 i &gt; R</p>
+<p>那么暴力枚举匹配即可。</p>
+<p>求出 z[i] 后 需要更新 L 和 R。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exkmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">1</span>, R = <span class="number">0</span>;</span><br><span class="line">    z[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; R)  z[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="keyword">int</span> k = i - L + <span class="number">1</span>;</span><br><span class="line">            z[i] = std::<span class="built_in">min</span>(z[k],R - i + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i + z[i] &lt;= n &amp;&amp; s[z[i] + <span class="number">1</span>] == s[i + z[i]]) ++z[i];</span><br><span class="line">        <span class="keyword">if</span>(i + z[i] - <span class="number">1</span> &gt; R)</span><br><span class="line">            L = i,R = i + z[i] - <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>时间复杂度：<strong>O(n)</strong></p>
 
       
     </div>
@@ -1316,12 +1437,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">111k</span>
+    <span title="站点总字数">116k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:41</span>
+    <span title="站点阅读时长">1:45</span>
 </div>
 
 <div class="powered-by">
