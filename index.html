@@ -323,6 +323,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/03/%E6%95%B0%E5%AD%A6%E8%80%83%E7%A0%94/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/03/%E6%95%B0%E5%AD%A6%E8%80%83%E7%A0%94/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">数学分析复习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-03 23:15:03" itemprop="dateCreated datePublished" datetime="2023-05-03T23:15:03+08:00">2023-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-22 00:16:38" itemprop="dateModified" datetime="2023-05-22T00:16:38+08:00">2023-05-22</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<p>本书使用教材为：《数学分析教程（第3版）》，大部分以抄书为笔记内容。</p>
+<h4 id="第一章-实数和数列极限"><a href="#第一章-实数和数列极限" class="headerlink" title="第一章 实数和数列极限"></a>第一章 实数和数列极限</h4><h5 id="1-1-实数"><a href="#1-1-实数" class="headerlink" title="1.1 实数"></a>1.1 实数</h5><p><strong>Def 1</strong>. 对所有的有理数而言，均可用 p / q 来表示。</p>
+<p><strong>数域</strong> ： 有理数经过加减乘除后仍为有理数，由此称全体有理数为数域。</p>
+<p><strong>Q1：试证明 \sqrt{2} 不是有理数。</strong></p>
+<p>tips：反证，表示为p / q,并且p与q无公因子。</p>
+<p>若要证明 <strong>P + Q</strong> 为有理数，其中 <strong>Q</strong> 是无理数，那么考虑 (P + Q) - P = Q即可。</p>
+<p><strong>无穷递降法</strong>：</p>
+<p>见课本P5，若 <strong>n</strong> 为正整数且不是完全平方数，那么 \sqrt{n} 是无理数。</p>
+<p>tips: 同Q1,反证法，造出两串递减的正整数列说明这样的正整数不可能无止境地递减下去即可。</p>
+<h5 id="1-2-数列与收敛数列"><a href="#1-2-数列与收敛数列" class="headerlink" title="1.2  数列与收敛数列"></a>1.2  数列与收敛数列</h5><p><strong>Def 1</strong>. 收敛数列定义</p>
+<p>$$\displaystyle 对\forall \epsilon &gt; 0, \exist N \in N^*, 使得当 n &gt; N 时，有 |a_n - a| &lt; \epsilon$$</p>
+<p>对于发散数列，对上面的话反着说即可。</p>
+<p>$$\displaystyle \lim_{n \to \infty} q ^ n = 0,|q| &lt; 1$$</p>
+<p>$$\displaystyle \lim_{n \to \infty} n^{\frac{1}{n}} = 1$$</p>
+<h5 id="1-3-收敛数列的性质"><a href="#1-3-收敛数列的性质" class="headerlink" title="1.3 收敛数列的性质"></a>1.3 收敛数列的性质</h5><p><strong>Def 1.</strong> 收敛数列的极限是唯一的。</p>
+<p><strong>tips:</strong> 假设一个数列收敛于两个值，最后两个值进行做差的结果是 &lt; \epsilon =&gt; 即 a = b</p>
+<p><strong>Def 2.</strong> 收敛数列必有界</p>
+<p><strong>tips:</strong> 任取一个数，使用一次三角不等式。</p>
+<p><strong>Def 3.</strong> 设{an}的极限为a,那么他的任何一个子列都收敛于a。</p>
+<p><strong>tips:</strong> 显然。</p>
+<p><strong>Def 4.</strong> 若数列 {an} 的两个子列收敛于不同极限，那么 {an} 发散</p>
+<p><strong>tips:</strong> 书上例子：an = sin n。</p>
+<p><strong>Def 5.</strong> 收敛必有界，有界不一定收敛。</p>
+<p><strong>tips:</strong> (-1) ^ n。</p>
+<p><strong>Def 6.</strong> 设 {an} {bn} 是两个收敛数列，那么他们必然是满足四则运算的,(要求做除法的时候分母不为0，若分母为0则分子也需要为0)。</p>
+<p><strong>tips:</strong> 证明见书P15</p>
+<p><strong>Def 7.</strong>  若 {an} 是无穷小，那么 {|an|} 也是无穷小，反之亦能推出。</p>
+<p><strong>Def 8.</strong> 有界数列乘无穷小量仍为无穷小量。</p>
+<p><strong>Def 9.</strong> 若 0 &lt;= an &lt;= bn,那么当{bn} 为无穷小量时，{an}也为无穷小。（若没有an &gt;= 0这个条件，那么这个结论不成立。）</p>
+<p><strong>Def 10.</strong> {an} 的极限为 a,那么 {an - a} 也是无穷小。</p>
+<p><strong>Def 11.</strong>  若 an &lt;= bn &lt;= cn, 若{an} {cn}极限均为 a , 那么 {bn} 的极限也为 a。（对于条件不强制要求等号）。</p>
+<p><strong>Def 12.</strong>  约定 {an} 的极限为 a</p>
+<p><strong>Case 1：</strong> α &lt; a &lt; β，则当 n 充分大的时候，有  α &lt; an &lt; β。</p>
+<p><strong>Case 2：</strong> {bn} 的极限为 b，且 a &lt; b,n &gt; N, an &lt; bn。</p>
+<p><strong>Case 3：</strong> {bn} 的极限为 b，若 n &gt; N, an &lt;= bn, 那么 a &lt; b。</p>
+<h5 id="1-4-数列极限概念的推广"><a href="#1-4-数列极限概念的推广" class="headerlink" title="1.4 数列极限概念的推广"></a>1.4 数列极限概念的推广</h5><p>$$\displaystyle 对\forall A &gt; 0, \exist N, 使得当 n &gt; N 时，有 |a_n| &gt; A$$</p>
+<p><strong>Def 1.</strong>  无穷大量一定无界，反之不成立。</p>
+<p><strong>tips:</strong> (1,0,2,0,……)</p>
+<p><strong>Def 2.</strong>  从无界数列中必然可以取出一个无穷大的子列。</p>
+<p><strong>tips:</strong> 显然。</p>
+<p><strong>Def 3.</strong> 如果说{an}是发散数列，那么他的任何子列都有{a_{kn}} 必发散。</p>
+<p><strong>Def 4.</strong> 若 {an} {bn} 都是发散数列，那么他们的和或者乘积也是发散的。</p>
+<p><strong>Def 5.</strong> 若 {an} 是无穷大， 那么其倒数必然是无穷小。</p>
+<h5 id="1-5-单调数列"><a href="#1-5-单调数列" class="headerlink" title="1.5 单调数列"></a>1.5 单调数列</h5><p><strong>Def 1.</strong> 单调有界数列必有极限。</p>
+<p><strong>tips:</strong> 见书P26（有点繁琐</p>
+<p><strong>Def 2.</strong> (闭区间套定理) </p>
+<p>$$\displaystyle 设 I_n = [a_n,b_n] 是一列闭区间，满足$$</p>
+<p>$$\displaystyle (1): [a_1,b_1] \supset [a_2,b_2] \supset \cdots \supset [a_n,b_n]$$</p>
+<p>$$\displaystyle (2): b_n - a_n \rightarrow 0 (n\rightarrow \infty)$$</p>
+<p>$$\displaystyle 那么存在唯一的一点a \in [a_n,b_n],n = 1,2,\cdots,(a\in\cap [a_n,b_n])$$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/13/%E4%B8%93%E9%A2%98%E9%A2%98%E5%8D%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1337,139 +1470,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/01/Atcoder/ABC283/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/01/01/Atcoder/ABC283/" class="post-title-link" itemprop="url">ABC283</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-01-01 22:33:03" itemprop="dateCreated datePublished" datetime="2023-01-01T22:33:03+08:00">2023-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-10 20:30:35" itemprop="dateModified" datetime="2023-01-10T20:30:35+08:00">2023-01-10</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-
-
-
-<h3 id="D-Scope"><a href="#D-Scope" class="headerlink" title="D - Scope"></a><strong>D - Scope</strong></h3><p><strong>题面</strong></p>
-<p>给你一个字符串只包括了”(“,”)”和小写字母，如果通过以下步骤，能使字符串为空，那么称字符串是好的：</p>
-<ul>
-<li>删除所有小写字母</li>
-<li>不停地删除连续的**()**</li>
-</ul>
-<p>给定一个好的字符串，并且你有一个盒子，你有以下的操作：</p>
-<p>1.如果当前 <strong>s[i]</strong> 是小写字母，将小写字母放入盒子中，盒子中不能出现两个相同的小写字母。</p>
-<p>2.如果当前 <strong>s[i]</strong> 是 “(“ ， 那么什么都不做。</p>
-<p>3.如果当前 <strong>s[i]</strong> 是 “)” ，取小于 <strong>i</strong> 的最大的 <strong>j</strong> , 使 <strong>Si ~ Sj</strong> 这个子串是好的，将 <strong>j</strong> 到 <strong>i</strong> 操作中放入的小球全部取出。</p>
-<p>如果违背了<strong>1</strong>，那么输出No，否则输出Yes。</p>
-<p><strong>数据范围</strong></p>
-<p>$$1 \leq |S| \leq 3 \times 10^5$$</p>
-<h4 id="思路：模拟"><a href="#思路：模拟" class="headerlink" title="思路：模拟"></a><strong>思路：模拟</strong></h4><p>1：如果当前字符为”(“，那么将<strong>cnt</strong> 增加1，为一个左括号。</p>
-<p>2：如果当前字符为小写字母，如果说当前字符没有出现过，那么让它的值为cnt，反之输出No。</p>
-<p>3：如果当前字符为”)”,那么遍历一次26个字母，如果满足等于cnt，那么将其清0。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> st[<span class="number">30</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::string s;</span><br><span class="line">    std::cin &gt;&gt; s;</span><br><span class="line">    <span class="keyword">int</span> n = s.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">memset</span>(st,<span class="literal">false</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(st));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">length</span>();i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">&#x27;(&#x27;</span>) ++cnt;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s[i] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(st[s[i] - <span class="string">&#x27;a&#x27;</span>]) &#123;</span><br><span class="line">                std::cout &lt;&lt; <span class="string">&quot;No&quot;</span> &lt;&lt; endl;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                st[s[i] - <span class="string">&#x27;a&#x27;</span>] = cnt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">&#x27;)&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">26</span>;j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(st[j] == cnt) st[j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            --cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Yes&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="E-Don’t-Isolate-Elements"><a href="#E-Don’t-Isolate-Elements" class="headerlink" title="E - Don’t Isolate Elements"></a>E - Don’t Isolate Elements</h3><p><strong>题面</strong></p>
-<p>给定一个 <strong>n * m</strong>  的 <strong>01</strong> 矩阵 <strong>a</strong>,称位于第 <strong>i</strong> 行第 <strong>j</strong> 列的元素为 <strong>ai,j</strong>。</p>
-<p>你可以进行如下的操作任意次（可以为0次）：</p>
-<ul>
-<li>选择任意一行，翻转此行内的所有元素。</li>
-</ul>
-<p>如果当前 <strong>[i,j]</strong> 的 <strong>01</strong> 性与 [i-1] [j], [i + 1] [j], [i] [j - 1],[i] [j + 1] 均不相同，那么我们称其点为被隔离点。</p>
-<p>请输出使得给定矩阵中没有元素被隔离所需要的最小操作数，如果无论如何操作都无法满足要求则输出 <strong>-1</strong>。</p>
-<p>数据范围</p>
-<p>$$2 \leq n,m\leq1000$$</p>
-<h3 id="F-Permutation-Distance"><a href="#F-Permutation-Distance" class="headerlink" title="F - Permutation Distance"></a>F - Permutation Distance</h3><p>题面：</p>
-<p>你有一个<strong>1~n</strong> 的排列 p = (p1,p2,…,pn)</p>
-<p>你需要对每个 <strong>i</strong> 求得</p>
-<p>$$\displaystyle D_i = \min_{j \neq i} {(|p_i - p_j| + |i - j|)}$$</p>
-<p>数据范围：</p>
-<p>$$\displaystyle 2 \leq n \leq 2 \times 10^5$$</p>
-<h4 id="思路一：暴力"><a href="#思路一：暴力" class="headerlink" title="思路一：暴力"></a>思路一：暴力</h4><p>对于每个点，向两边暴力枚举更新答案，如果下标太远则不可能更新到。</p>
-<p>时间复杂度：<em>O</em>(n ^ {3 / 2})。</p>
-<p>没明白：copy by <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/solution/AT_abc283_f">ppip的思路</a></p>
-<p>复杂度证明：显然一个点向两边最多跑 O(D_i) 次就会停止。所以复杂度为 O*(∑<em>D**i</em>)。</p>
-<p>而每个点取离它最近的一个点连边，这个显然能构成一个基环树森林。</p>
-<p>同时，在最小生成基环树森林中，每个点都必须要有一个出边， 所以给每个点钦定最短的那个出边是一定能构成最小生成基环树森林的。</p>
-<p>而平面曼哈顿距离最小生成基环树（森林）在点的横纵坐标范围均是 <strong>[1,n]</strong> 的整数时，上界是 O(n\sqrt n) 的。</p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">abs</span>(x - y) + <span class="built_in">abs</span>(a[x] - a[y]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    std::cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) std::cin &gt;&gt; a[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> d = <span class="number">1e9</span>; </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>;j - i &lt; d &amp;&amp; j &lt;= n;j++) &#123;</span><br><span class="line">            d = std::<span class="built_in">min</span>(d,<span class="built_in">dis</span>(i,j));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i - <span class="number">1</span>;i - j &lt; d &amp;&amp; j &gt;= <span class="number">1</span>;j--) &#123;</span><br><span class="line">            d = std::<span class="built_in">min</span>(d,<span class="built_in">dis</span>(i,j));</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; d &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>思路二：</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1541,7 +1541,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1585,12 +1585,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">124k</span>
+    <span title="站点总字数">126k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:53</span>
+    <span title="站点阅读时长">1:54</span>
 </div>
 
 <div class="powered-by">
