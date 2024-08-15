@@ -186,6 +186,531 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/07/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8806%EF%BC%89%EF%BC%9Akmp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/07/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8806%EF%BC%89%EF%BC%9Akmp/" class="post-title-link" itemprop="url">算法笔记（06）：KMP</a>
+        </h2>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-01-07 01:35:00" itemprop="dateCreated datePublished" datetime="2023-01-07T01:35:00+08:00">2023-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-07 00:47:34" itemprop="dateModified" datetime="2024-05-07T00:47:34+08:00">2024-05-07</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<h4 id="kmp"><a href="#kmp" class="headerlink" title="kmp"></a>kmp</h4><p>注意：next数组不要用next命名（可能和关键字重复）。</p>
+<p>简单介绍：</p>
+<p>字符串匹配问题：字符串 <strong>s</strong> 中查找某个字符串 <strong>p</strong> 是否出现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><p><strong>O（n + m)</strong></p>
+<h5 id="Question-1-KMP板子题"><a href="#Question-1-KMP板子题" class="headerlink" title="Question 1: KMP板子题"></a>Question 1: KMP板子题</h5><p>给你两个字符串 a,b，字符串均由小写字母组成，现在问你 b 在 a 中出现了几次。</p>
+<p>题解：很裸。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//算nxt</span></span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退 算f</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(f[i] == m) ++ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!ans) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(f[i] == m)</span><br><span class="line">                std::cout &lt;&lt; i - m + <span class="number">1</span> &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; s + <span class="number">1</span> &gt;&gt; p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">kmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="Question-2-最小循环覆盖"><a href="#Question-2-最小循环覆盖" class="headerlink" title="Question 2:最小循环覆盖"></a>Question 2:最小循环覆盖</h5><p>给你一个字符串 a，你需要求出这个字符串的最小循环覆盖的长度。</p>
+<p>b 是 a 的最小循环覆盖，当且仅当 a 是通过 b 复制多次并连接后得到的字符串的前缀，且 b 是满足条件的字符串中长度最小的。</p>
+<p>输入一个字符串 a，输出一个数表示最小循环覆盖 b 的长度。</p>
+<p>题解：</p>
+<p>简单来说就是找任意一段字符，然后后面每一段字符和你找的字符是相同的。</p>
+<p>妙妙结论题：找到的长度其实就是 m - nxt[m];</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//算nxt</span></span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退 算f</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; m - nxt[m] &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">kmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="Question-3-UVA-12467-Secret-word"><a href="#Question-3-UVA-12467-Secret-word" class="headerlink" title="Question 3:[UVA 12467] Secret word"></a>Question 3:[UVA 12467] Secret word</h5><p>给你一个字符串 s，你需要找出 s 中最长的 <code>secret word</code>，一个字符串 p 是 <code>secret word</code> 需要满足：</p>
+<ul>
+<li>p 是 s 的子串（p 可以与 s 相等）；</li>
+<li>将 p 翻转后是 s 的前缀。</li>
+</ul>
+<p>输入一行字符串 s，输出一行字符串为你求得的 p。</p>
+<p>题解：就是讲字符串延长2倍，然后跑一个kmp，找到最大的nxt值，最后反向打印即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> nxt[MAXN],f[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//kmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//算nxt</span></span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    p[m + <span class="number">1</span>] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m + <span class="number">2</span>,j = m; j; --j, ++i)</span><br><span class="line">        p[i] = p[j];</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    nxt[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m + m + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i]) </span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            j++;</span><br><span class="line">        nxt[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//回退 算f</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span>((j == m) || (j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != s[i]))</span><br><span class="line">            j = nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            j++;</span><br><span class="line">        f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=m+<span class="number">2</span>;i&lt;=m+m+<span class="number">1</span>;i++) &#123;</span><br><span class="line">        x = std::<span class="built_in">max</span>(x,nxt[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = x;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">        std::cout &lt;&lt; p[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">kmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="扩展KMP（Z-algorithm）"><a href="#扩展KMP（Z-algorithm）" class="headerlink" title="扩展KMP（Z  algorithm）"></a>扩展KMP（Z  algorithm）</h4><p>与kmp区别：两者求next数组不同，一个是到字符s[i]结束，另一个是从字符s[i]开始。</p>
+<p>思路：</p>
+<p>代码解读：</p>
+<p>对于满足 <strong>i &gt; 1</strong> 的位置 <strong>i</strong> , <strong>z[i]</strong> 表示字符串 <strong>s</strong> 和后缀 <strong>s[i]~s[n]</strong> 的最长公共前缀的长度。</p>
+<p>如何求 <strong>z</strong> 数组呢？</p>
+<p>首先 <strong>z[1] = 0</strong> ，开始往后枚举每个位置，去计算。</p>
+<p>若是算第 <strong>z[i]</strong> 的值，此时 从 <strong>1</strong> 到 <strong>i</strong> 的结果一定是算好的。</p>
+<p>对于 <strong>j</strong>, 有 <strong>s[j] … s[j + z[j] - 1]</strong> 和 <strong>s[1] … s[z[j]]</strong> 完全相等。</p>
+<p>为了计算 <strong>z[i]</strong> ，在枚举 <strong>i</strong> 的过程中，我们需要维护一个 <strong>R</strong> 最大的区间 [L,R]。</p>
+<p>其中 L = j (j &lt; i), R = j + z[j] - 1。</p>
+<p>情况一：假如 i &lt;= R</p>
+<p>我们知道：s[L] 到 S[R] 一定和区间 S[1] 到 S[R - L + 1] 是一一映射的关系。</p>
+<p>那么我们约定一个数 k = i - L + 1，那么此时在[L,R]中的位置对应了 <strong>k</strong> 在 [1,R - L + 1] 中的位置，此时 s[i] 到 S[R] 和 S[k] 到 S[R - L + 1 是一一映射的。</p>
+<p>Case1 : 如果 z[k] &lt; R - i + 1，那么匹配不到右边，此时只能z[i] = z[k]</p>
+<p>Case2 : 如果 z[k] &gt;= R - i + 1 那么 i 是能匹配到 R 的，这时从 R + 1 开始暴力向后匹配即可。</p>
+<p>情况二：假如 i &gt; R</p>
+<p>那么暴力枚举匹配即可。</p>
+<p>求出 z[i] 后 需要更新 L 和 R。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exkmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">1</span>, R = <span class="number">0</span>;</span><br><span class="line">    z[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; R)  z[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="keyword">int</span> k = i - L + <span class="number">1</span>;</span><br><span class="line">            z[i] = std::<span class="built_in">min</span>(z[k],R - i + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i + z[i] &lt;= n &amp;&amp; s[z[i] + <span class="number">1</span>] == s[i + z[i]]) ++z[i];</span><br><span class="line">        <span class="keyword">if</span>(i + z[i] - <span class="number">1</span> &gt; R)</span><br><span class="line">            L = i,R = i + z[i] - <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>时间复杂度：<strong>O(n)</strong></p>
+<h5 id="Question-1-exkmp板子题（同上面的kmp板子）"><a href="#Question-1-exkmp板子题（同上面的kmp板子）" class="headerlink" title="Question 1: exkmp板子题（同上面的kmp板子）"></a>Question 1: exkmp板子题（同上面的kmp板子）</h5><p>给你两个字符串 a,b，字符串均由小写字母组成，现在问你 b 在 a 中出现了几次。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> z[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN],p[MAXN];</span><br><span class="line"><span class="comment">//exkmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exkmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    p[m + <span class="number">1</span>] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m + <span class="number">2</span>, j = <span class="number">1</span>; j &lt;= n; i++, j++) p[i] = s[j];</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">1</span>, R = <span class="number">0</span>;</span><br><span class="line">    z[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n + m + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; R)  z[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="keyword">int</span> k = i - L + <span class="number">1</span>;</span><br><span class="line">            z[i] = std::<span class="built_in">min</span>(z[k],R - i + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i + z[i] &lt;= n + m + <span class="number">1</span> &amp;&amp; p[z[i] + <span class="number">1</span>] == p[i + z[i]]) ++z[i];</span><br><span class="line">        <span class="keyword">if</span>(i + z[i] - <span class="number">1</span> &gt; R)</span><br><span class="line">            L = i,R = i + z[i] - <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m + <span class="number">1</span>;i &lt;= n + m + <span class="number">1</span>;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(z[i] == m) ++ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!ans) </span><br><span class="line">        std::cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = m + <span class="number">2</span>;i &lt;= n + m + <span class="number">1</span>;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(z[i] == m)</span><br><span class="line">                std::cout &lt;&lt; i - m - <span class="number">1</span> &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; s + <span class="number">1</span> &gt;&gt; p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">exkmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="Question-2-CF-126B-Password"><a href="#Question-2-CF-126B-Password" class="headerlink" title="Question 2:[CF 126B] Password"></a>Question 2:[CF 126B] Password</h5><p>给你一个字符串 s，由小写字母组成，你需要求出其中最长的一个子串 p，满足 p 既是 s 的前缀，又是 s 的后缀，且在 s 中以非前缀后缀的形式出现过。如果找不到输出 <code>Just a legend</code>。</p>
+<p>输入一行一个字符串 s，输出一行一个字符串 p。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> z[MAXN];</span><br><span class="line"><span class="keyword">char</span> s[MAXN];</span><br><span class="line"><span class="comment">//exkmp head</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exkmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">strlen</span>(s + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">1</span>, R = <span class="number">0</span>;</span><br><span class="line">    z[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; R)  z[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="keyword">int</span> k = i - L + <span class="number">1</span>;</span><br><span class="line">            z[i] = std::<span class="built_in">min</span>(z[k],R - i + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i + z[i] &lt;= n + m + <span class="number">1</span> &amp;&amp; s[z[i] + <span class="number">1</span>] == s[i + z[i]]) ++z[i];</span><br><span class="line">        <span class="keyword">if</span>(i + z[i] - <span class="number">1</span> &gt; R)</span><br><span class="line">            L = i,R = i + z[i] - <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>,x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(i + z[i] - <span class="number">1</span> == n) &#123;</span><br><span class="line">            <span class="keyword">if</span>(x &gt;= z[i]) &#123;</span><br><span class="line">                ans = std::<span class="built_in">max</span>(ans,z[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        x = std::<span class="built_in">max</span>(x,z[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!ans) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Just a legend&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=ans;i++) std::cout &lt;&lt; s[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cin &gt;&gt; s + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">exkmp</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/01/Atcoder/ABC283/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/01/Atcoder/ABC283/" class="post-title-link" itemprop="url">ABC283</a>
+        </h2>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-01-01 22:33:03" itemprop="dateCreated datePublished" datetime="2023-01-01T22:33:03+08:00">2023-01-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-10 20:30:35" itemprop="dateModified" datetime="2023-01-10T20:30:35+08:00">2023-01-10</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+
+
+<h3 id="D-Scope"><a href="#D-Scope" class="headerlink" title="D - Scope"></a><strong>D - Scope</strong></h3><p><strong>题面</strong></p>
+<p>给你一个字符串只包括了”(“,”)”和小写字母，如果通过以下步骤，能使字符串为空，那么称字符串是好的：</p>
+<ul>
+<li>删除所有小写字母</li>
+<li>不停地删除连续的**()**</li>
+</ul>
+<p>给定一个好的字符串，并且你有一个盒子，你有以下的操作：</p>
+<p>1.如果当前 <strong>s[i]</strong> 是小写字母，将小写字母放入盒子中，盒子中不能出现两个相同的小写字母。</p>
+<p>2.如果当前 <strong>s[i]</strong> 是 “(“ ， 那么什么都不做。</p>
+<p>3.如果当前 <strong>s[i]</strong> 是 “)” ，取小于 <strong>i</strong> 的最大的 <strong>j</strong> , 使 <strong>Si ~ Sj</strong> 这个子串是好的，将 <strong>j</strong> 到 <strong>i</strong> 操作中放入的小球全部取出。</p>
+<p>如果违背了<strong>1</strong>，那么输出No，否则输出Yes。</p>
+<p><strong>数据范围</strong></p>
+<p>$$1 \leq |S| \leq 3 \times 10^5$$</p>
+<h4 id="思路：模拟"><a href="#思路：模拟" class="headerlink" title="思路：模拟"></a><strong>思路：模拟</strong></h4><p>1：如果当前字符为”(“，那么将<strong>cnt</strong> 增加1，为一个左括号。</p>
+<p>2：如果当前字符为小写字母，如果说当前字符没有出现过，那么让它的值为cnt，反之输出No。</p>
+<p>3：如果当前字符为”)”,那么遍历一次26个字母，如果满足等于cnt，那么将其清0。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> st[<span class="number">30</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::string s;</span><br><span class="line">    std::cin &gt;&gt; s;</span><br><span class="line">    <span class="keyword">int</span> n = s.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">memset</span>(st,<span class="literal">false</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(st));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">length</span>();i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] == <span class="string">&#x27;(&#x27;</span>) ++cnt;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s[i] &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(st[s[i] - <span class="string">&#x27;a&#x27;</span>]) &#123;</span><br><span class="line">                std::cout &lt;&lt; <span class="string">&quot;No&quot;</span> &lt;&lt; endl;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                st[s[i] - <span class="string">&#x27;a&#x27;</span>] = cnt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(s[i] == <span class="string">&#x27;)&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">26</span>;j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(st[j] == cnt) st[j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            --cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Yes&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="E-Don’t-Isolate-Elements"><a href="#E-Don’t-Isolate-Elements" class="headerlink" title="E - Don’t Isolate Elements"></a>E - Don’t Isolate Elements</h3><p><strong>题面</strong></p>
+<p>给定一个 <strong>n * m</strong>  的 <strong>01</strong> 矩阵 <strong>a</strong>,称位于第 <strong>i</strong> 行第 <strong>j</strong> 列的元素为 <strong>ai,j</strong>。</p>
+<p>你可以进行如下的操作任意次（可以为0次）：</p>
+<ul>
+<li>选择任意一行，翻转此行内的所有元素。</li>
+</ul>
+<p>如果当前 <strong>[i,j]</strong> 的 <strong>01</strong> 性与 [i-1] [j], [i + 1] [j], [i] [j - 1],[i] [j + 1] 均不相同，那么我们称其点为被隔离点。</p>
+<p>请输出使得给定矩阵中没有元素被隔离所需要的最小操作数，如果无论如何操作都无法满足要求则输出 <strong>-1</strong>。</p>
+<p>数据范围</p>
+<p>$$2 \leq n,m\leq1000$$</p>
+<h3 id="F-Permutation-Distance"><a href="#F-Permutation-Distance" class="headerlink" title="F - Permutation Distance"></a>F - Permutation Distance</h3><p>题面：</p>
+<p>你有一个<strong>1~n</strong> 的排列 p = (p1,p2,…,pn)</p>
+<p>你需要对每个 <strong>i</strong> 求得</p>
+<p>$$\displaystyle D_i = \min_{j \neq i} {(|p_i - p_j| + |i - j|)}$$</p>
+<p>数据范围：</p>
+<p>$$\displaystyle 2 \leq n \leq 2 \times 10^5$$</p>
+<h4 id="思路一：暴力"><a href="#思路一：暴力" class="headerlink" title="思路一：暴力"></a>思路一：暴力</h4><p>对于每个点，向两边暴力枚举更新答案，如果下标太远则不可能更新到。</p>
+<p>时间复杂度：<em>O</em>(n ^ {3 / 2})。</p>
+<p>没明白：copy by <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/solution/AT_abc283_f">ppip的思路</a></p>
+<p>复杂度证明：显然一个点向两边最多跑 O(D_i) 次就会停止。所以复杂度为 O*(∑<em>D**i</em>)。</p>
+<p>而每个点取离它最近的一个点连边，这个显然能构成一个基环树森林。</p>
+<p>同时，在最小生成基环树森林中，每个点都必须要有一个出边， 所以给每个点钦定最短的那个出边是一定能构成最小生成基环树森林的。</p>
+<p>而平面曼哈顿距离最小生成基环树（森林）在点的横纵坐标范围均是 <strong>[1,n]</strong> 的整数时，上界是 O(n\sqrt n) 的。</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dis</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">abs</span>(x - y) + <span class="built_in">abs</span>(a[x] - a[y]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">JiuCherish</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    std::cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) std::cin &gt;&gt; a[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> d = <span class="number">1e9</span>; </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>;j - i &lt; d &amp;&amp; j &lt;= n;j++) &#123;</span><br><span class="line">            d = std::<span class="built_in">min</span>(d,<span class="built_in">dis</span>(i,j));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i - <span class="number">1</span>;i - j &lt; d &amp;&amp; j &gt;= <span class="number">1</span>;j--) &#123;</span><br><span class="line">            d = std::<span class="built_in">min</span>(d,<span class="built_in">dis</span>(i,j));</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; d &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>思路二：</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="post-title-link" itemprop="url">算法笔记（05）：并查集</a>
+        </h2>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-25 09:52:41" itemprop="dateCreated datePublished" datetime="2022-10-25T09:52:41+08:00">2022-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-28 11:37:11" itemprop="dateModified" datetime="2024-04-28T11:37:11+08:00">2024-04-28</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4><p>并查集是一种树形数据结构，经常用于处理集合之间的操作（如元素查找、集合合并。</p>
+<p>n元素，m次查询</p>
+<p>复杂度：O(m)，最坏复杂度：O（mlogn)</p>
+<h5 id="并查集初始化"><a href="#并查集初始化" class="headerlink" title="并查集初始化"></a>并查集初始化</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        fa[i] = i;</span><br><span class="line">        sz[i] = dep[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="集合合并"><a href="#集合合并" class="headerlink" title="集合合并"></a>集合合并</h5><p>讲元素x,y所在的集合合并。</p>
+<p>首先先找到 x,y 对应的代表元 （fa 等于自己的元素）</p>
+<p>将其中一个代表元的 fa 指向另外一个，那么原来在这个代表元下的所有元素的代表元都会指向另外一个。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Findset</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fa[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Findset</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fx = <span class="built_in">Findset</span>(x),fy = <span class="built_in">Findset</span>(y);</span><br><span class="line">    <span class="keyword">if</span>(fx == fy) <span class="keyword">return</span>;</span><br><span class="line">    fa[fx] = fy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h5><p>通过缩短并查集的路径，具体是查询过程中，把沿途的每个节点的 <strong>fa</strong> 都设为集合代表元。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Findset</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(x == fa[x]) <span class="keyword">return</span> x;</span><br><span class="line">   fa[x] = <span class="built_in">Findset</span>(fa[x]);</span><br><span class="line">   <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>或者</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Findset</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> x == fa[x] ? x : (fa[x] == <span class="built_in">Findset</span>(fa[x]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="启发式合并"><a href="#启发式合并" class="headerlink" title="启发式合并"></a>启发式合并</h5><p>合并两个集合优化的方法。</p>
+<p>在合并集合的时候，我们尽量选择包含元素个数少的集合，将它合并到另一个集合中，使需要改变代表元的元素数量尽可能少。</p>
+<p>小集合合并到较大集合称为启发式合并。</p>
+<p><strong>时间复杂度：log</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fx = <span class="built_in">Findset</span>(x),fy = <span class="built_in">Findset</span>(y);</span><br><span class="line">    <span class="keyword">if</span>(fx == fy) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(sz[fx] &gt; sz[fy])</span><br><span class="line">        std::<span class="built_in">swap</span>(fx,fy);</span><br><span class="line">    fa[fx] = fy;</span><br><span class="line">    sz[fy] += sz[fx];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="按深度合并"><a href="#按深度合并" class="headerlink" title="按深度合并"></a>按深度合并</h5><p>深度小的集合合并到深度大的一方。</p>
+<p><strong>时间复杂度：log</strong></p>
+<p>路径压缩过程中，有可能破坏我们维护的深度值，但总体复杂度不会差。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fx = <span class="built_in">Findset</span>(x),fy = <span class="built_in">Findset</span>(y);</span><br><span class="line">    <span class="keyword">if</span>(fx == fy) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(dep[fx] &gt; dep[fy])</span><br><span class="line">        std::<span class="built_in">swap</span>(fx,fy);</span><br><span class="line">    fa[fx] = fy;</span><br><span class="line">    <span class="keyword">if</span>(dep[fx] == dep[fy]) <span class="comment">//只有两棵树深度相等时才会更新</span></span><br><span class="line">        dep[fy]++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="JiuCherish">
+      <meta itemprop="description" content="希望自己能会一点东西">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玖的数学&算法录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/25/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8805%EF%BC%89%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="post-title-link" itemprop="url">算法笔记（05）：并查集</a>
+        </h2>
+
+        <div class="post-meta">
+	          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-25 09:52:41" itemprop="dateCreated datePublished" datetime="2022-10-25T09:52:41+08:00">2022-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-06 23:28:59" itemprop="dateModified" datetime="2024-05-06T23:28:59+08:00">2024-05-06</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+
+<h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4><p>并查集是一种树形数据结构，经常用于处理集合之间的操作（如元素查找、集合合并。</p>
+<p>n元素，m次查询</p>
+<p>复杂度：O(m)，最坏复杂度：O（mlogn)</p>
+<h5 id="并查集初始化"><a href="#并查集初始化" class="headerlink" title="并查集初始化"></a>并查集初始化</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        fa[i] = i;</span><br><span class="line">        sz[i] = dep[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="集合合并"><a href="#集合合并" class="headerlink" title="集合合并"></a>集合合并</h5><p>讲元素x,y所在的集合合并。</p>
+<p>首先先找到 x,y 对应的代表元 （fa 等于自己的元素）</p>
+<p>将其中一个代表元的 fa 指向另外一个，那么原来在这个代表元下的所有元素的代表元都会指向另外一个。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Findset</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fa[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Findset</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fx = <span class="built_in">Findset</span>(x),fy = <span class="built_in">Findset</span>(y);</span><br><span class="line">    <span class="keyword">if</span>(fx == fy) <span class="keyword">return</span>;</span><br><span class="line">    fa[fx] = fy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h5><p>通过缩短并查集的路径，具体是查询过程中，把沿途的每个节点的 <strong>fa</strong> 都设为集合代表元。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Findset</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(x == fa[x]) <span class="keyword">return</span> x;</span><br><span class="line">   fa[x] = <span class="built_in">Findset</span>(fa[x]);</span><br><span class="line">   <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>或者</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Findset</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> x == fa[x] ? x : (fa[x] == <span class="built_in">Findset</span>(fa[x]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="启发式合并"><a href="#启发式合并" class="headerlink" title="启发式合并"></a>启发式合并</h5><p>合并两个集合优化的方法。</p>
+<p>在合并集合的时候，我们尽量选择包含元素个数少的集合，将它合并到另一个集合中，使需要改变代表元的元素数量尽可能少。</p>
+<p>小集合合并到较大集合称为启发式合并。</p>
+<p><strong>时间复杂度：log</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fx = <span class="built_in">Findset</span>(x),fy = <span class="built_in">Findset</span>(y);</span><br><span class="line">    <span class="keyword">if</span>(fx == fy) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(sz[fx] &gt; sz[fy])</span><br><span class="line">        std::<span class="built_in">swap</span>(fx,fy);</span><br><span class="line">    fa[fx] = fy;</span><br><span class="line">    sz[fy] += sz[fx];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="按深度合并"><a href="#按深度合并" class="headerlink" title="按深度合并"></a>按深度合并</h5><p>深度小的集合合并到深度大的一方。</p>
+<p><strong>时间复杂度：log</strong></p>
+<p>路径压缩过程中，有可能破坏我们维护的深度值，但总体复杂度不会差。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fx = <span class="built_in">Findset</span>(x),fy = <span class="built_in">Findset</span>(y);</span><br><span class="line">    <span class="keyword">if</span>(fx == fy) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(dep[fx] &gt; dep[fy])</span><br><span class="line">        std::<span class="built_in">swap</span>(fx,fy);</span><br><span class="line">    fa[fx] = fy;</span><br><span class="line">    <span class="keyword">if</span>(dep[fx] == dep[fy]) <span class="comment">//只有两棵树深度相等时才会更新</span></span><br><span class="line">        dep[fy]++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/04/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8800%EF%BC%89%EF%BC%9ASTL%E4%B8%93%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -663,370 +1188,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%BA%94%E5%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/01/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%BA%94%E5%9C%BA/" class="post-title-link" itemprop="url">2022牛客多校第五场</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-01 16:40:32" itemprop="dateCreated datePublished" datetime="2022-08-01T16:40:32+08:00">2022-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-15 17:00:20" itemprop="dateModified" datetime="2022-08-15T17:00:20+08:00">2022-08-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/01/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="post-title-link" itemprop="url">数学分析每日一题</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-01 01:49:39" itemprop="dateCreated datePublished" datetime="2022-08-01T01:49:39+08:00">2022-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-03 23:20:13" itemprop="dateModified" datetime="2023-05-03T23:20:13+08:00">2023-05-03</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-
-<p><strong>数分每日一题</strong></p>
-<h4 id="8-1"><a href="#8-1" class="headerlink" title="8.1"></a>8.1</h4><h5 id="Fejer积分"><a href="#Fejer积分" class="headerlink" title="Fejer积分"></a>Fejer积分</h5><p>记</p>
-<p>$$\displaystyle I_n = \int_{0} ^ \frac{\pi}{2}(\frac{\sin nx}{\sin x})^2\mathrm{d}x$$</p>
-<p>证明</p>
-<p>$$\displaystyle I_n = \frac{n \pi}{2}$$</p>
-<p><strong>prove:</strong></p>
-<p>$$\displaystyle I_n - I_{n - 1} = \int_{0} ^ {\frac{\pi}{2}}\frac{\sin ^ 2 nx - \sin^2{(n-1)x}}{\sin ^2 x}\mathrm dx$$</p>
-<p>$$\displaystyle =\frac{1}{2} \int_{0} ^ \frac{\pi}{2} \frac{\cos(2n - 2)x - \cos 2nx}{\sin ^ 2x}\mathrm dx$$</p>
-<p>$$\displaystyle = \int_{0} ^ \frac{\pi}{2} \frac{\sin (2n - 1)x}{\sin x}\mathrm dx = J_{n}$$</p>
-<p>$$\displaystyle J_n - J_{n-1} = \int_0^\frac{\pi}{2} \frac{\sin(2n - 1)x - \sin(2n - 3)x}{\sin x}\mathrm dx$$</p>
-<p>$$\displaystyle = \int_0^\frac{\pi}{2} \frac{2\sin\frac{2n - 1 -(2n - 3)}{2} x \cdot \cos \frac{(2n - 1 ) + (2n - 3)}{2}x}{\sin x}\mathrm dx$$</p>
-<p>$$\displaystyle = 2\int_0^\frac{\pi}{2} \cos(2n - 2)x \mathrm dx = 0$$</p>
-<p>即得出</p>
-<p>$$J_n = J_{n-1} = \cdots = J_{1}$$</p>
-<p>又</p>
-<p>$$\displaystyle J_1 = \int_{0}^\frac{\pi}{2} \mathrm dx = \frac{\pi}{2} , I_1 = \frac{\pi}{2}$$ </p>
-<p>因此由等差数列求和公式得出</p>
-<p>$$\displaystyle I_n = I_1 + (n - 1)\cdot \frac{\pi}{2} = \frac{n\pi}{2}$$</p>
-<h4 id="8-2"><a href="#8-2" class="headerlink" title="8.2"></a>8.2</h4><h5 id="IMC-2022-Day1-problem1"><a href="#IMC-2022-Day1-problem1" class="headerlink" title="IMC 2022 Day1 problem1"></a>IMC 2022 Day1 problem1</h5><p><strong>Problem 1</strong> : Let f :[0,1]-&gt;(0,∞) be an integrable function such that f(x) · f(1-x) = 1 for all x ∈ [0,1]. Prove that</p>
-<p>$$\displaystyle \int_0^{1} f(x)\mathrm{d}x \geq 1$$</p>
-<p>译：设**f[0,1] -&gt; (0,+∞)**是一个可积函数，满足f(x)f(1-x) = 1，对于所有x∈[0,1],证明：</p>
-<p>$$\displaystyle \int_0^{1} f(x)\mathrm{d}x \geq 1$$</p>
-<p><strong>Prove1:</strong></p>
-<p>由 <strong>AM-GM</strong> 不等式得</p>
-<p>$$\displaystyle f(x) + f(1-x) \geq 2\sqrt{f(x)f(1-x)}=2$$</p>
-<p>同时我们考虑</p>
-<p>$$\displaystyle \int_0^{1}f(x)\mathrm{d}x = \int_0^\frac{1}{2}f(x)\mathrm{d}x+\int_0^\frac{1}{2}f(1-x)\mathrm{d}x$$</p>
-<p>$$\displaystyle =\int_0^\frac{1}{2}(f(x)+f(1-x))\mathrm{d}x\geq\int_0^\frac{1}{2}2\mathrm{d}x=1$$</p>
-<p><strong>Prove2:</strong></p>
-<p>注意到:</p>
-<p>$$\displaystyle \int_0^1 f(x)\mathrm{d}x=\int_0^1 f(1-x)\mathrm{d}x =\int_0^1\frac{1}{f(x)}\mathrm{d}x$$</p>
-<p>所以有</p>
-<p>$$\displaystyle (\int_0^1 f(x)\mathrm{d}x)^2 = \int_0^1 f(x)\mathrm{d}x\cdot\int_0^1\frac{1}{f(x)}\mathrm{d}x \geq (\int_0^1 1\mathrm{d}x)^2\geq1$$</p>
-<h4 id="8-3"><a href="#8-3" class="headerlink" title="8.3"></a>8.3</h4><p>3</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/30/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E5%9B%9B%E5%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/30/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E5%9B%9B%E5%9C%BA/" class="post-title-link" itemprop="url">2022牛客多校第四场</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-30 16:39:53" itemprop="dateCreated datePublished" datetime="2022-07-30T16:39:53+08:00">2022-07-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-15 17:00:11" itemprop="dateModified" datetime="2022-08-15T17:00:11+08:00">2022-08-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/26/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%B8%89%E5%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/26/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E4%B8%89%E5%9C%BA/" class="post-title-link" itemprop="url">2022牛客多校第三场</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-26 16:38:10" itemprop="dateCreated datePublished" datetime="2022-07-26T16:38:10+08:00">2022-07-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-20 02:23:52" itemprop="dateModified" datetime="2022-08-20T02:23:52+08:00">2022-08-20</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>60</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-
-
-
-<h3 id="C-Concatenation"><a href="#C-Concatenation" class="headerlink" title="C.Concatenation"></a>C.Concatenation</h3><p><strong>题面：</strong></p>
-<p>给定<strong>n</strong>个仅含0~4的字符串，问将他们拼接起来，使得最后得到的字符串，转换的数字值最大</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1098,14 +1259,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1142,12 +1303,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">144k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:11</span>
 </div>
 
 <div class="powered-by">
