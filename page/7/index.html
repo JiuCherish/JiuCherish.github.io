@@ -186,125 +186,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/29/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8801%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="JiuCherish">
-      <meta itemprop="description" content="希望自己能会一点东西">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玖的数学&算法录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/29/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%8801%EF%BC%89%EF%BC%9A%E6%8E%92%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法笔记（01）：排序算法</a>
-        </h2>
-
-        <div class="post-meta">
-	          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-29 18:52:49" itemprop="dateCreated datePublished" datetime="2022-01-29T18:52:49+08:00">2022-01-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-28 14:32:30" itemprop="dateModified" datetime="2022-11-28T14:32:30+08:00">2022-11-28</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-
-
-<p>更新：</p>
-<p>删去了其他比较trivial的排序，留下了算法竞赛中用的略微多的排序思维。</p>
-<p>删掉了useless的排序方法（希尔等等）。</p>
-<p>修正了代码语言，Java语言由于当时第一版所写的错误过多，因而删除，再加上在运行速度上不及C++。</p>
-<h4 id="1-快速排序"><a href="#1-快速排序" class="headerlink" title="1.快速排序"></a>1.快速排序</h4><p>是一种基于分治的排序方法。</p>
-<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>对需要排序的区间[l,r]进行下面的操作：</p>
-<p><strong>(1)</strong> 如果区间长度小于等于1直接退出，否则在区间中选择一个数字<strong>x</strong>作为比较元素。</p>
-<p><strong>(2)</strong> 将大于x的数字放右边，小于x的数字放左边，等于x的可左可右，将x放在两组数字中间。</p>
-<p>**(3)**此时x的位置确认，对其左右两边的区间分别进行递归即可。</p>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a><strong>代码</strong></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">    std::<span class="built_in">swap</span>(a[l], a[l + <span class="built_in">rand</span>() % (r - l + <span class="number">1</span>)]);</span><br><span class="line">    <span class="keyword">int</span> x = a[l];</span><br><span class="line">    <span class="keyword">int</span> i = l,j = r;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; j) &#123;</span><br><span class="line">		<span class="keyword">while</span>(i &lt; j &amp;&amp; a[i] &gt; x) &#123;</span><br><span class="line">            j--;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) &#123;</span><br><span class="line">			 a[i++] = a[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j &amp;&amp; a[i] &lt; x) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) &#123;</span><br><span class="line">                a[j--] = a[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    a[i] = x;</span><br><span class="line">    <span class="built_in">quicksort</span>(l, i - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">quicksort</span>(i + <span class="number">1</span>, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-归并排序"><a href="#2-归并排序" class="headerlink" title="2.归并排序"></a>2.归并排序</h4><p>是一种基于分治的排序方法。</p>
-<h5 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h5><p>对需要排序的区间[l,r]进行下面的操作：</p>
-<p><strong>(1)</strong> 如果区间长度小于等于1直接退出，否则将区间分为[l,m],[m + 1,r]两个部分，其中 m = (l + r) / 2。</p>
-<p><strong>(2)</strong> 递归对两个子区间进行归并排序。</p>
-<p><strong>(3)</strong> 将两个已经排好序的子区间进行合并。</p>
-<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergesort</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l == r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> m = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">mergesort</span>(l,m);</span><br><span class="line">    <span class="built_in">mergesort</span>(m + <span class="number">1</span>, r);</span><br><span class="line">    <span class="keyword">int</span> p1 = l, p2 = m + <span class="number">1</span>,tot = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(p1 &lt;= m &amp;&amp; p2 &lt;= r) &#123;</span><br><span class="line">		<span class="keyword">if</span>(a[p1] &lt;= a[p2])</span><br><span class="line">            c[++tot] = a[p1++];</span><br><span class="line">         <span class="keyword">else</span></span><br><span class="line">            c[++tot] = a[p2++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p1 &lt;= m)</span><br><span class="line">        c[++tot] = a[p1++];</span><br><span class="line">    <span class="keyword">while</span>(p2 &lt;= r)</span><br><span class="line">        c[++tot] = a[p2++];</span><br><span class="line">   	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i &lt;= tot; i++) &#123;</span><br><span class="line">        a[i + l - <span class="number">1</span>] = c[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3-计数排序"><a href="#3-计数排序" class="headerlink" title="3.计数排序"></a>3.计数排序</h4><h5 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h5><p>计数排序适合于值域范围校的数字排序</p>
-<p><strong>(1)</strong> 统计每个数字出现了几次。</p>
-<p><strong>(2)</strong> 统计完每个元素的出现次数后，求一边前缀和，我们就知道了每个数字在排完序后的序列中出现位置的范围。</p>
-<p><strong>(3)</strong> 把数字填入对应的位置即可。</p>
-<h5 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&quot;\n&quot;</span></span></span><br><span class="line"><span class="keyword">int</span> n, m, a[N + <span class="number">1</span>], c[M + <span class="number">1</span>], r[N + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">countingsort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(c,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(c));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		++c[a[i]];	</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=c[i];j++) </span><br><span class="line">			std::cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">   	std::cout &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=m;i++) &#123;</span><br><span class="line">		c[i] += c[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n; i; --i) &#123;</span><br><span class="line">         r[i] = c[a[i]]--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		std::cout &lt;&lt; r[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-基数排序"><a href="#4-基数排序" class="headerlink" title="4.基数排序"></a>4.基数排序</h4><h5 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h5><p>将每个待排序的元素拆分成m个关键字，然后从后往前依次对这m个关键字进行排序。</p>
-<p>特别的</p>
-<p>（基数排序经常被用于进行字符串的排序，比如说后缀数组的核心就是基数排序）。</p>
-<p><strong>(1)</strong>  我们只要把数字按第 i 个及以后的关键字从小到大的顺序放到数组里，再做一次计数排序就好。</p>
-<h5 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n, m, a[N + <span class="number">1</span>], sa[N + <span class="number">1</span>], v[N + <span class="number">1</span>], r[N + <span class="number">1</span>], c[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">countingsort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(c,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(c));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        ++c[v[i]];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">9</span>;i++)</span><br><span class="line">        c[i] += c[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i;--i)</span><br><span class="line">        r[sa[i]] = c[v[sa[i]]]--;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        sa[r[i]] = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">radixsort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        sa[i] = i;</span><br><span class="line">    <span class="keyword">int</span> x = i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++,x *= <span class="number">10</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;=n;j++)</span><br><span class="line">            v[j] = a[j] / x % <span class="number">10</span>;</span><br><span class="line">    	<span class="built_in">countingsort</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/29/%E4%B8%80%E9%81%93%E9%9D%9E%E6%95%B0%E5%AD%A6%E7%B3%BB%E7%AB%9E%E8%B5%9B%E9%A2%98%E7%9A%84%E6%8E%A8%E5%B9%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -568,7 +449,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -612,12 +493,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">206k</span>
+    <span title="站点总字数">203k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:07</span>
+    <span title="站点阅读时长">3:04</span>
 </div>
 
 <div class="powered-by">
